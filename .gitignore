@@ -16,10 +16,11 @@ node_modules/
 .vite/
 dist/
 build/
+.vercel/
 
-# Logs
+# Logs and temp files
 *.log
+*.tmp
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-

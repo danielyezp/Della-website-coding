@@ -1,15 +1,25 @@
 # Project Context
 
+Last updated: 2026-05-21
+
 ## Repository
 
 - GitHub: https://github.com/danielyezp/Della-website-coding.git
 - Local workspace: `C:\Users\danielyip\Documents\Codex\theme_export__dellahome-com-dellahome-store-live__18MAY2026-1236pm`
 - Shopify store: `dellahome-store.myshopify.com`
-- Live theme last touched during this session: `dellahome-store/live` (`#188113486112`)
+- Live theme ID: `188113486112`
+- Development theme ID: `188639084832`
+- Development theme name: `Development (c049eb-MARKETPLACEMGR)`
+- Development preview URL: `https://dellahome-store.myshopify.com?preview_theme_id=188639084832`
+
+Important operating rule:
+
+- Do not push future changes to the Shopify live theme unless Daniel explicitly asks for a live/production push.
+- Default to local files, GitHub sync, or the development/preview theme.
 
 ## Current Snapshot
 
-This is a Shopify theme export containing the standard theme directories:
+This is a Shopify theme export containing:
 
 - `assets/`
 - `config/`
@@ -19,7 +29,7 @@ This is a Shopify theme export containing the standard theme directories:
 - `snippets/`
 - `templates/`
 
-The workspace also includes local preview artifacts from design/performance review work:
+The workspace also includes local preview artifacts:
 
 - `mini-split-landing-preview.html`
 - `mini-split-landing-preview-desktop.png`
@@ -27,53 +37,142 @@ The workspace also includes local preview artifacts from design/performance revi
 - `v0-version-review.png`
 - `v0-version-review-full.png`
 
-## Recent Performance Work
+Additional planning context:
 
-Recent theme-level optimization work focused on improving mobile and desktop Lighthouse/PageSpeed performance without changing the visual theme style:
+- `docs/PROJECT_CONTEXT.md` covers the mini split landing page prototype, Della catalog/source references, series grouping, and v0 review feedback.
 
-- Added LCP preload helpers for home, collection, and product templates.
-- Improved image loading priority so above-the-fold/LCP images are prioritized while offscreen images stay lazy.
-- Adjusted product media loading so primary product media is prioritized and secondary media remains lower priority.
-- Reduced unconditional product video resources by loading YouTube and Shopify Plyr resources only when relevant product media exists.
-- Added lazy video handling for theme videos.
-- Reviewed app script delay strategy. The `delay-javascript.liquid` snippet was later cancelled/removed by request and is not part of the current local snapshot.
-- Accessibility app/script should not be blocked or delayed because it is treated as compliance-sensitive.
+## Shopify CLI Notes
 
-## Live Hotfixes Pushed
+- Use `shopify.cmd` on this Windows machine. `shopify.ps1` may be blocked by PowerShell execution policy.
+- Local `127.0.0.1:9292` Shopify preview was unreliable during debugging because it hit verification/403 behavior.
+- Prefer the Shopify preview theme URL for manual testing.
+- Weglot/Shopify caching can serve stale HTML. Adding a fresh query parameter or using an alternate view helped verify fresh renders during debugging.
 
-Only these two files were pushed to the live Shopify theme during the final z-index hotfix:
+## Bundle / Multizone Cart Context
 
-- `assets/custom-Blyy9yop.css`
-- `snippets/theme-globals.liquid`
+Problem investigated:
 
-The hotfix addressed:
+- On multizone bundle products, customers choose line set accessories together with the main HVAC SKU.
+- Free accessory combinations were removed correctly when the main SKU was removed.
+- Paid accessory combinations could remain in cart after removing the main SKU.
 
-- Homepage mega menu overlapping with Trustpilot review cards.
-- Mini cart / modal being covered by the raised header layer.
+Root cause:
 
-Final intended stacking order:
+- Bundle cleanup used sequential `/cart/change.js` style removal by line key.
+- Paid line set items could cause discounts/cart line recalculation, making later stale line keys invalid.
 
-- Page content and Trustpilot widgets: low layer.
-- Header and mega menu: `1500` / `1501`.
-- Mini cart, modal, and slideout drawers: `2300`.
+Current fix:
 
-## Important Notes
+- Bundle lines share a `bundle_id` property.
+- Main product line also carries `main_bundle: "true"`.
+- When the main line is removed, cleanup fetches the current cart and sends one atomic `/cart/update.js` request setting every line in that bundle to `0`.
+- This is implemented for both quick cart and cart page behavior.
 
-- Do not blindly push the entire local theme to live if only a hotfix is intended. Use Shopify CLI `--only` for scoped live uploads.
-- The live scoped push command used for the z-index hotfix was:
+Key active assets:
 
-```powershell
-shopify.cmd theme push --store dellahome-store.myshopify.com --theme 188113486112 --allow-live --nodelete --only assets/custom-Blyy9yop.css --only snippets/theme-globals.liquid
+- `assets/theme-aacee141.js`
+- `assets/product-44e9e671.js`
+- `assets/quick-cart-89b41421.js`
+- `assets/bundle-cart-422a0b7b.js`
+- `assets/cart-89b3e123.js`
+
+References:
+
+- `snippets/vite-tag.liquid` loads `assets/theme-aacee141.js`.
+- `assets/manifest.json` points to the current cache-busted assets above.
+- Some older generated assets remain in `assets/`. Do not delete old hashed files unless all Liquid/manifest references have been checked.
+
+## Add To Cart / Quick Cart Context
+
+Recent behavior fixed:
+
+- Add to cart initially had a delay before the shopping cart drawer showed the product.
+- A later version made the header cart count update only after refreshing the page.
+
+Current intended behavior:
+
+- `assets/product-44e9e671.js` updates the cart state and header count immediately after add to cart.
+- `assets/quick-cart-89b41421.js` waits for the quick cart refresh before opening so the drawer does not show stale/empty content.
+
+## Server-Side Enforcement Note
+
+Frontend restrictions are not enough for Shopify carts because a customer or script can add a variant directly by product/variant ID.
+
+Recommended hardening path:
+
+- Add Shopify Cart / Checkout Validation Function in a custom Shopify app.
+- Enforce bundle rules server-side so orphan line set/accessory items cannot proceed to checkout without their matching main product bundle.
+- This is app/function work, not just theme code.
+
+## Delay App Removal
+
+The previously tested "delay app startup" work was removed by request.
+
+Current local state:
+
+- `snippets/delay-javascript.liquid` has been removed.
+- `layout/theme.liquid` no longer renders the delay snippet.
+- `layout/theme.pagefly.liquid` no longer renders the delay snippet.
+- Delay-related theme setting schema was removed from `config/settings_schema.json`.
+- Delay-related locale/schema text was removed from `locales/en.default.schema.json`.
+
+Accessibility/compliance-related app scripts should not be blocked or delayed.
+
+## Chat And Call Page Context
+
+Recent issue:
+
+- On `/pages/chat`, the Live Chat and Call buttons stopped responding.
+
+Current fix:
+
+- `layout/theme.liquid` contains a global click handler for page links with visible labels like `Chat Now` and `Call Now`.
+- Chat waits briefly for the Willdesk launcher to become available, then opens it.
+- Call links normalize to `tel:+18008634143`.
+- `templates/page.chat.json` and `templates/page.our-reviews.json` include the normalized call link.
+
+## Liquid Error Context
+
+Recent error:
+
+```text
+Liquid error (layout/theme line 12): Could not find asset snippets/homepage-lcp-preload.liquid
+Liquid error (layout/theme line 13): Could not find asset snippets/collection-lcp-preload.liquid
+Liquid error (layout/theme line 14): Could not find asset snippets/product-lcp-preload.liquid
 ```
 
-- The `custom.css` asset is mapped through `snippets/vite-tag.liquid` to `assets/custom-Blyy9yop.css`.
-- `snippets/theme-globals.liquid` also contains inline z-index CSS so the hotfix is not dependent on stale cached custom CSS.
+Resolution:
 
-## Testing Notes
+- The render references for those LCP preload snippets were removed from `layout/theme.liquid`.
+- The current local `layout/theme.liquid` should not depend on those snippets.
+- Verification after the fix showed no visible/source Liquid error on homepage or `/pages/chat`.
 
-Primary manual checks after the hotfix:
+Related structured data fix:
 
-- Homepage mega menu should appear above Trustpilot review cards.
-- Mini cart should appear above the header/menu and page overlay.
-- Product page cart drawer should not be visually cut through by the menu/header.
+- `snippets/structured-data.liquid` uses safer logo fallback variables.
+- It avoids producing `https://https://...` when `shop.url` already contains a scheme.
 
+## Production History Note
+
+Some live theme pushes happened earlier in the debugging session to resolve urgent customer-facing issues. After Daniel's instruction, future work should not be pushed to live automatically.
+
+If a live push is explicitly requested later, use scoped Shopify CLI uploads with `--only` where possible, for example:
+
+```powershell
+shopify.cmd theme push --store dellahome-store.myshopify.com --theme 188113486112 --allow-live --nodelete --only path/to/file
+```
+
+## Validation Reminders
+
+Before pushing code changes anywhere:
+
+- Run `git status -sb`.
+- Check Liquid references when changing/removing snippets.
+- Verify cart bundle behavior with both free and paid line set options.
+- Verify quick cart opens with the latest cart contents.
+- Verify header cart count updates without page refresh.
+- Verify `/pages/chat` chat/call buttons still respond.
+
+For Shopify live deployment:
+
+- Stop and get explicit confirmation first.
