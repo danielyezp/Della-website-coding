@@ -8,8 +8,6 @@ Start with [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md). It records the store/theme 
 
 Additional planning context for the mini split landing page prototype is in [docs/PROJECT_CONTEXT.md](docs/PROJECT_CONTEXT.md).
 
-Additional Mini Split landing page planning context is in [docs/PROJECT_CONTEXT.md](docs/PROJECT_CONTEXT.md).
-
 ## Structure
 
 - `assets/` - compiled CSS/JS, images, and theme assets
