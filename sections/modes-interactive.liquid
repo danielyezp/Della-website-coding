@@ -1,0 +1,349 @@
+{%- liquid
+  assign active_mode_title = ''
+  assign active_mode_description = ''
+  assign has_mode_descriptions = false
+  assign has_mode_copy = false
+  assign visible_mode_count = 0
+-%}
+
+{%- for block in section.blocks -%}
+  {%- assign block_mode_title = block.settings.title | default: block.settings.label | strip -%}
+  {%- assign has_visible_mode_content = false -%}
+
+  {%- if block_mode_title != blank or block.settings.description != blank or block.settings.icon != blank or block.settings.icon_active != blank -%}
+    {%- assign has_visible_mode_content = true -%}
+  {%- endif -%}
+
+  {%- if has_visible_mode_content -%}
+    {%- assign visible_mode_count = visible_mode_count | plus: 1 -%}
+  {%- endif -%}
+
+  {%- if block.settings.description != blank -%}
+    {%- assign has_mode_descriptions = true -%}
+  {%- endif -%}
+
+  {%- if has_mode_copy == false and has_visible_mode_content -%}
+    {%- if block_mode_title != blank or block.settings.description != blank -%}
+      {%- assign active_mode_title = block_mode_title -%}
+      {%- assign active_mode_description = block.settings.description -%}
+      {%- assign has_mode_copy = true -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{% if visible_mode_count > 0 or request.design_mode %}
+  <div
+    data-section-id="{{ section.id }}"
+    data-section-type="modes-interactive"
+    class="
+      modes-interactive
+      section
+      section--full-width
+      section--divider-{{ section.settings.divider_style }}
+      {{ section.settings.section_padding }}
+    "
+    style="
+      --modes-panel-bg: {{ section.settings.panel_background_color }};
+      --modes-text-color: {{ section.settings.panel_text_color }};
+      --modes-section-bg: {{ section.settings.section_background_color }};
+    "
+  >
+    <div class="modes-interactive__inner">
+      <div class="modes-interactive__panel">
+        {%- unless section.settings.heading == blank -%}
+          <{{ section.settings.heading_tag }} class="modes-interactive__heading ff-heading fs-heading-3-base">
+            {{ section.settings.heading }}
+          </{{ section.settings.heading_tag }}>
+        {%- endunless -%}
+
+      {% if visible_mode_count > 0 %}
+        <div class="modes-interactive__icons-shell">
+          <button
+            type="button"
+            class="modes-interactive__nav modes-interactive__nav--prev js-modes-nav-prev"
+            aria-label="{{ 'general.accessibility.previous' | t }}"
+          >
+            {% render 'icon', icon: 'chevron-left', view_box_custom: '0 0 7 11' %}
+          </button>
+
+          <div class="modes-interactive__icons-slider swiper js-modes-icons-slider" data-block-count="{{ visible_mode_count }}">
+            <div class="swiper-wrapper">
+              {%- assign visible_mode_index = 0 -%}
+              {%- for block in section.blocks -%}
+                {%- assign block_mode_title = block.settings.title | default: block.settings.label | strip -%}
+                {%- assign block_mode_label = block.settings.label | default: block_mode_title | strip -%}
+                {%- if block_mode_title != blank or block.settings.description != blank or block.settings.icon != blank or block.settings.icon_active != blank -%}
+                  {%- assign is_first_visible_mode = false -%}
+                  {%- if visible_mode_index == 0 -%}
+                    {%- assign is_first_visible_mode = true -%}
+                  {%- endif -%}
+
+                  <div
+                    class="modes-interactive__icon-slide swiper-slide"
+                    data-index="{{ visible_mode_index }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <button
+                      type="button"
+                      class="modes-interactive__icon-button js-modes-button{% if is_first_visible_mode %} is-active{% endif %}{% if block.settings.icon != blank and block.settings.icon_active != blank %} has-active-icon{% endif %}"
+                      data-mode-button
+                      data-mode-index="{{ visible_mode_index }}"
+                      data-mode-title="{{ block_mode_title | escape }}"
+                      data-mode-description="{{ block.settings.description | escape }}"
+                      aria-pressed="{% if is_first_visible_mode %}true{% else %}false{% endif %}"
+                    >
+                      <span class="modes-interactive__icon-circle">
+                        <span class="modes-interactive__icon-glyph">
+                          {%- if block.settings.icon != blank -%}
+                            {{
+                              block.settings.icon
+                              | image_url: width: 80
+                              | image_tag:
+                                class: 'modes-interactive__icon-image modes-interactive__icon-image--default',
+                                widths: '40, 80',
+                                sizes: '40px',
+                                loading: 'lazy',
+                                alt: ''
+                            }}
+                          {%- elsif block.settings.icon_active != blank -%}
+                            {{
+                              block.settings.icon_active
+                              | image_url: width: 80
+                              | image_tag:
+                                class: 'modes-interactive__icon-image modes-interactive__icon-image--default',
+                                widths: '40, 80',
+                                sizes: '40px',
+                                loading: 'lazy',
+                                alt: ''
+                            }}
+                          {%- else -%}
+                            {% render 'icon-editorial', icon: 'question-mark', class: 'modes-interactive__icon-fallback' %}
+                          {%- endif -%}
+
+                          {%- if block.settings.icon != blank and block.settings.icon_active != blank -%}
+                            {%- assign icon_active_loading = 'lazy' -%}
+                            {%- if is_first_visible_mode -%}{%- assign icon_active_loading = 'eager' -%}{%- endif -%}
+                            {{
+                              block.settings.icon_active
+                              | image_url: width: 80
+                              | image_tag:
+                                class: 'modes-interactive__icon-image modes-interactive__icon-image--active',
+                                widths: '40, 80',
+                                sizes: '40px',
+                                loading: icon_active_loading,
+                                alt: ''
+                            }}
+                          {%- endif -%}
+                        </span>
+                      </span>
+                      <span class="modes-interactive__icon-label ff-body fs-body-75">{{ block_mode_label }}</span>
+                    </button>
+                  </div>
+                  {%- assign visible_mode_index = visible_mode_index | plus: 1 -%}
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="modes-interactive__nav modes-interactive__nav--next js-modes-nav-next"
+            aria-label="{{ 'general.accessibility.next' | t }}"
+          >
+            {% render 'icon', icon: 'chevron-right', view_box_custom: '0 0 7 11' %}
+          </button>
+        </div>
+      {% endif %}
+
+      {% if has_mode_copy %}
+        <div class="modes-interactive__copy js-modes-copy">
+          <div class="modes-interactive__copy-stage">
+            <div class="modes-interactive__copy-content modes-interactive__copy-content--preview js-modes-copy-preview" aria-hidden="true">
+              <h3 class="modes-interactive__copy-title ff-heading fs-heading-4-base js-modes-copy-preview-title">
+                {{ active_mode_title }}
+              </h3>
+              {% if has_mode_descriptions %}
+                <div class="modes-interactive__copy-description rte ff-body fs-body-75 js-modes-copy-preview-description"{% if active_mode_description == blank %} hidden{% endif %}>
+                  {{ active_mode_description }}
+                </div>
+              {% endif %}
+            </div>
+            <div class="modes-interactive__copy-content modes-interactive__copy-content--current js-modes-copy-current">
+              <h3 class="modes-interactive__copy-title ff-heading fs-heading-4-base js-modes-copy-current-title">
+                {{ active_mode_title }}
+              </h3>
+              {% if has_mode_descriptions %}
+                <div class="modes-interactive__copy-description rte ff-body fs-body-75 js-modes-copy-current-description"{% if active_mode_description == blank %} hidden{% endif %}>
+                  {{ active_mode_description }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+        {% if visible_mode_count > 0 %}
+          <div class="modes-interactive__mobile-nav">
+            <button
+              type="button"
+              class="modes-interactive__nav modes-interactive__nav--prev js-modes-nav-prev"
+              aria-label="{{ 'general.accessibility.previous' | t }}"
+            >
+              {% render 'icon', icon: 'chevron-left', view_box_custom: '0 0 7 11' %}
+            </button>
+            <button
+              type="button"
+              class="modes-interactive__nav modes-interactive__nav--next js-modes-nav-next"
+              aria-label="{{ 'general.accessibility.next' | t }}"
+            >
+              {% render 'icon', icon: 'chevron-right', view_box_custom: '0 0 7 11' %}
+            </button>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="modes-interactive__background">
+        {% render 'image',
+          image: section.settings.background_image,
+          mobile_image: section.settings.background_image_mobile,
+          wrapper_class: 'modes-interactive__background-image',
+          focal_point: 'image_presentation',
+          aspect_ratio: 'natural',
+          placeholder_name: 'lifestyle-1',
+          include_placeholder: true,
+          sizes: '100vw'
+        %}
+      </div>
+    </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Modes Interactive",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"],
+    "templates": ["password"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "6 modes for max comfort"
+    },
+    {
+      "id": "heading_tag",
+      "type": "select",
+      "label": "Heading tag",
+      "default": "h2",
+      "options": [
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background image (mobile)"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background color",
+      "default": "#D8F0F7"
+    },
+    {
+      "type": "color",
+      "id": "panel_background_color",
+      "label": "Panel background color",
+      "default": "#0B133D"
+    },
+    {
+      "type": "color",
+      "id": "panel_text_color",
+      "label": "Panel text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "divider_style",
+      "label": "Divider",
+      "default": "none",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "solid", "label": "Solid line" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_padding",
+      "label": "Section padding",
+      "default": "section--vertical-padding-none",
+      "options": [
+        { "value": "section--vertical-padding-none", "label": "None" },
+        { "value": "section--vertical-padding-top-bottom", "label": "Top and bottom" },
+        { "value": "section--vertical-padding-top-only", "label": "Top only" },
+        { "value": "section--vertical-padding-bottom-only", "label": "Bottom only" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mode",
+      "name": "Mode",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Auto mode"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Auto mode"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Maintain a comfortable indoor temperature by automatically switching between heating and cooling as needed.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_active",
+          "label": "Icon active"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Modes Interactive",
+      "blocks": [
+        { "type": "mode", "settings": { "label": "Auto mode", "title": "Auto mode" } },
+        { "type": "mode", "settings": { "label": "Cool mode", "title": "Cool mode" } },
+        { "type": "mode", "settings": { "label": "Heat mode", "title": "Heat mode" } },
+        { "type": "mode", "settings": { "label": "Dehumidify", "title": "Dehumidify" } },
+        { "type": "mode", "settings": { "label": "Fan only", "title": "Fan only" } },
+        { "type": "mode", "settings": { "label": "ECO mode", "title": "ECO mode" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

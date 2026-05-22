@@ -1,0 +1,126 @@
+{%- if section.blocks.size > 0 -%}
+  {%- if section.settings.background_color != blank -%}
+    {%- assign bg_style = '--color-background: ' | append: section.settings.background_color | append: ';' -%}
+  {%- endif -%}
+
+  <div
+    class="anchor-bar-sentinel"
+    data-anchor-bar-sentinel
+    aria-hidden="true"></div>
+  <div
+    class="anchor-bar-spacer"
+    data-anchor-bar-spacer
+    aria-hidden="true"></div>
+  <nav
+    class="anchor-bar{% if section.settings.sticky %} anchor-bar--sticky{% endif %}"
+    {% if bg_style %}
+      style="{{ bg_style }}"
+    {% endif %}
+    data-section-id="{{ section.id }}"
+    data-section-type="anchor-bar"
+    aria-label="{{ 'sections.anchor_bar.aria_label' | t }}"
+  >
+    <ul class="anchor-bar__list" role="list">
+      {%- for block in section.blocks -%}
+        {%- assign anchor_id = block.settings.anchor | strip | handleize -%}
+        {%- if block.settings.text != blank and anchor_id != blank -%}
+          <li class="anchor-bar__item" {{ block.shopify_attributes }}>
+            <a
+              href="#{{ anchor_id }}"
+              class="anchor-bar__link link-hover ff-subheading fs-body-200"
+              data-anchor-link
+            >
+              {{ block.settings.text }}
+            </a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </nav>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.anchor_bar.name",
+  "tag": "section",
+  "limit": 1,
+  "templates": ["product"],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "t:sections.anchor_bar.settings.sticky.label",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:shared.settings.background_color.label",
+      "default": "#F4F3ED"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "t:sections.anchor_bar.blocks.link.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:sections.anchor_bar.blocks.link.settings.text.label",
+          "default": "Description"
+        },
+        {
+          "type": "text",
+          "id": "anchor",
+          "label": "t:shared.settings.anchor.anchor_id.label",
+          "info": "t:sections.anchor_bar.blocks.link.settings.anchor.info",
+          "default": "description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.anchor_bar.presets.name",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "text": "Tech Specs",
+            "anchor": "tech-specs"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Details",
+            "anchor": "image-hero"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Resources",
+            "anchor": "featured-collection-slider"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "FAQs",
+            "anchor": "faqs"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Reviews",
+            "anchor": "reviews"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

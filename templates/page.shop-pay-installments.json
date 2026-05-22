@@ -1,0 +1,1083 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "enable_animation": true,
+        "content_width": "custom",
+        "custom_content_width": 700,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_hero_TQzayF": {
+      "type": "image-hero",
+      "blocks": {
+        "text_7qUHXn": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Modern comfort for everyday living.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark"
+          }
+        },
+        "accent_7jQwK4": {
+          "type": "accent",
+          "disabled": true,
+          "settings": {
+            "accent": "Modern comfort for everyday living."
+          }
+        },
+        "heading_EUdUww": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "title": "Comfort, handled.",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-1-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "text_7qUHXn",
+        "accent_7jQwK4",
+        "heading_EUdUww"
+      ],
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": false,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "image": "shopify://shop_images/DELLA-Christmas_Pay_in_6_0_APR_1_1.webp",
+        "image_mobile": "shopify://shop_images/DELLA-Christmas_Pay_in_6_0_APR_2.webp",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_center",
+        "text_position_mobile": "center_flex-start",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#0b133d",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "rich_text_cct3jb": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_ijMULP": {
+          "type": "heading",
+          "settings": {
+            "title": "Flexible Payment Options with Della",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-2-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "text_qmfKXY": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We partner with Affirm to provide you with flexible financing options tailored to your needs. Depending on the product, you can choose plans for <strong>3, 6, 12, 18, or 24 months</strong>. Use the \"<strong>Check Your Purchasing Power</strong>\" feature on the product page to view the installment options available for your selection.</p><p><strong>For example, a $899.96 purchase might cost $149.99/month over 6 months at 0% APR.</strong></p>",
+            "text_font_class": "fs-body-75",
+            "text_color": "c-body-text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ijMULP",
+        "text_qmfKXY"
+      ],
+      "name": "t:sections.rich_text.presets.name",
+      "settings": {
+        "alignment": "center_left",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "full",
+        "custom_content_width": 900,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_hero_dk6fy8": {
+      "type": "image-hero",
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": true,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "image": "shopify://shop_images/20241216-133443_1.webp",
+        "image_mobile": "shopify://shop_images/20241216-133454.webp",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_center",
+        "text_position_mobile": "center_center",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#ffffff",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "rich_text_rhAdD4": {
+      "type": "rich-text",
+      "blocks": {
+        "text_E89kAY": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Note: </strong>Rates range from 0-36% APR. Payment options through Shop Pay Installments are subject to an eligibility check and are provided by these lending partners: affirm.com/lenders. Options depend on your purchase amount, and a down payment may be required. More options may be available upon approval. State notices to consumers: affirm.com/licenses.</p>",
+            "text_font_class": "fs-body-75",
+            "text_color": "c-body-text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "text_E89kAY"
+      ],
+      "name": "t:sections.rich_text.presets.name",
+      "settings": {
+        "alignment": "left_left",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "full",
+        "custom_content_width": 900,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_hero_bJ83pj": {
+      "type": "image-hero",
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": true,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "image": "shopify://shop_images/20241202-141813.webp",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_center",
+        "text_position_mobile": "center_center",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#ffffff",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "multi_column_aRMzzx": {
+      "type": "multi-column",
+      "blocks": {
+        "image_column_KbLHGB": {
+          "type": "image_column",
+          "settings": {
+            "image": "shopify://shop_images/20250516-151211_1.webp",
+            "image_width": 100,
+            "aspect_ratio": "natural",
+            "enable_image_crop_circle": false,
+            "focal_point": "image_presentation",
+            "image_position": "below_text",
+            "image_link": "",
+            "small_caption": "",
+            "accent": "",
+            "heading": " Add to Cart ",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "text": "<p>Add all of the products you want to purchase to your cart and start the checkout process.</p>",
+            "text_font_class": "fs-body-75",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "image_column_p39ctV": {
+          "type": "image_column",
+          "settings": {
+            "image": "shopify://shop_images/20250516-151216.webp",
+            "image_width": 100,
+            "aspect_ratio": "natural",
+            "enable_image_crop_circle": false,
+            "focal_point": "image_presentation",
+            "image_position": "below_text",
+            "image_link": "",
+            "small_caption": "",
+            "accent": "",
+            "heading": "Choose Payment Method ",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "text": "<p>Choose Shop Pay as your payment option to pay in full or split your purchase into installments.</p>",
+            "text_font_class": "fs-body-75",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "image_column_hT3ipi": {
+          "type": "image_column",
+          "settings": {
+            "image": "shopify://shop_images/20241129-153325.webp",
+            "image_width": 100,
+            "aspect_ratio": "natural",
+            "enable_image_crop_circle": false,
+            "focal_point": "image_presentation",
+            "image_position": "below_text",
+            "image_link": "",
+            "small_caption": "",
+            "accent": "",
+            "heading": "Choose Installment Plan",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "text": "<p>Log in to Shop Pay, select \"Pay in monthly installments,\" and enter your debit card details to proceed.</p>",
+            "text_font_class": "fs-body-75",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "image_column_AT8dmT": {
+          "type": "image_column",
+          "settings": {
+            "image": "shopify://shop_images/20241129-153348.webp",
+            "image_width": 100,
+            "aspect_ratio": "natural",
+            "enable_image_crop_circle": false,
+            "focal_point": "image_presentation",
+            "image_position": "below_text",
+            "image_link": "",
+            "small_caption": "",
+            "accent": "",
+            "heading": "Pay Over Time",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "text": "<p>Review your options, verify eligibility, pick a plan, and complete your purchase with Shop Pay powered by Affirm.</p>",
+            "text_font_class": "fs-body-75",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "image_column_KbLHGB",
+        "image_column_p39ctV",
+        "image_column_hT3ipi",
+        "image_column_AT8dmT"
+      ],
+      "name": "t:sections.multi_column.presets.name",
+      "settings": {
+        "title": "",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-3-base",
+        "heading_color": "c-heading-text-dark",
+        "subheading": "",
+        "subheading_color": "c-subheading-text-dark",
+        "link": "",
+        "link_text": "",
+        "header_button_style": "btn--light",
+        "heading_alignment": "left",
+        "content_vertical_alignment": "top",
+        "content_background_padding": "medium",
+        "columns": "4",
+        "column_spacing": 48,
+        "row_spacing": 48,
+        "column_alignment": "left",
+        "enable_slider_mobile": true,
+        "columns_mobile": "1",
+        "column_spacing_mobile": 4,
+        "row_spacing_mobile": 4,
+        "column_alignment_mobile": "center",
+        "background_behind_columns": false,
+        "background_color": "",
+        "text_color": "#0b133d",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-only",
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_with_text_wGKmff": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_QVXYkq": {
+          "type": "heading",
+          "settings": {
+            "title": "Image with text",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "subheading_GGybXP": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Use these sections to promote a particular feature with editorial photography",
+            "subheading_tag": "h3",
+            "font_family_class": "ff-primary",
+            "subheading_font_class": "fs-body-200",
+            "subheading_color": "c-subheading-text-dark"
+          }
+        },
+        "button_PrVLiJ": {
+          "type": "button",
+          "settings": {
+            "link": "",
+            "link_text": "Read more",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_QVXYkq",
+        "subheading_GGybXP",
+        "button_PrVLiJ"
+      ],
+      "disabled": true,
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "media_position": "right",
+        "media_mobile_position": "above-content",
+        "text_alignment": "center",
+        "aspect_ratio": "square",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "show_small_image": true,
+        "image_small_aspect_ratio": "square",
+        "image_small_focal_point": "image_presentation",
+        "background_color": "",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "link_color_scheme": "dark"
+      }
+    },
+    "multi_column_8UczJJ": {
+      "type": "multi-column",
+      "blocks": {
+        "column_rGGEtD": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Built on experience",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Expertise engineered for your lifestyle</p>",
+            "text_font_class": "fs-body-50",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "column_rGGEtD"
+      ],
+      "disabled": true,
+      "name": "t:sections.multi_column.presets.name",
+      "settings": {
+        "background_image": "shopify://shop_images/6184e305e29faaf11bfbd0ec74c67317f388ca13.jpg",
+        "title": "The DNA of Comfort",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-4-base",
+        "heading_color": "c-heading-text-light",
+        "subheading": "",
+        "subheading_color": "c-subheading-text-light",
+        "link": "",
+        "link_text": "",
+        "header_button_style": "btn--light",
+        "heading_alignment": "center",
+        "content_vertical_alignment": "center",
+        "content_background_padding": "small",
+        "columns": "4",
+        "column_spacing": 12,
+        "row_spacing": 28,
+        "column_alignment": "left",
+        "enable_slider_mobile": true,
+        "columns_mobile": "1.3",
+        "column_spacing_mobile": 12,
+        "row_spacing_mobile": 20,
+        "column_alignment_mobile": "left",
+        "background_behind_columns": true,
+        "background_color": "#ffddb4",
+        "text_color": "#0b133d",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_with_text_nGFFgg": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_FYJUXY": {
+          "type": "heading",
+          "settings": {
+            "title": "Designed around the rhythm of home.",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-2-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "text_cmdWyX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Engineered for the way you live, thoughtfully bringing comfort to busy homes, changing routines, and the spaces traditional systems leave behind.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FYJUXY",
+        "text_cmdWyX"
+      ],
+      "disabled": true,
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "media_position": "right",
+        "media_mobile_position": "above-content",
+        "text_alignment": "left",
+        "video": "shopify://files/videos/Scene-1.mp4",
+        "video_mobile": "shopify://files/videos/Scene-1.mp4",
+        "image": "shopify://shop_images/image_13.png",
+        "image_mobile": "shopify://shop_images/image_13.png",
+        "aspect_ratio": "square",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "show_small_image": false,
+        "image_small_aspect_ratio": "square",
+        "image_small_focal_point": "image_presentation",
+        "background_color": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background_color": "#0b133d",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-bottom-only",
+        "link_color_scheme": "light"
+      }
+    },
+    "collapsible_row_image_ykezPz": {
+      "type": "collapsible-row-image",
+      "blocks": {
+        "item_wxPJpr": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2012",
+            "text": "<p>Born from garage heatwaves, Della began with a simple idea: comfort should be easier to access and simpler to trust. That belief became a mission to bring reliable cooling to more homes.</p>",
+            "image": "shopify://shop_images/Frame_14453.png"
+          }
+        },
+        "item_meDdTU": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2015",
+            "text": "<p>With a new Los Angeles warehouse, faster delivery and broader access brought reliable comfort closer to more homes.</p>",
+            "image": "shopify://shop_images/Sylro_Portable_AC_9_40c32386-f755-41d9-bddb-3415601884a3.jpg"
+          }
+        },
+        "item_W4JyWb": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2018-2020",
+            "text": "<p>As homes evolved, Della introduced mini split systems and expanded distribution in South Carolina, helping more households enjoy room-by-room comfort built for modern living.</p>",
+            "video": "shopify://files/videos/Creating the perfect reading sanctuary in my living room with the DELLA 42’’ Ultra Quiet Smart T.mp4"
+          }
+        },
+        "item_3UdhGk": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2022-2024",
+            "text": "<p>With growing trust from homeowners nationwide, Della refreshed its brand, expanded in Texas, enhanced the Della+ app, and became a leading mini split choice on Amazon.</p>",
+            "image": "shopify://shop_images/Sylro_Portable_AC_4.jpg"
+          }
+        },
+        "item_TdwkA9": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2025 & beyond",
+            "text": "<p>Della entered its next chapter with the launch of Central AC systems, Red Dot award-winning design, and a partnership with the LA Galaxy to bring smarter comfort to more local homes.</p>",
+            "video": "shopify://files/videos/SaveClip.App_AQPQJ9Ben3fCMCF72cQuC8FnrO0eVBhFPk6PCxD-KFZ3FwoWc5ozqqcdxqQk2zngfFMMTcg_HjDNuo8NEqV0O3bdkZt7kdtWHie-MRY.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "item_wxPJpr",
+        "item_meDdTU",
+        "item_W4JyWb",
+        "item_3UdhGk",
+        "item_TdwkA9"
+      ],
+      "disabled": true,
+      "name": "t:sections.collapsible_row_image.presets.name",
+      "settings": {
+        "subheading": "Designed Through Time",
+        "subheading_tag": "h3",
+        "subheading_font_class": "fs-body-200",
+        "subheading_color": "c-subheading-text-dark",
+        "title": "The Evolution of Comfort",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-3-base",
+        "heading_color": "c-heading-text-dark",
+        "heading_alignment": "left",
+        "item_heading_font": "heading",
+        "section_background_color": "#d8f0f7",
+        "media_aspect_ratio": "portrait",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "full",
+        "custom_content_width": 600,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_hero_qCJ6Pz": {
+      "type": "image-hero",
+      "blocks": {
+        "heading_LVgHK7": {
+          "type": "heading",
+          "settings": {
+            "title": "Life’s best chapters start here.",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LVgHK7"
+      ],
+      "disabled": true,
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": false,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "image": "shopify://shop_images/Frame_369566_cf53a30e-5761-4875-a04c-ca7e0b1477f1.png",
+        "image_mobile": "shopify://shop_images/Frame_369566_cc57ba61-9402-4104-afa8-a9f0e3e65737.png",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_flex-start",
+        "text_position_mobile": "center_flex-start",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#0b133d",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "video_reels_KizEL7": {
+      "type": "video-reels",
+      "blocks": {
+        "product_Jrd3Lb": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/SaveClip.App_AQPQJ9Ben3fCMCF72cQuC8FnrO0eVBhFPk6PCxD-KFZ3FwoWc5ozqqcdxqQk2zngfFMMTcg_HjDNuo8NEqV0O3bdkZt7kdtWHie-MRY.mp4",
+            "media_display_type": "video",
+            "featured_product": "della-12000-btu-wifi-enabled-20-seer2-cools-up-to-550-sq-ft-110-120v-energy-efficient-mini-split-air-conditioner-heater-ductless-inverter-system-with-1-ton-heat-pump-ja-series"
+          }
+        },
+        "product_3tkhRc": {
+          "type": "product",
+          "settings": {
+            "media_image": "shopify://shop_images/Frame_369566_cc57ba61-9402-4104-afa8-a9f0e3e65737.png",
+            "media_display_type": "image",
+            "featured_product": "42-smart-tower-fan-tf01s"
+          }
+        },
+        "product_i976Kp": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/SaveClip.App_AQPLtC4IDTlRT-uWlSlihbYKyqyipKB8vOMdx_CL3Tu5uzBedme0cDh_Cnvr4R521SgRYsKKRyFB6RuKwfkVNRI6.mp4",
+            "media_display_type": "video",
+            "featured_product": "tl-series-36000-btu-seer2-19-mini-split-heat-pump-ac-up-to-2500-sq-ft"
+          }
+        },
+        "product_ibRGKV": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/Creating the perfect reading sanctuary in my living room with the DELLA 42’’ Ultra Quiet Smart T.mp4",
+            "media_display_type": "video",
+            "featured_product": "18000-btu-dual-zone-ceiling-cassette-mini-split-ac-9k-9k-up-to-800-sq-ft"
+          }
+        },
+        "product_wfchin": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/SnapInsta.to_AQPaeWkOvHHyM5dUTHjE4KaacxidSR8A8TjCAXceMxb3FK3Azi_szx4rA4PuiY4z0ulD5fBDqwJCyKMHv91MszSNccIzEkELhW9ATdA.mp4",
+            "media_display_type": "video",
+            "featured_product": "della-12000-btu-22-seer2-ceiling-cassette-ductless-mini-split-ac-indoor-unit-with-installation-kit"
+          }
+        },
+        "product_tmqqhB": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/SaveClip.App_AQPLtC4IDTlRT-uWlSlihbYKyqyipKB8vOMdx_CL3Tu5uzBedme0cDh_Cnvr4R521SgRYsKKRyFB6RuKwfkVNRI6.mp4",
+            "media_display_type": "video",
+            "featured_product": "della-15-day-rental-install-kit"
+          }
+        },
+        "product_t3Qj8F": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/Small space, big comfort 🤍 The Della Vario Mini Split Heat Pump keeps my room perfectly cool in.mp4",
+            "media_display_type": "video",
+            "featured_product": "della-11000-btu-19-seer2-concealed-ducted-mini-split-air-conditioner"
+          }
+        },
+        "product_R86zmN": {
+          "type": "product",
+          "settings": {
+            "media_image": "shopify://shop_images/Frame_369566_cc57ba61-9402-4104-afa8-a9f0e3e65737.png",
+            "media_display_type": "image",
+            "featured_product": "della-12000-btu-22-seer2-ceiling-cassette-ductless-mini-split-ac-indoor-unit-with-installation-kit-dual"
+          }
+        }
+      },
+      "block_order": [
+        "product_Jrd3Lb",
+        "product_3tkhRc",
+        "product_i976Kp",
+        "product_ibRGKV",
+        "product_wfchin",
+        "product_tmqqhB",
+        "product_t3Qj8F",
+        "product_R86zmN"
+      ],
+      "disabled": true,
+      "name": "t:sections.shoppable-video.name",
+      "settings": {
+        "heading": "",
+        "quick_add_enabled": true,
+        "text_color": "#ffffff",
+        "background_color": "",
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "image_hero_bQ6wVM": {
+      "type": "image-hero",
+      "blocks": {
+        "accent_BJAJLq": {
+          "type": "accent",
+          "settings": {
+            "accent": "Comfort, handled."
+          }
+        },
+        "heading_6iwn4C": {
+          "type": "heading",
+          "settings": {
+            "title": "For every space you call home.",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-light"
+          }
+        },
+        "button_T8Nw3g": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://collections",
+            "link_text": "Explore Products",
+            "button_style": "btn--solid",
+            "button_color": "btn--light"
+          }
+        }
+      },
+      "block_order": [
+        "accent_BJAJLq",
+        "heading_6iwn4C",
+        "button_T8Nw3g"
+      ],
+      "disabled": true,
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": false,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "image": "shopify://shop_images/3a1613ef4146c18c7e47a28f4e9e1419330d45b7.png",
+        "image_mobile": "shopify://shop_images/Frame_10230.png",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "flex-start_center",
+        "text_position_mobile": "flex-start_flex-start",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#fffefb",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_hero_fKfG8Q": {
+      "type": "image-hero",
+      "blocks": {
+        "heading_w3nxDQ": {
+          "type": "heading",
+          "settings": {
+            "title": "We take care of our customers",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "subheading_gNVHUd": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Our dedicated customer service team is available around the clock to support you. Visit the Help Center for answers, guidance, and resources.",
+            "font_family_class": "ff-primary",
+            "subheading_font_class": "fs-body-200",
+            "subheading_color": "c-subheading-text-dark",
+            "enable_subheading_transparent_color": false,
+            "subheading_transparent_color": ""
+          }
+        },
+        "button_RwbUBR": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://pages/contact",
+            "link_text": "Get in touch",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        },
+        "button_HaRE73": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "link": "",
+            "link_text": "Read more",
+            "button_style": "btn--outline",
+            "button_color": "btn--light"
+          }
+        }
+      },
+      "block_order": [
+        "heading_w3nxDQ",
+        "subheading_gNVHUd",
+        "button_RwbUBR",
+        "button_HaRE73"
+      ],
+      "disabled": true,
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "https://cdn.shopify.com/videos/c/o/v/4e9e3d3128df44b3900b86f48ecde002.mp4",
+        "enable_box_container": true,
+        "fit_height_content": true,
+        "enable_image_cover": true,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 30,
+        "mobile_height": 70,
+        "image": "shopify://shop_images/Frame_369374_2b5d4594-d754-4b0c-8fb3-fbcf80f4d1c7.png",
+        "image_mobile": "shopify://shop_images/Frame_369374_f54483ce-e9a4-4b70-9fe2-d97c6a2a5e32.png",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_center",
+        "text_position_mobile": "center_center",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#0b133d",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": 598,
+        "top_left_corner_radius": 200,
+        "top_right_corner_radius": 200,
+        "bottom_left_corner_radius": 200,
+        "bottom_right_corner_radius": 200,
+        "link_color_scheme": "dark"
+      }
+    },
+    "collapsible_row_image_rPFGXC": {
+      "type": "collapsible-row-image",
+      "blocks": {
+        "item_nVcBE8": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "1. How do I start the installment payment process?",
+            "text": "<p>To begin, add all the products you wish to purchase to your cart. During checkout, choose Shop Pay as your payment option. Follow the steps to select the \"Pay in monthly installments\" option.</p>"
+          }
+        },
+        "item_F8pmTh": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2. What payment plans are available?",
+            "text": "<p>The available installment plans depend on your purchase. Shop Pay, powered by Affirm, may offer options such as 3, 6, 12, 18, or 24 months based on the product. You'll see the specific options during the checkout process.</p>"
+          }
+        },
+        "item_9zWmMi": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "3. Will checking eligibility affect my credit score?",
+            "text": "<p>No, checking your eligibility for installments through Shop Pay uses a soft credit pull, which will not impact your credit score.</p>"
+          }
+        },
+        "item_66HFC3": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "4. Are there any hidden fees?",
+            "text": "<p>Shop Pay and Affirm are transparent. There are no late fees, prepayment penalties, or hidden charges.</p>"
+          }
+        },
+        "item_zrtCRT": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "5. What if I need to return an item I financed?",
+            "text": "<p>If you need to return a financed item, contact our support team to initiate the return process. Once the return is approved and processed, Affirm will adjust your loan or refund any applicable payments.</p>"
+          }
+        },
+        "item_7aUCdW": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "6. Can I use a credit card to pay for Shop Pay installments?",
+            "text": "<p>No, Shop Pay Installments, powered by Affirm, currently only supports debit cards for installment payments. Credit cards and prepaid cards are not eligible.</p>"
+          }
+        },
+        "item_QWXKUp": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "7. How do I verify my eligibility for installments?",
+            "text": "<p>You can verify your eligibility for installments by using the \"Check if you qualify\" option, available both on the product page and during checkout. Simply enter the required details to view the available plans for your purchase.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_nVcBE8",
+        "item_F8pmTh",
+        "item_9zWmMi",
+        "item_66HFC3",
+        "item_zrtCRT",
+        "item_7aUCdW",
+        "item_QWXKUp"
+      ],
+      "name": "t:sections.collapsible_row_image.presets.name",
+      "settings": {
+        "subheading": "",
+        "subheading_tag": "h3",
+        "subheading_font_class": "fs-body-200",
+        "subheading_color": "c-subheading-text-dark",
+        "title": "Frequently Asked Questions",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-3-base",
+        "heading_color": "c-heading-text-dark",
+        "heading_alignment": "left",
+        "item_heading_font": "heading",
+        "section_background_color": "",
+        "media_aspect_ratio": "portrait",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "custom",
+        "custom_content_width": 900,
+        "link_color_scheme": "dark"
+      }
+    },
+    "featured_collection_grid_wCz4hn": {
+      "type": "featured-collection-grid",
+      "blocks": {
+        "collection_TNzYGj": {
+          "type": "collection",
+          "settings": {
+            "collection": "best-sellers"
+          }
+        }
+      },
+      "block_order": [
+        "collection_TNzYGj"
+      ],
+      "name": "t:sections.featured_collection_grid.presets.name",
+      "settings": {
+        "heading": "Select your Air Conditioner",
+        "heading_tag": "h2",
+        "subheading": "",
+        "link": "",
+        "link_text": "",
+        "maximum_collections": 4,
+        "columns": "4",
+        "mobile_columns": "1",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "link_color_scheme": "dark"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_hero_TQzayF",
+    "rich_text_cct3jb",
+    "image_hero_dk6fy8",
+    "rich_text_rhAdD4",
+    "image_hero_bJ83pj",
+    "multi_column_aRMzzx",
+    "image_with_text_wGKmff",
+    "multi_column_8UczJJ",
+    "image_with_text_nGFFgg",
+    "collapsible_row_image_ykezPz",
+    "image_hero_qCJ6Pz",
+    "video_reels_KizEL7",
+    "image_hero_bQ6wVM",
+    "image_hero_fKfG8Q",
+    "collapsible_row_image_rPFGXC",
+    "featured_collection_grid_wCz4hn"
+  ]
+}

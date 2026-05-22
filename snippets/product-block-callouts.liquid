@@ -1,0 +1,100 @@
+{% assign callouts_background_color = block_settings.background_color | default: '#D8F0F7' %}
+{% assign callouts_style = block_settings.style | default: 'default' %}
+{% assign is_quick_style = false %}
+{% if callouts_style == 'quick' %}
+  {% assign is_quick_style = true %}
+{% endif %}
+
+{% capture content %}
+  <div
+    class="product__callouts-items"
+    data-style="{{ callouts_style }}"
+    data-with-box="{{ block_settings.add_box }}"
+    data-with-dividers="{{ block_settings.add_dividers }}"
+    style="--product-callouts-bg: {{ callouts_background_color }};"
+  >
+    {%
+      render 'product-block-callouts-item' with
+      heading: block_settings.heading_1,
+      text: block_settings.text_1,
+      icon: block_settings.icon_1,
+      custom_icon_image: block_settings.custom_icon_image_1,
+      button_text: block_settings.button_text_1,
+      button_link: block_settings.button_link_1,
+      is_quick_style: is_quick_style
+    %}
+    {%
+      render 'product-block-callouts-item' with
+      heading: block_settings.heading_2,
+      text: block_settings.text_2,
+      icon: block_settings.icon_2,
+      custom_icon_image: block_settings.custom_icon_image_2,
+      button_text: block_settings.button_text_2,
+      button_link: block_settings.button_link_2,
+      is_quick_style: is_quick_style
+    %}
+    {%
+      render 'product-block-callouts-item' with
+      heading: block_settings.heading_3,
+      text: block_settings.text_3,
+      icon: block_settings.icon_3,
+      custom_icon_image: block_settings.custom_icon_image_3,
+      button_text: block_settings.button_text_3,
+      button_link: block_settings.button_link_3,
+      is_quick_style: is_quick_style
+    %}
+    {%
+      render 'product-block-callouts-item' with
+      heading: block_settings.heading_4,
+      text: block_settings.text_4,
+      icon: block_settings.icon_4,
+      custom_icon_image: block_settings.custom_icon_image_4,
+      button_text: block_settings.button_text_4,
+      button_link: block_settings.button_link_4,
+      is_quick_style: is_quick_style
+    %}
+    {%
+      render 'product-block-callouts-item' with
+      heading: block_settings.heading_5,
+      text: block_settings.text_5,
+      icon: block_settings.icon_5,
+      custom_icon_image: block_settings.custom_icon_image_5,
+      button_text: block_settings.button_text_5,
+      button_link: block_settings.button_link_5,
+      is_quick_style: is_quick_style
+    %}
+    {%
+      render 'product-block-callouts-item' with
+      heading: block_settings.heading_6,
+      text: block_settings.text_6,
+      icon: block_settings.icon_6,
+      custom_icon_image: block_settings.custom_icon_image_6,
+      button_text: block_settings.button_text_6,
+      button_link: block_settings.button_link_6,
+      is_quick_style: is_quick_style
+    %}
+  </div>
+{% endcapture %}
+
+{% if block_settings.display_as_collapsible_row %}
+  {% assign heading = block.settings.title | default: block.settings.collapsible_row_title %}
+  {%-
+    render 'product-block-accordion',
+    block: block,
+    block_settings: block.settings,
+    heading: heading,
+    content: content,
+    label_font: 'ff-subheading',
+    label_font_size: 'fs-body-250',
+  -%}
+{% else %}
+  <div
+    class="product__block product__block-callouts product__callouts product__block--medium product__block--callouts"
+    {{ block.shopify_attributes }}
+  >
+    {%- if block.settings.title != blank -%}
+    <{{ block.settings.title_tag }} class="ff-heading fs-heading-5-base">{{ block.settings.title }}</{{ block.settings.title_tag }}>
+    {%- endif -%}
+    {{ content }}
+  </div>
+{% endif %}

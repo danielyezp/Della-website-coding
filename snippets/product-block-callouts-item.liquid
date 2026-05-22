@@ -1,0 +1,47 @@
+{% assign has_button = false %}
+{% if button_text != blank and button_link != blank %}
+  {% assign has_button = true %}
+{% endif %}
+
+{% assign has_content = false %}
+{% if heading != blank or text != blank or has_button %}
+  {% assign has_content = true %}
+{% endif %}
+
+{% if has_content %}
+  <div class="product__callouts-item fs-body-50">
+    {%- if custom_icon_image != blank -%}
+      {%-
+        render 'image' with
+        wrapper_class: "product__callouts-item-icon",
+        image: custom_icon_image,
+        sizes: "32px",
+        fetch_priority: 'low',
+        src_set_type: 'thumbnail'
+      -%}
+    {%- else -%}
+      {% if icon and icon != 'none' %}
+        {% render 'icon-editorial' with class: "product__callouts-item-icon", icon: icon %}
+      {% endif %}
+    {%- endif -%}
+    <div class="product__callouts-item-text rte">
+      {% if heading != blank %}
+        <h3 class="product__callouts-item-heading ff-heading fs-heading-6-base ff-primary">{{ heading | escape }}</h3>
+      {% endif %}
+      {% if text != blank %}
+        {{ text }}
+      {% endif %}
+      {% if has_button %}
+        {%- render 'button-block',
+          wrapper_class: 'product__callouts-item-link',
+          link: button_link,
+          label: button_text,
+          button_style: 'btn--callout',
+          button_alignment: 'left',
+          button_alignment_mobile: 'left',
+          is_small: is_quick_style
+        -%}
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

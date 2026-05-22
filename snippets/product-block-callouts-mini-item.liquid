@@ -1,0 +1,21 @@
+{% if text != blank and text != '' %}
+  <div class="product__callouts-mini-item fs-body-75">
+    {%- if custom_icon_image != blank -%}
+      {%-
+        render 'image' with
+        wrapper_class: "product__callouts-mini-item-icon",
+        image: custom_icon_image,
+        sizes: "30px",
+        fetch_priority: 'low',
+        src_set_type: 'thumbnail'
+      -%}
+    {%- else -%}
+      {% if icon and icon != 'none' %}
+        {% render 'icon-editorial' with class: "product__callouts-item-icon", icon: icon %}
+      {% endif %}
+    {% endif %}
+    <div class="product__callouts-mini-item-text ">
+      {{ text }}
+    </div>
+  </div>
+{% endif %}

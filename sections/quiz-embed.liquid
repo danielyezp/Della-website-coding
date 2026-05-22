@@ -1,0 +1,61 @@
+{%- if section.settings.code != blank -%}
+  <div
+    class="section section--full-width {{ section.settings.section_padding }}"
+    data-section-id="{{ section.id }}"
+    data-section-type="quiz-embed"
+    {{ section.shopify_attributes }}
+  >
+    <quiz-embed class="quiz-embed">
+      <div class="quiz-embed__container">
+        {{- section.settings.code -}}
+      </div>
+    </quiz-embed>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "t:sections.quiz_embed.name",
+    "class": "section-quiz-embed",
+    "settings": [
+      {
+        "type": "liquid",
+        "id": "code",
+        "label": "t:sections.quiz_embed.settings.code.label"
+      },
+      {
+        "type": "header",
+        "content": "t:shared.settings.section_style.header_style.content"
+      },
+      {
+        "type": "select",
+        "id": "section_padding",
+        "label": "t:shared.settings.section_style.section_padding.label",
+        "default": "section--vertical-padding-top-bottom",
+        "options": [
+          {
+            "label": "t:shared.settings.section_style.section_padding.option_none",
+            "value": "section--vertical-padding-none"
+          },
+          {
+            "label": "t:shared.settings.section_style.section_padding.option_both",
+            "value": "section--vertical-padding-top-bottom"
+          },
+          {
+            "label": "t:shared.settings.section_style.section_padding.option_top",
+            "value": "section--vertical-padding-top-only"
+          },
+          {
+            "label": "t:shared.settings.section_style.section_padding.option_bottom",
+            "value": "section--vertical-padding-bottom-only"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.quiz_embed.presets.name"
+      }
+    ]
+  }
+{% endschema %}

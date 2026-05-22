@@ -1,0 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pf-6268fc66": {
+      "type": "pf-6268fc66",
+      "settings": {
+        "pf_a230867d_title": "Mini_split_Optima",
+        "pf_56db704b_title": "Mini_split_Umbra",
+        "pf_68ab6a59_title": "Mini_split_MOTTO",
+        "pf_7ecbdd64_title": "Mini_split_Versa",
+        "pf_91c34089_title": "Mini_split_Ario",
+        "pf_32d84dfe_title": "Mini_split_QC"
+      }
+    }
+  },
+  "order": [
+    "pf-6268fc66"
+  ]
+}

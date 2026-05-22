@@ -1,0 +1,57 @@
+{%- comment -%}
+  Preload the first homepage hero image so the LCP image is discovered before
+  the large header/meganav markup has finished parsing.
+
+  Keep these filenames in sync with the first enabled section in templates/index.json.
+{%- endcomment -%}
+
+{%- liquid
+  assign homepage_lcp_image_desktop = images['D_2160x1050px_701967f6-c3a4-4a89-89ba-4d00f8e40748.jpg']
+  assign homepage_lcp_image_mobile = images['D_786x1400px.jpg']
+-%}
+
+{%- if request.page_type == 'index' -%}
+  {%- if homepage_lcp_image_mobile != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ homepage_lcp_image_mobile | image_url: width: 750 }}"
+      imagesrcset="
+        {{ homepage_lcp_image_mobile | image_url: width: 650 }} 650w,
+        {{ homepage_lcp_image_mobile | image_url: width: 700 }} 700w,
+        {{ homepage_lcp_image_mobile | image_url: width: 750 }} 750w,
+        {{ homepage_lcp_image_mobile | image_url: width: 800 }} 800w,
+        {{ homepage_lcp_image_mobile | image_url: width: 850 }} 850w
+      "
+      imagesizes="100vw"
+      media="(max-width: 719px)"
+      fetchpriority="high"
+    >
+  {%- endif -%}
+
+  {%- if homepage_lcp_image_desktop != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ homepage_lcp_image_desktop | image_url: width: 2000 }}"
+      imagesrcset="
+        {{ homepage_lcp_image_desktop | image_url: width: 700 }} 700w,
+        {{ homepage_lcp_image_desktop | image_url: width: 850 }} 850w,
+        {{ homepage_lcp_image_desktop | image_url: width: 1000 }} 1000w,
+        {{ homepage_lcp_image_desktop | image_url: width: 1200 }} 1200w,
+        {{ homepage_lcp_image_desktop | image_url: width: 1400 }} 1400w,
+        {{ homepage_lcp_image_desktop | image_url: width: 1600 }} 1600w,
+        {{ homepage_lcp_image_desktop | image_url: width: 1800 }} 1800w,
+        {{ homepage_lcp_image_desktop | image_url: width: 2000 }} 2000w,
+        {{ homepage_lcp_image_desktop | image_url: width: 2200 }} 2200w,
+        {{ homepage_lcp_image_desktop | image_url: width: 2400 }} 2400w,
+        {{ homepage_lcp_image_desktop | image_url: width: 2800 }} 2800w,
+        {{ homepage_lcp_image_desktop | image_url: width: 3200 }} 3200w,
+        {{ homepage_lcp_image_desktop | image_url: width: 3840 }} 3840w
+      "
+      imagesizes="100vw"
+      media="(min-width: 720px)"
+      fetchpriority="high"
+    >
+  {%- endif -%}
+{%- endif -%}

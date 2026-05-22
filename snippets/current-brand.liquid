@@ -1,0 +1,101 @@
+{%- liquid
+  assign list_brand_handles = shop.metaobjects.brand.values | map: 'system' | map: 'handle'
+  assign suffix_parts = template.suffix | split: '-'
+  case request.page_type
+    when 'metaobject'
+      assign current_brand_handle = request.path | split: '/brands/' | last | strip
+      if list_brand_handles contains current_brand_handle
+        echo current_brand_handle
+      else
+        echo nil
+      endif
+    when 'page' or 'collection' or 'blog' or 'article'
+      assign current_brand = nil
+      if suffix_parts.size > 1
+        assign try_brand_handle = suffix_parts[0] | append: '-' | append: suffix_parts[1]
+        for brand_handle in list_brand_handles
+          assign parent_child_parts = brand_handle | split: '--'
+          if parent_child_parts.size > 1
+            assign parent_handle = parent_child_parts[0]
+            assign child_handle = parent_child_parts[1]
+            if try_brand_handle == child_handle
+              assign current_brand = parent_handle
+              break
+            endif
+          endif
+          if try_brand_handle == brand_handle
+            assign current_brand = brand_handle
+            break
+          endif
+        endfor
+      endif
+      if current_brand == blank
+        for brand_handle in list_brand_handles
+          assign parent_child_parts = brand_handle | split: '--'
+          if parent_child_parts.size > 1
+            assign parent_handle = parent_child_parts[0]
+            assign child_handle = parent_child_parts[1]
+            if template.suffix contains child_handle
+              assign current_brand = parent_handle
+              break
+            endif
+          endif
+          if template.suffix contains brand_handle
+            assign current_brand = brand_handle
+            break
+          endif
+        endfor
+      endif
+      echo current_brand
+    when 'product'
+      assign current_brand = nil
+      if suffix_parts.size > 1
+        assign try_brand_handle = suffix_parts[0] | append: '-' | append: suffix_parts[1]
+        for brand_handle in list_brand_handles
+          assign parent_child_parts = brand_handle | split: '--'
+          if parent_child_parts.size > 1
+            assign parent_handle = parent_child_parts[0]
+            assign child_handle = parent_child_parts[1]
+            if try_brand_handle == child_handle
+              assign current_brand = parent_handle
+              break
+            endif
+          endif
+          if try_brand_handle == brand_handle
+            assign current_brand = brand_handle
+            break
+          endif
+        endfor
+      endif
+      if current_brand == blank
+        for brand_handle in list_brand_handles
+          assign parent_child_parts = brand_handle | split: '--'
+          if parent_child_parts.size > 1
+            assign parent_handle = parent_child_parts[0]
+            assign child_handle = parent_child_parts[1]
+            if template.suffix contains child_handle
+              assign current_brand = parent_handle
+              break
+            endif
+          endif
+          if template.suffix contains brand_handle
+            assign current_brand = brand_handle
+            break
+          endif
+        endfor
+      endif
+      if current_brand == nil
+        assign product_vendor = product.vendor | downcase | remove: "'" | remove: " " | remove: '-' | strip
+        for brand in list_brand_handles
+          assign brand_handle = brand | remove: '-'
+          if brand_handle == product_vendor
+            assign current_brand = brand
+            break
+          endif
+        endfor
+      endif
+      echo current_brand
+    else
+      echo nil
+  endcase
+-%}

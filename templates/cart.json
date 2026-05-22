@@ -1,0 +1,111 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "settings": {
+        "show_product_currency": true,
+        "cross_sells_position": "below-line-items",
+        "link_color_scheme": "dark"
+      }
+    },
+    "rich_text_eVigqq": {
+      "type": "rich-text",
+      "blocks": {
+        "spacer_KKWQAF": {
+          "type": "spacer",
+          "settings": {
+            "space": 28
+          }
+        },
+        "heading_4xXjFt": {
+          "type": "heading",
+          "settings": {
+            "title": "Cart",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-2-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "text_wCYdwY": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Your cart is empty</p>",
+            "text_font_class": "fs-body-75",
+            "text_color": "c-body-text-dark"
+          }
+        },
+        "button_bY4K3U": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://collections",
+            "link_text": "Start shopping",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "spacer_KKWQAF",
+        "heading_4xXjFt",
+        "text_wCYdwY",
+        "button_bY4K3U"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich_text.presets.name",
+      "settings": {
+        "alignment": "center_center",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "custom",
+        "custom_content_width": 700,
+        "link_color_scheme": "dark"
+      }
+    },
+    "featured_collection_grid_PGGbbC": {
+      "type": "featured-collection-grid",
+      "blocks": {
+        "collection_6AUhaJ": {
+          "type": "collection",
+          "settings": {
+            "collection": "22-f-131-f-mini-split-heat-pump"
+          }
+        }
+      },
+      "block_order": [
+        "collection_6AUhaJ"
+      ],
+      "disabled": true,
+      "name": "t:sections.featured_collection_grid.presets.name",
+      "settings": {
+        "heading": "You may also like",
+        "heading_tag": "h2",
+        "subheading": "",
+        "link": "",
+        "link_text": "",
+        "maximum_collections": 4,
+        "columns": "4",
+        "mobile_columns": "2",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "link_color_scheme": "dark"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_eVigqq",
+    "featured_collection_grid_PGGbbC"
+  ]
+}

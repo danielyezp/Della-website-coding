@@ -1,0 +1,93 @@
+{%- liquid
+  assign collapse_from_block = false
+  if block != blank
+    assign collapse_from_block = true
+  endif
+
+  if collapse_from_block
+    assign item_heading = block.settings.title
+    assign item_text = block.settings.text
+    assign item_icon = block.settings.icon
+    assign item_custom_icon_image = block.settings.custom_icon_image
+    assign item_content_suffix = forloop.index
+    assign item_data_index = forloop.index0
+  else
+    assign item_heading = heading
+    assign item_text = text
+    if icon != blank
+      assign item_icon = icon
+    else
+      assign item_icon = 'none'
+    endif
+    assign item_custom_icon_image = custom_icon_image
+    assign item_content_suffix = content_id
+    assign item_data_index = data_index
+  endif
+
+  assign item_heading_expanded = false
+  assign item_text_hidden = true
+
+  if collapse_from_block
+    if block.settings.expand_by_default
+      assign item_heading_expanded = true
+      assign item_text_hidden = false
+    endif
+  else
+    if expand_first_row
+      assign item_heading_expanded = true
+      assign item_text_hidden = false
+    endif
+  endif
+-%}
+
+<div
+  class="collapsible-row-list-item"
+  data-index="{{ item_data_index }}"
+  {%- if collapse_from_block -%}
+    {{ block.shopify_attributes }}
+  {%- endif -%}
+>
+  {%- unless item_heading == blank -%}
+    <button
+      type="button"
+      class="collapsible-row-list-item__trigger {% if item_heading_font == 'heading' %}ff-heading fs-heading-5-base{% elsif item_heading_font == 'subheading' %}ff-subheading fs-body-200{% else %}ff-body fs-body-250{% endif %}"
+      aria-controls="content-{{ item_content_suffix }}"
+      aria-expanded="{{ item_heading_expanded }}"
+      {% if item_text == blank %}
+        data-flash-trigger data-flash-message="{{ 'general.flash_alert.no_text' | t }}"
+      {% endif %}
+    >
+      {%- if item_custom_icon_image != blank -%}
+        {%-
+          render 'image' with
+          wrapper_class: "collapsible-row-list-item__icon",
+          image: item_custom_icon_image,
+          sizes: "25px",
+        -%}
+      {%- else -%}
+        {% if item_icon != 'none' %}
+          {% render 'icon-editorial' with class: "collapsible-row-list-item__icon", icon: item_icon %}
+        {% endif %}
+      {%- endif -%}
+      <span class="collapsible-row-list-item__heading">
+        {{ item_heading }}
+      </span>
+      <div class="accordion__label-icons">
+        {% render 'icon', with icon: 'plus' %}
+        {% render 'icon', with icon: 'minus' %}
+      </div>
+    </button>
+  {%- endunless -%}
+
+  {%- unless item_text == blank -%}
+    <div
+      class="collapsible-row-list-item__text-container"
+      aria-hidden="{{ item_text_hidden }}"
+      id="content-{{ item_content_suffix }}"
+    >
+      <div class="collapsible-row-list-item__text fs-body-50 rte">
+        {{ item_text }}
+      </div>
+    </div>
+  {%- endunless -%}
+</div>

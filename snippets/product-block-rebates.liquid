@@ -1,0 +1,52 @@
+{%- liquid
+  assign all_rebates_skus = ''
+
+  for variant in product.variants
+    assign variant_identifier = variant.sku | default: variant.barcode | strip
+
+    if variant_identifier != blank
+      if all_rebates_skus != blank
+        assign all_rebates_skus = all_rebates_skus | append: ','
+      endif
+      assign all_rebates_skus = all_rebates_skus | append: variant_identifier
+    endif
+  endfor
+
+  assign combine_listing_products = product.metafields.custom.combine_listing_product.value
+  if combine_listing_products != blank
+    for combined_product in combine_listing_products
+      for variant in combined_product.variants
+        assign variant_identifier = variant.sku | default: variant.barcode | strip
+
+        if variant_identifier != blank
+          if all_rebates_skus != blank
+            assign all_rebates_skus = all_rebates_skus | append: ','
+          endif
+          assign all_rebates_skus = all_rebates_skus | append: variant_identifier
+        endif
+      endfor
+    endfor
+  endif
+
+  assign rebates_skus = all_rebates_skus | strip
+  assign widget_script_url = block.settings.widget_script_url | default: 'https://static.ecorebates.com/widgets/dellahome/product.js' | strip
+  assign open_details_label = block.settings.open_details_label | default: 'Up to {totalAmount} in {altRebateConsumerType} Rebates' | strip
+-%}
+
+{%- unless product.metafields.custom.hide_ecorebates == true -%}
+  <div class="product__block product__block--medium product__block--rebates rte" {{ block.shopify_attributes }}>
+    {%- if widget_script_url != blank -%}
+      <script src="{{ widget_script_url | escape }}" async></script>
+    {%- endif -%}
+
+    {%- if rebates_skus != blank -%}
+      <ecr-product-widget
+        skus="{{ rebates_skus | escape }}"
+      >
+        <div slot="open-details" style="display:none;">
+          <a href="#">{{ open_details_label }}</a>
+        </div>
+      </ecr-product-widget>
+    {%- endif -%}
+  </div>
+{%- endunless -%}

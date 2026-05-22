@@ -1,0 +1,135 @@
+{%- comment -%}
+  Pass these variables into snippet:
+
+  Required:
+
+  * collection: Collection object
+  * label_style: String
+  * overlay_title_background: Color_picker value
+  * overlay_title_background_style: String
+  * image_sizes: String (passed to image as sizes attribute)
+
+  Optional:
+
+  * aspect_ratio: String
+  * placeholder: Bool - show placeholder content if passed
+  * heading_tag: String — optional, default h3 (use h2 after page h1, e.g. list collections)
+  * prioritize_loading: Bool - if true, image loads eagerly
+  * fetch_priority: String - optional fetchpriority value (for example `high`)
+{%- endcomment -%}
+
+{%- liquid
+  assign label_is_overlay = false
+  assign fallback_aspect_ratio = aspect_ratio
+  assign heading_tag = heading_tag | default: 'h3'
+
+  if label_style == 'overlay'
+    assign label_is_overlay = true
+  endif
+
+  if fallback_aspect_ratio == blank or fallback_aspect_ratio == 'natural'
+    assign fallback_aspect_ratio = 'square'
+  endif
+-%}
+{% capture collection_label %}
+  <div class="collection-item__label">
+    <{{ heading_tag }} class="collection-item__title ff-heading fs-heading-5-base ff-primary">
+      {%- capture title_text -%}
+        {%- if placeholder -%}
+          {{ 'collections.general.collection_label' | t }}
+        {%- else -%}
+          {{ collection.title }}
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {%- if label_is_overlay -%}
+        <span class="collection-item__title-link">
+          <span class="collection-item__title-text">{{ title_text }}</span>
+          <span class="collection-item__icon collection-item__icon--circle">
+            {%- render 'icon' with icon: 'arrow-right', view_box_custom: '0 0 16 16' -%}
+          </span>
+        </span>
+      {%- else -%}
+        {%- if placeholder -%}
+          <span class="collection-item__title-link">
+            <span class="collection-item__title-text">{{ title_text }}</span>
+            <span class="collection-item__icon collection-item__icon--circle">
+              {%- render 'icon' with icon: 'arrow-right', view_box_custom: '0 0 16 16' -%}
+            </span>
+          </span>
+        {%- else -%}
+          <a class="collection-item__title-link" href="{{ collection.url }}">
+            <span class="collection-item__title-text">{{ title_text }}</span>
+            <span class="collection-item__icon collection-item__icon--circle">
+              {%- render 'icon' with icon: 'arrow-right', view_box_custom: '0 0 16 16' -%}
+            </span>
+          </a>
+        {%- endif -%}
+      {%- endif -%}
+    </{{ heading_tag }}>
+  </div>
+{% endcapture %}
+
+<div
+  class="
+    collection-item
+    collection-item--label-{{ label_style }}
+    collection-item--label-background-{{ overlay_title_background_style }}
+    animation--item
+  "
+  style="
+    --overlay-text-color: {{ section.settings.overlay_text_color }};
+    --label-background: {{ overlay_title_background }};
+    --label-gradient-start: {{ overlay_title_background | color_modify: 'alpha', 0.4 }};
+    --label-gradient-mid: {{ overlay_title_background | color_modify: 'alpha', 0.2 }};
+    --label-gradient-end: {{ overlay_title_background | color_modify: 'alpha', 0 }};
+  "
+>
+  {%- capture wrapping_tag -%}
+    {%- if include_placeholder -%}div{%- else -%}a{%- endif -%}
+  {%- endcapture -%}
+  {%- capture wrapping_attributes -%}
+    {%- unless include_placeholder -%}href="{{ collection.url }}" aria-label="{{ collection.title }}"{%- endunless -%}
+  {%- endcapture -%}
+  <{{ wrapping_tag }}
+    {{ wrapping_attributes }}
+    class="collection-item__image-wrapper hover"
+  >
+    {% if collection.featured_image != blank %}
+      {%
+        render 'image' with
+        image: collection.featured_image,
+        wrapper_class: 'collection-item__image',
+        aspect_ratio: aspect_ratio,
+        placeholder_name: 'collection-1',
+        include_placeholder: true,
+        sizes: image_sizes,
+        src_set_type: "grid",
+        prioritize_loading: prioritize_loading,
+        fetch_priority: fetch_priority
+      %}
+    {% else %}
+      <div class="collection-item__image image loaded aspect-ratio--{{ fallback_aspect_ratio }}">
+        <div class="image__inner collection-item__fallback-image-inner">
+          <img
+            class="image__img collection-item__fallback-image"
+            src="{{ 'default-image.jpg' | asset_url }}"
+            alt="{{ collection.title | default: shop.name | escape }}"
+            width="864"
+            height="960"
+            {% if prioritize_loading %}loading="eager"{% else %}loading="lazy"{% endif %}
+            {% if fetch_priority != blank %}fetchpriority="{{ fetch_priority }}"{% endif %}
+          >
+        </div>
+      </div>
+    {% endif %}
+
+    {%- if label_is_overlay -%}
+      {{ collection_label }}
+    {%- endif -%}
+  </{{ wrapping_tag }}>
+
+  {%- unless label_is_overlay -%}
+    {{ collection_label }}
+  {%- endunless -%}
+</div>

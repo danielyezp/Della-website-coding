@@ -1,0 +1,45 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pf-861a6e26": {
+      "type": "pf-861a6e26",
+      "settings": {
+        "pf_5556960e_value": "As a thank-you to military personnel and first responders, Della offers a 10% discount site-wide on our store. Verify quickly and securely with <a href=\"https://auth.govx.com/shopify/verify?shop=dellahome-store.myshopify.com&amp;utm_source=shopify&amp;utm_medium=govxid&amp;utm_campaign=custom_link\" target=\"_blank\"><span style=\"color: rgb(88, 132, 231);\">GovX ID</span></a> to unlock your exclusive savings, then apply your discount at checkout.",
+        "pf_c36b3d9f_value": "Thank you for all that you do. First responders, firefighters, law enforcement, paramedics, and more can enjoy an extra 10% off sitewide. Simply verify quickly and securely with GovX ID  to receive your discount.",
+        "pf_47eb6490_value": "Salute the military community with an exclusive 10% discount for active duty, veterans, military spouses, and families. Simply verify quickly and securely with GovX ID  to receive your discount.",
+        "pf_d24222bc_value": "Verify your service with GovX ID.<br>\n<br>If you have an account, sign in. If not, sign up and verify your status.<br>\n<br>You'll receive a 10% discount code to use at checkout.",
+        "pf_55195148_value": "This discount is available to:<br><br>- Current and former U.S. military<br>- Military spouses and dependents<br>- First responders (law enforcement, fire, EMS)",
+        "pf_ceab0596_value": "Yes. Your personal details remain private with GovX ID. DELLA never sees your data, and you can delete your GovX ID account at any time.",
+        "pf_8cb0106a_value": "GovX ID is a trusted third-party service we partner with to verify eligibility for military and first responder discounts.",
+        "pf_c67a853d_value": "The discount applies to all air conditioner units on our website. It does not apply to Replacement Parts.",
+        "pf_d6e577ea_value": "This discount can be used on sale items, but can't be combined with other promo codes or coupons. \n",
+        "pf_99a78cec_value": "Sign in or create a free GovX ID account to confirm your eligibility.",
+        "pf_0d3f0b35_value": "Apply your code to any Della purchase and enjoy your savings.",
+        "pf_b175f131_value": "Instantly receive a 10% discount code for use at checkout.",
+        "pf_48b73a00_label": "Q3. What products are eligible?",
+        "pf_bd392f6a_value": "Frequently Asked Questions",
+        "pf_88b447eb_value": "Della Military Discount ",
+        "pf_8e365556_value": "Honoring Those Who Serve",
+        "pf_a30ac36b_value": "First Responder Discount",
+        "pf_3d9f512e_value": "Verify with GovX ID",
+        "pf_3e5f887f_value": "Verify with GovX ID",
+        "pf_917599a7_value": "Verify Your Status",
+        "pf_cb5b119d_value": "Military Discount",
+        "pf_9ce6b175_value": "Get Your Code",
+        "pf_a4040d3f_value": "Shop and Save",
+        "pf_6840daa0_value": "How It Works"
+      }
+    }
+  },
+  "order": [
+    "pf-861a6e26"
+  ]
+}

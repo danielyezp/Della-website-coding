@@ -1,0 +1,477 @@
+{%- if section.settings.enable_quick_cart -%}
+  <div
+    class="
+      quick-cart
+      {% if settings.enable_section_animations %}
+        animation
+        animation--quick-cart
+      {% endif %}
+      link-color-scheme--{{ section.settings.link_color_scheme }}
+    "
+    data-section-id="{{ section.id }}"
+    data-section-type="quick-cart"
+    data-client-idle
+  >
+    <div class="quick-cart__wrapper">
+      <div class="quick-cart__overlay"></div>
+      <div class="quick-cart__container">
+        <div class="quick-cart__header">
+          <h2 class="quick-cart__heading ff-heading fs-heading-5-base">
+            {{ 'cart.general.cart' | t -}}
+            {%- if cart.item_count > 0 -%}
+              <sup>{{ cart.item_count }}</sup>
+            {%- endif %}
+          </h2>
+          <button
+            type="button"
+            data-modal-close
+            class="quick-cart__close-icon"
+            aria-label="{{ 'general.accessibility.close_modal' | t }}"
+          >
+            {% render 'icon-button', small: true, icon: 'close' %}
+          </button>
+        </div>
+
+        {%- if cart.item_count > 0 -%}
+          <form
+            action="{{ routes.cart_url }}"
+            method="post"
+            data-form
+            novalidate
+            data-scroll-lock-ignore
+            class="quick-cart__form"
+          >
+            <div class="quick-cart__items animation--quick-cart-items">
+              {%- render 'free-shipping-bar' %}
+
+              <div class="mini-cart__actions text--subdued text--xsmall"></div>
+              <div class="drawer__content"></div>
+
+              {%- for item in cart.items -%}
+                {%- liquid
+                  assign item_bundle_id = item.properties['bundle_id'] | default: ''
+                  assign item_bundle_main = item.properties['main_bundle'] | default: ''
+                  assign item_bundle_role = ''
+                  if item_bundle_id != blank
+                    if item_bundle_main == 'true'
+                      assign item_bundle_role = 'main'
+                    else
+                      assign item_bundle_role = 'child'
+                    endif
+                  endif
+                  assign bundle_main_qty = 0
+                  if item_bundle_role == 'child'
+                    for other_item in cart.items
+                      if other_item.properties['bundle_id'] == item_bundle_id and other_item.properties['main_bundle'] == 'true'
+                        assign bundle_main_qty = other_item.quantity
+                        break
+                      endif
+                    endfor
+                  endif
+                -%}
+                <div
+                  class="quick-cart__item"
+                  data-input-item
+                  data-id="{{ item.id }}"
+                  data-key="{{ item.key }}"
+                  {%- if item_bundle_id != blank -%}
+                    data-bundle-id="{{ item_bundle_id }}"
+                    data-bundle-role="{{ item_bundle_role }}"
+                  {%- endif -%}
+                >
+                  <div class="quick-cart__item-image">
+                    {%- if bundle_main_qty > 1 -%}
+                      <span class="bundle-child-qty-badge" aria-hidden="true">{{ bundle_main_qty }}</span>
+                    {%- endif -%}
+                    {%- assign quick_cart_item_image_alt = item.image.alt | strip | default: item.product.title -%}
+                    <a href="{{ item.url }}" class="quick-cart__item-link">
+                      {%- render 'image',
+                        image: item.image,
+                        sizes: '120px',
+                        fetch_priority: 'low',
+                        aspect_ratio: settings.cart_item_aspect_ratio,
+                        include_placeholder: true,
+                        fallback_alt: quick_cart_item_image_alt
+                      -%}
+                    </a>
+                  </div>
+                  <div class="quick-cart__item-details">
+                    <div class="quick-cart__item-top">
+                      <h3 class="quick-cart__item-title ff-subheading fs-body-250">
+                        <a href="{{ item.url }}">{{ item.product.title }}</a>
+                      </h3>
+
+                      {% unless item.product.has_only_default_variant %}
+                        <p class="quick-cart__item-variant fs-body-50">{{ item.variant.title }}</p>
+                      {% endunless %}
+
+                      {% if item.selling_plan_allocation %}
+                        <p class="quick-cart__item-subscriptions fs-body-50">
+                          {{ item.selling_plan_allocation.selling_plan.name }}
+                        </p>
+                      {% endif %}
+
+                      {% capture visible_properties_markup %}
+                        {% for p in item.properties %}
+                          {% assign property_key = p.first %}
+                          {% assign property_value = p.last %}
+                          {% assign first_char = property_key | slice: 0 %}
+                          {% assign should_hide_property = false %}
+
+                          {% if property_value == blank or first_char == '_' %}
+                            {% assign should_hide_property = true %}
+                          {% endif %}
+
+                          {% if property_key == 'bundle_id' %}
+                            {% assign should_hide_property = true %}
+                          {% endif %}
+
+                          {% if property_key == 'main_bundle' and property_value == 'true' %}
+                            {% assign should_hide_property = true %}
+                          {% endif %}
+
+                          {% unless should_hide_property %}
+                            <p>
+                              {{ property_key }}:
+
+                              {% if property_value contains '/uploads/' %}
+                                <a href="{{ property_value }}">{{ property_value | split: '/' | last }}</a>
+                              {% else %}
+                                {{ property_value }}
+                              {% endif %}
+                            </p>
+                          {% endunless %}
+                        {% endfor %}
+                      {% endcapture %}
+
+                      {% assign visible_properties_markup = visible_properties_markup | strip %}
+
+                      {% if visible_properties_markup != blank %}
+                        <div class="quick-cart__form-item-properties fs-body-50">
+                          {{ visible_properties_markup }}
+                        </div>
+                        <script type="application/json" data-item-properties>
+                          {{ item.properties | json }}
+                        </script>
+                      {% endif %}
+
+                      {% liquid
+                        assign price_content_type = 'price'
+
+                        if item.original_price == 0 and settings.zero_dollar_cart_price_display == 'replace'
+                          assign price_content_type = 'custom'
+                        endif
+
+                        assign item_price = item.original_price
+                        assign item_sale_price = blank
+                        assign price_tag_type = 'span'
+
+                        if item.original_line_price > item.final_line_price or item.variant.compare_at_price > item.variant.price
+                          assign price_tag_type = 's'
+
+                          if item.original_line_price > item.final_line_price
+                            assign item_sale_price = item.final_price
+                          else
+                            assign item_price = item.variant.compare_at_price
+                            assign item_sale_price = item.original_price
+                          endif
+                        endif
+
+                        if section.settings.show_product_currency
+                          capture iso_code
+                            echo cart.currency.iso_code
+                          endcapture
+                        endif
+                      %}
+
+                      {% # Compare check allows for sale items to properly show instead of being replaced by text %}
+                      {% if price_content_type == 'price' or item.variant.compare_at_price > item.original_price %}
+                        <div class="quick-cart__item-price-wrapper ff-subheading fs-body-250">
+                          <{{ price_tag_type }} class="quick-cart__item-price">
+                            {{- item_price | money }}
+                            {{ iso_code -}}
+                          </{{ price_tag_type }}>
+
+                          {%- if item_sale_price != blank -%}
+                            <span class="quick-cart__item-price sale-price">
+                              {{- item_sale_price | money }}
+                              {{ iso_code -}}
+                            </span>
+                          {%- endif -%}
+
+                          {% render 'unit-price', item: item %}
+                        </div>
+
+                      {% elsif price_content_type == 'custom' %}
+                        <div class="quick-cart__item-price-wrapper ff-subheading fs-body-250">
+                          <span class="quick-cart__item-price">
+                            {{ 'products.inventory.zero_price_custom_label' | t }}
+                          </span>
+                        </div>
+                      {% endif %}
+
+                      {% if item.line_level_discount_allocations.size > 0 %}
+                        <ul class="quick-cart__item-discounts">
+                          {% for discount_allocation in item.line_level_discount_allocations %}
+                            <li class="quick-cart__item-discount fs-body-50">
+                              {%- render 'icon', icon: 'discount-badge' -%}
+                              {{ discount_allocation.discount_application.title }} (-
+                              {{- discount_allocation.amount | money -}}
+                              )
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </div>
+
+                    <div class="quick-cart__item-bottom">
+                      <p class="quick-cart__item-error fs-body-50 hidden">{{ 'cart.general.error' | t }}</p>
+
+                      {%- if settings.enable_low_inventory_warning -%}
+                        {%- liquid
+                          assign item_variants = item.product.variants
+                          assign item_variant = item_variants | where: 'id', item.id | first
+                        -%}
+
+                        {%- if item_variant.inventory_management != blank
+                          and item_variant.inventory_policy == 'deny'
+                          and item_variant.inventory_quantity < settings.low_inventory_warning_threshold
+                        -%}
+                          <p class="quick-cart__inventory-warning fs-body-50">
+                            {{ 'cart.general.inventory_warning' | t: amount: item_variant.inventory_quantity }}
+                          </p>
+                        {%- endif -%}
+                      {%- endif -%}
+                      
+                      {%- unless item_bundle_role == 'child' -%}
+                        {% render 'quantity-input', id: item.id, initial_value: item.quantity %}
+
+                        <button
+                          type="button"
+                          data-remove-item
+                          class="quick-cart__item-remove fs-body-50 btn btn--text-link"
+                        >
+                          {{ 'cart.general.remove' | t }}
+                        </button>
+                      {%- endunless -%}
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+              {%- if settings.enable_cross_sells -%}
+                {%-
+                  render 'cross-sells',
+                  cart: cart,
+                  cart_items: cart.items,
+                  is_slider: true,
+                -%}
+              {%- endif -%}
+            </div>
+            <div class="quick-cart__footer animation--quick-cart-footer">
+              <div class="quick-cart__footer-inner">
+                {%- if settings.show_cart_notes -%}
+                  <div class="quick-cart__footer-order-note-wrapper" aria-expanded="false" aria-hidden="true">
+                    <button
+                      type="button"
+                      class="quick-cart__footer-order-note-trigger fs-body-50 btn btn--text-link"
+                      data-order-note-trigger
+                    >
+                      <div class="quick-cart__footer-order-note-trigger-icons">
+                        {% render 'icon', icon: 'plus-small' %}
+                        {% render 'icon', icon: 'minus-small', class: 'hidden' %}
+                      </div>
+                      <span class="quick-cart__footer-order-note-trigger-text" data-cart-not-trigger-text>
+                        {{ 'cart.general.order_note_button_add' | t }}
+                      </span>
+                    </button>
+                    <div class="quick-cart__footer-order-note-input" cart-note-input>
+                      <label for="CartSpecialInstructions" class="fs-body-100">
+                        {{- 'cart.general.order_note_label' | t -}}
+                      </label>
+                      <textarea
+                        name="note"
+                        id="CartSpecialInstructions"
+                        class="input"
+                        placeholder="{{ 'cart.general.order_note_placeholder' | t }}"
+                      >{{ cart.note }}</textarea>
+                    </div>
+                  </div>
+                {%- endif -%}
+
+                {%- if cart.cart_level_discount_applications.size > 0 -%}
+                  <ul class="quick-cart__item-discounts">
+                    {% for discount_application in cart.cart_level_discount_applications %}
+                      <li class="quick-cart__item-discount fs-body-50">
+                        {%- render 'icon', icon: 'discount-badge' -%}
+                        {{ discount_application.title }} (-{{ discount_application.total_allocated_amount | money }})
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {%- endif -%}
+
+                <div class="quick-cart__footer-subtotal">
+                  <h3 class="ff-heading fs-heading-5-base">{{ 'cart.general.subtotal' | t }}</h3>
+                  <span class="ff-heading fs-heading-5-base">
+                    {{- cart.total_price | money -}}
+                    {%- if section.settings.show_product_currency %} {{ cart.currency.iso_code }}{% endif -%}
+                  </span>
+                </div>
+                <p class="quick-cart__footer-tax-note ff-body fs-body-50 rte">
+                  {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                    {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                  {%- elsif cart.taxes_included -%}
+                    {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
+                  {%- elsif shop.shipping_policy.body != blank -%}
+                    {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                  {%- else -%}
+                    {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+                  {%- endif -%}
+                </p>
+
+                <button
+                  type="submit"
+                  name="checkout"
+                  class="quick-cart__submit btn btn--full btn--solid btn--dark"
+                  aria-label="{{ 'cart.general.checkout' | t }}"
+                >
+                  {{ 'cart.general.checkout' | t }}
+                </button>
+
+                {%- assign cart_has_orphaned_children = false -%}
+                {%- for item in cart.items -%}
+                  {%- if item.properties['bundle_id'] != blank and item.properties['main_bundle'] != 'true' -%}
+                    {%- assign child_bundle_id = item.properties['bundle_id'] -%}
+                    {%- assign child_has_parent = false -%}
+                    {%- for other_item in cart.items -%}
+                      {%- if other_item.properties['bundle_id'] == child_bundle_id and other_item.properties['main_bundle'] == 'true' -%}
+                        {%- assign child_has_parent = true -%}
+                        {%- break -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                    {%- unless child_has_parent -%}
+                      {%- assign cart_has_orphaned_children = true -%}
+                      {%- break -%}
+                    {%- endunless -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                <button
+                  type="button"
+                  class="quick-cart__clear-cart btn btn--text-link fs-body-50 {% unless cart_has_orphaned_children %}hidden{% endunless %}"
+                  data-clear-cart
+                  aria-label="Clear all items from cart"
+                >
+                  Clear cart
+                </button>
+              </div>
+            </div>
+          </form>
+        {%- else -%}
+          <div class="quick-cart__empty-state">
+            <h3 class="quick-cart__empty-state-heading ff-heading fs-heading fs-heading-4-base">
+              {{ 'cart.general.empty' | t }}
+            </h3>
+            {%- if section.settings.collection_list != blank -%}
+              {%- if section.settings.promotion_text != blank -%}
+                <div class="quick-cart__empty-state-promot-text rte ff-body fs-body-100">
+                  {{ section.settings.promotion_text }}
+                </div>
+              {%- endif -%}
+              {%- for collection in section.settings.collection_list -%}
+                {%-
+                  render 'button-block',
+                  wrapper_class: "quick-cart__empty-state-promo-button",
+                  link: collection.url,
+                  label: collection.title,
+                  button_style: section.settings.collection_list_button_style,
+                  button_alignment: 'center',
+                -%}
+              {%- endfor -%}
+            {%- else -%}
+              {%- assign empty_label = 'cart.general.continue_shopping' | t -%}
+              {%- render 'button-block',
+                wrapper_class: 'quick-cart__empty-state-promo-button',
+                link: routes.collections_url,
+                label: empty_label,
+                button_style: ""
+                button_color: "btn--dark"
+                button_alignment: 'center'
+              -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.quick_cart.name",
+  "settings": [
+    {
+      "id": "enable_quick_cart",
+      "type": "checkbox",
+      "label": "t:sections.quick_cart.settings.enable_quick_cart.label",
+      "info": "t:sections.quick_cart.settings.enable_quick_cart.info",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.quick_cart.settings.header__product.content"
+    },
+    {
+      "id": "show_product_currency",
+      "type": "checkbox",
+      "label": "t:sections.quick_cart.settings.show_product_currency.label",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.quick_cart.settings.header__promotion.content"
+    },
+    {
+      "type": "richtext",
+      "id": "promotion_text",
+      "label": "t:sections.quick_cart.settings.promotion_text.label",
+      "default": "<p>Check out these collections.</p>"
+    },
+    {
+      "id": "collection_list",
+      "type": "collection_list",
+      "label": "t:sections.quick_cart.settings.collection_list.label"
+    },
+    {
+      "type": "select",
+      "id": "collection_list_button_style",
+      "label": "t:sections.quick_cart.settings.collection_list_button_style.label",
+      "default": "btn--light",
+      "options": [
+        {
+          "value": "btn--dark",
+          "label": "t:shared.settings.button_style.option_solid"
+        },
+        {
+          "value": "btn--light",
+          "label": "t:shared.settings.button_style.option_outline"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "link_color_scheme",
+      "label": "t:shared.settings.link_color_scheme.label",
+      "options": [
+        {
+          "value": "light",
+          "label": "t:shared.settings.link_color_scheme.option_light"
+        },
+        {
+          "value": "dark",
+          "label": "t:shared.settings.link_color_scheme.option_dark"
+        }
+      ],
+      "default": "dark"
+    }
+  ]
+}
+{% endschema %}

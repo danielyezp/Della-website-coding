@@ -1,0 +1,98 @@
+{%- comment -%} Source: product.metafields.custom.tech_specs - Product metafield containing tech specifications as JSON {%- endcomment -%}
+{%- assign raw_specs = product.metafields.custom.tech_specs -%}
+{%- assign custom_specs_content = block.settings.tech_specs_custom -%}
+{%- assign filter_labels_raw = block.settings.spec_labels_to_show | default: '' -%}
+{%- assign spec_display_limit = spec_display_limit | default: '' -%}
+{%- assign rendered_spec_count = 0 -%}
+{%- assign button_label = block.settings.full_specs_button_label | default: 'See full Tech Specs' | strip -%}
+{%- assign scroll_target_id = block.settings.full_specs_scroll_target_id | default: '' | strip | remove: '#' -%}
+{%- assign class_description = class_description | default: 'product__block product__block--top-line product__block--medium' -%}
+{%- capture tech_specs_action_markup -%}
+  {% if scroll_target_id != blank %}
+    <div class="product-tech-specs-layout__action">
+      <a href="#{{ scroll_target_id }}" class="product-tech-specs-layout__button js-anchor-tech-specs">
+        {{ button_label }}
+      </a>
+    </div>
+  {% endif %}
+{%- endcapture -%}
+
+{% if custom_specs_content != blank %}
+  <div class="product__description product__description--tech-specs {{ class_description }}" {{ block.shopify_attributes }}>
+    <div class="rte rte--product-tech-specs ff-body fs-body-50">
+      <div class="product-tech-specs-layout">
+        <div class="product-tech-specs-layout__content">
+          {{ custom_specs_content }}
+        </div>
+
+        {{ tech_specs_action_markup }}
+      </div>
+    </div>
+  </div>
+{% elsif raw_specs != blank %}
+  {% assign tech_specs = raw_specs | replace: '[', '' | replace: ']', '' | split: '},{' %}
+  {%- capture spec_items -%}
+    {% for spec in tech_specs %}
+      {% assign spec_data = spec | replace: '{', '' | replace: '}', '' | replace: '"', '' %}
+      {% assign spec_label = spec_data | split: ',' | first | replace: 'label:', '' | strip %}
+      {% assign spec_value = spec_data | split: ',' | last | replace: 'value:', '' | strip %}
+      {% assign normalized_spec_label = spec_label | downcase | strip %}
+
+      {%- assign should_render = true -%}
+      {% if normalized_spec_label == 'rebate available' %}
+        {%- assign should_render = false -%}
+      {% endif %}
+      {% if filter_labels_raw != blank %}
+        {%- assign should_render = false -%}
+        {% assign filter_labels = filter_labels_raw | newline_to_br | replace: '<br />', ',' | replace: '<br/>', ',' | split: ',' %}
+        {% for filter_label in filter_labels %}
+          {% assign normalized_filter_label = filter_label | strip | downcase %}
+          {% if normalized_filter_label != blank and normalized_spec_label == normalized_filter_label %}
+            {%- assign should_render = true -%}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {% if should_render %}
+        {% if spec_display_limit != blank and rendered_spec_count >= spec_display_limit %}
+          {% break %}
+        {% endif %}
+        <li>
+          {{ spec_label }}{% if spec_value != blank %}: {{ spec_value }}{% endif %}
+        </li>
+        {% assign rendered_spec_count = rendered_spec_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+  {%- endcapture -%}
+
+  {% if spec_items != blank %}
+    <div class="product__description product__description--tech-specs {{ class_description }}" {{ block.shopify_attributes }}>
+      <div class="rte rte--product-tech-specs ff-body fs-body-50">
+        <div class="product-tech-specs-layout">
+          <div class="product-tech-specs-layout__content">
+            <ul>
+              {{ spec_items }}
+            </ul>
+          </div>
+
+          {{ tech_specs_action_markup }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
+<template id="eco-rebate-badge-tpl" data-eco-rebate-tpl>
+  <li>
+    <span class="product-tech-specs-layout__rebate">
+      {{ 'sections.tech_specs.rebate_available' | t }}
+      <img
+        src="{{ 'rebate-available.png' | asset_url }}"
+        alt=""
+        width="21"
+        height="21"
+        loading="lazy"
+      >
+    </span>
+  </li>
+</template>

@@ -1,0 +1,234 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "enable_animation": true,
+        "content_width": "custom",
+        "custom_content_width": 800,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_with_text_JwjVHA": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_zJHLHd": {
+          "type": "heading",
+          "settings": {
+            "title": "Della Community Rewards Program",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-2-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "text_gFK9fh": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Sign up now to get 100 points.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark"
+          }
+        },
+        "button_d4RJF3": {
+          "type": "button",
+          "settings": {
+            "link": "https://shopify.com/authentication/78577631520/login?client_id=4f04983d-e2a6-47f1-8875-6276df904fcf&locale=en-US&redirect_uri=%2Fauthentication%2F78577631520%2Foauth%2Fauthorize%3Fclient_id%3D4f04983d-e2a6-47f1-8875-6276df904fcf%26locale%3Den-US%26nonce%3D173f7bb6-7bc6-47e8-975b-aeaaab209266%26redirect_uri%3Dhttps%253A%252F%252Fshopify.com%252F78577631520%252Faccount%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%2Bemail%2Bcustomer-account-api%253Afull%26state%3DhWNBX602aG3uERufra6iRX7Z",
+            "link_text": "Join Now",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        },
+        "button_pC3E47": {
+          "type": "button",
+          "settings": {
+            "link": "https://shopify.com/authentication/78577631520/login?client_id=4f04983d-e2a6-47f1-8875-6276df904fcf&locale=en-US&redirect_uri=%2Fauthentication%2F78577631520%2Foauth%2Fauthorize%3Fclient_id%3D4f04983d-e2a6-47f1-8875-6276df904fcf%26locale%3Den-US%26nonce%3D4dcefc76-b042-4799-855f-f5bf9a8fd9ac%26redirect_uri%3Dhttps%253A%252F%252Fshopify.com%252F78577631520%252Faccount%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%2Bemail%2Bcustomer-account-api%253Afull%26state%3DhWNBX64XUoVREpEuY4v7jixV",
+            "link_text": "Login",
+            "button_style": "btn--outline",
+            "button_color": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_zJHLHd",
+        "text_gFK9fh",
+        "button_d4RJF3",
+        "button_pC3E47"
+      ],
+      "disabled": true,
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "media_position": "right",
+        "media_mobile_position": "above-content",
+        "text_alignment": "left",
+        "video": "shopify://files/videos/Scene-1.mp4",
+        "video_mobile": "shopify://files/videos/Scene-1.mp4",
+        "image": "shopify://shop_images/image_13.png",
+        "image_mobile": "shopify://shop_images/image_13.png",
+        "aspect_ratio": "square",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "show_small_image": false,
+        "image_small_aspect_ratio": "square",
+        "image_small_focal_point": "image_presentation",
+        "background_color": "#6893f3",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background_color": "#0b133d",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-bottom-only",
+        "link_color_scheme": "light"
+      }
+    },
+    "multi_column_PENnBA": {
+      "type": "multi-column",
+      "blocks": {
+        "column_3bgnfR": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Sign Up",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Create your account and get instant points.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "column_HgtUn6": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Earn",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Earn points through purchases, shares, and referrals.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "column_8VmKeV": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Redeem",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Redeem your points for Della products, gift cards, and more.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "column_9Ak8xf": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Level Up",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Earn more, unlock higher tiers, enjoy bigger perks.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "column_3bgnfR",
+        "column_HgtUn6",
+        "column_8VmKeV",
+        "column_9Ak8xf"
+      ],
+      "disabled": true,
+      "name": "t:sections.multi_column.presets.name",
+      "settings": {
+        "title": "How It Works",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-2-base",
+        "heading_color": "c-heading-text-dark",
+        "subheading": "<p>Join our community, engage with Della and earn redeemable points for exclusive rewards</p>",
+        "subheading_color": "c-subheading-text-dark",
+        "link": "",
+        "link_text": "",
+        "header_button_style": "btn--light",
+        "heading_alignment": "center",
+        "content_vertical_alignment": "top",
+        "content_background_padding": "small",
+        "columns": "4",
+        "column_spacing": 28,
+        "row_spacing": 28,
+        "column_alignment": "left",
+        "enable_slider_mobile": false,
+        "columns_mobile": "2",
+        "column_spacing_mobile": 20,
+        "row_spacing_mobile": 20,
+        "column_alignment_mobile": "left",
+        "background_behind_columns": false,
+        "background_color": "#d8f0f7",
+        "text_color": "#000000",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "link_color_scheme": "dark"
+      }
+    },
+    "custom_liquid_fYqVFN": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom_liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div id=\"progus-store-locator\"></div><script>(function(p,r,o,g,u,s){var a=p.createElement(r);var b=\"?shop=\"+Shopify.shop+\"&lang=\" +(typeof Shopify!==`undefined`?Shopify.locale:``) +\"&tags=\"+g+\"&city=\"+u+\"&groups=\"+s;a.src=o+b;a.allowfullscreen=!0;a.allow=\"geolocation\";a.frameborder=0;a.setAttribute(\"frameBorder\",\"0\");a.setAttribute(\"allowfullscreen\",\"\");a.width=\"100%\";a.height=\"500px\";a.title=\"Progus Store Locator\";p.querySelector(\"#progus-store-locator\").appendChild(a);window.addEventListener(\"message\",(e)=>{if(e.data.pslheight){a.style.height=e.data.pslheight}})})(document,\"iframe\",\"https://sl-widget.proguscommerce.com/main\");</script>",
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-bottom-only"
+      }
+    },
+    "pagefly_section_mnhzEW": {
+      "type": "pagefly-section",
+      "name": "PageFly Section",
+      "settings": {
+        "section_id": "pf-c76bbf14"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_JwjVHA",
+    "multi_column_PENnBA",
+    "custom_liquid_fYqVFN",
+    "pagefly_section_mnhzEW"
+  ]
+}

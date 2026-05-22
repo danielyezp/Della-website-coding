@@ -1,0 +1,165 @@
+<!doctype html>
+
+<html class="no-js" lang="{{ request.locale.iso_code }}" style="--announcement-height: 1px;">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    {% render 'meta-description' %}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    {%- if request.page_type == 'product' -%}
+      {%- assign product_external_video = product.media | where: 'media_type', 'external_video' | first -%}
+      {%- if product_external_video != blank -%}
+        <link rel="preconnect" href="https://www.youtube.com">
+        <link rel="preconnect" href="https://i.ytimg.com">
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if settings.favicon != blank -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 32, height: 32 }}" type="image/png">
+    {%- endif -%}
+
+    {%- render 'web-fonts' -%}
+
+    {%- capture seo_title -%}
+      {%- if request.page_type == 'search' and search.performed == true -%}
+        {{ 'search.heading' | t: count: search.results_count }}:
+        {{ 'search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+      {%- else -%}
+        {{ page_title }}
+      {%- endif -%}
+      {%- if current_tags -%}
+        {%- assign meta_tags = current_tags | join: ', ' -%}
+        &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+      {%- endif -%}
+      {%- if current_page != 1 -%}
+        &ndash; {{ 'general.meta.page' | t: page: current_page }}
+      {%- endif -%}
+      {%- assign escaped_page_title = page_title | escape -%}
+      {%- unless escaped_page_title contains shop.name -%}
+        &ndash; {{ shop.name }}
+      {%- endunless -%}
+    {%- endcapture -%}
+    <title>{{ seo_title | strip }}</title>
+
+    {% render 'social-meta-tags' %}
+
+    {% render 'theme-setup' %}
+    {% render 'theme-setting-vars' %}
+    {%- render 'theme-globals' -%}
+
+    {{ content_for_header }}
+    <!-- bundle cart release: 2026-05-20 -->
+  {% include 'pagefly-app-header' %}</head>
+
+  <body class="template-{{ request.page_type | handle }}">
+    <a href="#main" class="skip-to-content btn btn--solid btn--dark">
+      {{ 'general.accessibility.skip_to_content' | t }}
+    </a>
+    <div class="page">
+      {% if settings.enable_page_transitions %}
+        {% render 'page-transition-overlay' %}
+      {% endif %}
+
+      <div class="theme-editor-scroll-offset"></div>
+
+      <div class="header__space" data-header-space></div>
+
+      {% sections 'header-group' %}
+      {% sections 'overlay-group' %}
+
+      {%- if settings.enable_quick_search -%}
+        {% render 'quick-search', parent: 'desktop' %}
+      {%- endif -%}
+
+      <div class="header-overlay" data-header-overlay>
+        <div class="header-overlay__inner"></div>
+      </div>
+
+      <main id="main" class="main" tabindex="-1">
+        {{ content_for_layout }}
+      </main>
+
+      {% sections 'footer-group' %}
+
+      {%- if request.page_type == 'product' -%}
+        {% render 'store-availability-drawer' %}
+      {%- endif -%}
+      {%- if settings.enable_quick_view -%}
+        {% render 'quick-view-modal' %}
+      {%- endif -%}
+      {% render 'modal' %}
+      {% render 'modal-slideout' %}
+      {% render 'back-to-top' %}
+    </div>
+
+    {%- render 'structured-data' -%}
+
+    {%- if request.page_type == 'product' -%}
+      {%- assign product_external_video = product.media | where: 'media_type', 'external_video' | first -%}
+      {%- assign product_hosted_video = product.media | where: 'media_type', 'video' | first -%}
+      {%- if product_external_video != blank -%}
+        <script src="https://www.youtube.com/iframe_api" defer fetchpriority="low"></script>
+      {%- endif -%}
+      {%- if product_hosted_video != blank -%}
+        <link
+          rel="preload"
+          href="https://cdn.shopify.com/shopifycloud/shopify-plyr/v1.0/shopify-plyr.css"
+          as="style"
+          fetchpriority="low"
+          onload="this.onload=null;this.rel='stylesheet'"
+        >
+        <noscript><link rel="stylesheet" href="https://cdn.shopify.com/shopifycloud/shopify-plyr/v1.0/shopify-plyr.css"></noscript>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- render 'marker-io' -%}
+  </body>
+  {%- render 'asset' with 'theme-deferred.css', preload_stylesheet: 'defer' -%}
+</html>
+
+
+<script>
+document.addEventListener('click', function(e) {
+  const anchor = e.target.closest('a');
+  if (!anchor) return;
+
+  const label = anchor.innerText || '';
+
+  if (label.includes('Call Now')) {
+    anchor.setAttribute('href', 'tel:+18008634143');
+    return;
+  }
+
+  if (label.includes('Chat Now')) {
+    e.preventDefault();
+    openWilldeskChat();
+  }
+});
+
+function openWilldeskChat() {
+  let attempts = 0;
+  const maxAttempts = 24;
+
+  const tryOpen = function() {
+    attempts += 1;
+
+    if (typeof window.Willdesk !== 'undefined' && typeof window.Willdesk.chat === 'function') {
+      window.Willdesk.chat();
+      return true;
+    }
+
+    return attempts >= maxAttempts;
+  };
+
+  if (tryOpen()) return;
+
+  const timer = window.setInterval(function() {
+    if (tryOpen()) {
+      window.clearInterval(timer);
+    }
+  }, 250);
+}
+</script>

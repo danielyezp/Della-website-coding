@@ -1,0 +1,144 @@
+{%- liquid
+  assign product_list = product.metafields.custom.combine_listing_product.value
+  assign heading = block_settings.heading | default: 'Choose Your Configuration'
+
+  assign group_tooltip_title = block_settings.tooltip_title | strip
+  assign group_tooltip_content = block_settings.tooltip_content
+  assign group_tooltip_button_label = block_settings.tooltip_button_label | strip
+  assign group_tooltip_button_link = block_settings.tooltip_button_link
+  assign group_tooltip_id = block.id
+
+  assign show_group_tooltip = false
+  if group_tooltip_title != blank and group_tooltip_content != blank
+    assign show_group_tooltip = true
+  endif
+-%}
+
+{%- if product_list != blank -%}
+  <div
+    class="bundle-configuration product__controls-group product__block product__block--top-line product__block--medium"
+    data-bundle-configuration
+    data-section-id="{{ section.id }}"
+    data-base-price="{{ product.selected_or_first_available_variant.price }}"
+    {{ block.shopify_attributes }}
+  >
+    {%- if heading != blank or show_group_tooltip -%}
+      <div class="bundle-configuration__heading-wrapper">
+        {%- if heading != blank -%}
+          <h3 class="bundle-configuration__heading product__variants-heading ff-heading fs-heading-6-base">
+            {{ heading }}
+          </h3>
+        {%- endif -%}
+
+        {%- if show_group_tooltip -%}
+          <button
+            type="button"
+            class="product__variant-tooltip-trigger btn btn--text-link fs-body-50"
+            data-popup-trigger
+            data-modal-slideout="true"
+            data-modal-content-id="modal-bundle-tooltip-{{ group_tooltip_id }}"
+            aria-controls="modal-bundle-tooltip-{{ group_tooltip_id }}"
+          >
+            {{ group_tooltip_title }}
+          </button>
+        {%- endif -%}
+      </div>
+
+      {%- if show_group_tooltip -%}
+        <div
+          id="modal-bundle-tooltip-{{ group_tooltip_id }}"
+          class="information-popup__content modal-content modal-content--slideout"
+          data-modal-slideout="true"
+          aria-modal="true"
+        >
+          <h2 class="information-popup__heading ff-heading fs-heading-6-base">{{ group_tooltip_title }}</h2>
+          <div class="information-popup__inner-content rte rte--modal">
+            {{ group_tooltip_content }}
+          </div>
+          {%- if group_tooltip_button_link != blank and group_tooltip_button_label != blank -%}
+            {%-
+              render 'button-block' with
+              wrapper_class: "product__variant-tooltip-article-link section-introduction__button",
+              link: group_tooltip_button_link,
+              label: group_tooltip_button_label,
+              button_style: "btn--callout"
+            -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="bundle-configuration__zones">
+      {%- for combined_product in product_list -%}
+        {%- liquid
+          assign product_list_repeat = combined_product.metafields.custom.combo_product_repeats.value | default: 1 | plus: 0
+          assign combo_labels = combined_product.metafields.custom.combo_product_labels.value
+          assign option_count = combined_product.options_with_values.size
+        -%}
+
+        {%- for i in (1..product_list_repeat) -%}
+          {%- for option in combined_product.options_with_values -%}
+            {%- liquid
+              assign label_index = forloop.parentloop.index0 | times: option_count | plus: forloop.index0
+              assign label_title = option.name
+              if combo_labels != blank and combo_labels[label_index] != blank
+                assign label_title = combo_labels[label_index]
+              endif
+              assign zone_id = 'bundle-zone-' | append: section.id | append: '-' | append: combined_product.id | append: '-' | append: forloop.parentloop.index | append: '-' | append: option.position
+            -%}
+
+            <div
+              class="bundle-configuration__zone product__option"
+              data-bundle-zone
+              data-product-id="{{ combined_product.id }}"
+              data-option-name="{{ option.name | escape }}"
+            >
+              <div class="bundle-configuration__label-wrapper product__label-wrapper">
+                <label
+                  class="bundle-configuration__label product__label ff-subheading fs-body-250"
+                  for="{{ zone_id }}"
+                >
+                  {{- label_title -}}
+                </label>
+              </div>
+
+              <div
+                class="select-wrapper bundle-configuration__select-wrapper"
+                data-index="bundle-{{ combined_product.id }}-{{ forloop.parentloop.index }}-{{ option.position }}"
+              >
+                <select
+                  id="{{ zone_id }}"
+                  class="input bundle-configuration__select"
+                  data-bundle-zone-select
+                  data-product-id="{{ combined_product.id }}"
+                  data-label="{{ label_title | escape }}"
+                  aria-label="{{ label_title | escape }}"
+                >
+                  {%- for variant in combined_product.variants -%}
+                    <option
+                      value="{{ variant.id }}"
+                      data-var-id="{{ variant.id }}"
+                      data-option-price="{{ variant.price }}"
+                    >
+                      {{- variant.option1 }} - {{ variant.price | money_with_currency -}}
+                    </option>
+                  {%- endfor -%}
+                </select>
+                {%- render 'icon' with icon: 'chevron-down', view_box_custom: '0 0 11 6' -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+
+    <script type="application/json" data-bundle-product-data>
+      {
+        {%- for combined_product in product_list -%}
+          {{ combined_product.id | json }}: {{ combined_product.variants | json }}
+          {%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      }
+    </script>
+  </div>
+{%- endif -%}

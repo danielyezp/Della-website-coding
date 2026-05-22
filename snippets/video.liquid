@@ -1,0 +1,64 @@
+{%- comment -%}
+  inline video element essentially video 'image'
+
+  Pass in:
+  video: URL
+  controls: Bool (optional)
+  loop: Bool (optional)
+  wrapper_class: String
+  aspect_ratio: String
+  focal_alignment: String
+  animate: Bool (optional)
+{%- endcomment -%}
+{%- liquid
+  if focal_point
+    assign focal_alignment = focal_point | replace: '_', ' '
+  endif
+
+  assign video_should_loop = true
+  unless loop
+    assign video_should_loop = false
+  endunless
+
+  assign enable_play_pause_button = enable_play_pause_button | default: true, allow_false: true
+  assign lazy_video = lazy_load | default: true, allow_false: true
+
+  if prioritize_loading
+    assign lazy_video = false
+  endif
+-%}
+
+<div
+  class="
+    video-wrapper {{ wrapper_class }}
+    {% if aspect_ratio != blank and aspect_ratio != 'natural' %}aspect-ratio--{{ aspect_ratio }}{% endif %}
+    {% if animate %}video-wrapper--animate{% endif %}
+  "
+  {%- if focal_alignment -%}
+    style="--focal-alignment: {{ focal_alignment }};"
+  {%- endif -%}
+>
+  <video
+    class="video js-video"
+    playsinline
+    muted
+    preload="{% if lazy_video %}none{% else %}metadata{% endif %}"
+    {% if video_should_loop %}
+      loop
+    {% endif %}
+    autoplay
+    {% if lazy_video %}
+      data-video-lazy
+      data-src="{{ video }}"
+    {% else %}
+      src="{{ video }}"
+    {% endif %}
+    {% if controls %}
+      controls
+    {% endif %}
+    {% if poster != blank %}
+      poster="{{poster}}"
+    {% endif %}
+  ></video>
+  {% if enable_play_pause_button %}{% render 'video-pause' %}{% endif %}
+</div>

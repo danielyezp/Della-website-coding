@@ -1,0 +1,860 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "enable_animation": true,
+        "content_width": "custom",
+        "custom_content_width": 700,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_hero_TQzayF": {
+      "type": "image-hero",
+      "blocks": {
+        "text_7qUHXn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Modern comfort for everyday living.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark"
+          }
+        },
+        "accent_7jQwK4": {
+          "type": "accent",
+          "disabled": true,
+          "settings": {
+            "accent": "Modern comfort for everyday living."
+          }
+        },
+        "heading_EUdUww": {
+          "type": "heading",
+          "settings": {
+            "title": "Comfort, handled.",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-1-base",
+            "heading_tag": "h2",
+            "heading_color": "c-heading-text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "text_7qUHXn",
+        "accent_7jQwK4",
+        "heading_EUdUww"
+      ],
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": true,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": false,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "cover",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "image": "shopify://shop_images/D_2880x1200px_76848ee2-ee67-42e8-99a6-b26fa191467b.jpg",
+        "image_mobile": "shopify://shop_images/D_786x1400px-32_cde6f696-8436-465e-bdf8-1c30b406ee70.jpg",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_flex-start",
+        "text_position_mobile": "center_flex-start",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#0b133d",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_with_text_wGKmff": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_QVXYkq": {
+          "type": "heading",
+          "settings": {
+            "title": "Image with text",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "subheading_GGybXP": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Use these sections to promote a particular feature with editorial photography",
+            "subheading_tag": "h3",
+            "font_family_class": "ff-primary",
+            "subheading_font_class": "fs-body-200",
+            "subheading_color": "c-subheading-text-dark"
+          }
+        },
+        "button_PrVLiJ": {
+          "type": "button",
+          "settings": {
+            "link": "",
+            "link_text": "Read more",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_QVXYkq",
+        "subheading_GGybXP",
+        "button_PrVLiJ"
+      ],
+      "disabled": true,
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "media_position": "right",
+        "media_mobile_position": "above-content",
+        "text_alignment": "center",
+        "aspect_ratio": "square",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "show_small_image": true,
+        "image_small_aspect_ratio": "square",
+        "image_small_focal_point": "image_presentation",
+        "background_color": "",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_with_text_nGFFgg": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_FYJUXY": {
+          "type": "heading",
+          "settings": {
+            "title": "Designed around the rhythm of home.",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-2-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "text_cmdWyX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Engineered for the way you live, thoughtfully bringing comfort to busy homes, changing routines, and the spaces traditional systems leave behind.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FYJUXY",
+        "text_cmdWyX"
+      ],
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "media_position": "right",
+        "media_mobile_position": "above-content",
+        "text_alignment": "left",
+        "image": "shopify://shop_images/Desktop_Mobile_-_1300px_x_1300px.png",
+        "image_mobile": "shopify://shop_images/Desktop_Mobile_-_1300px_x_1300px.png",
+        "aspect_ratio": "square",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "show_small_image": false,
+        "image_small_aspect_ratio": "square",
+        "image_small_focal_point": "image_presentation",
+        "background_color": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background_color": "#0b133d",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-bottom-only",
+        "link_color_scheme": "light"
+      }
+    },
+    "multi_column_8UczJJ": {
+      "type": "multi-column",
+      "blocks": {
+        "column_rGGEtD": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Built on experience",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Expertise engineered for your lifestyle</p>",
+            "text_font_class": "fs-body-50",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "column_Cp3bnV": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Power that respects your peace",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Smart design that saves energy and elevates comfort</p>",
+            "text_font_class": "fs-body-50",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "column_zA7y9P": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Precision in every part",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Precision-built from first sketch to final support</p>",
+            "text_font_class": "fs-body-50",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "column_EemGHa": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Silent performance, visible comfort",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Better living should be felt, not heard</p>",
+            "text_font_class": "fs-body-50",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "column_rGGEtD",
+        "column_Cp3bnV",
+        "column_zA7y9P",
+        "column_EemGHa"
+      ],
+      "name": "t:sections.multi_column.presets.name",
+      "settings": {
+        "background_image": "shopify://shop_images/20260506-184501.jpg",
+        "title": "The DNA of Comfort",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-4-base",
+        "heading_color": "c-heading-text-light",
+        "subheading": "",
+        "subheading_color": "c-subheading-text-light",
+        "link": "",
+        "link_text": "",
+        "header_button_style": "btn--light",
+        "heading_alignment": "center",
+        "content_vertical_alignment": "center",
+        "content_background_padding": "small",
+        "columns": "4",
+        "column_spacing": 12,
+        "row_spacing": 28,
+        "column_alignment": "left",
+        "enable_slider_mobile": true,
+        "columns_mobile": "1.3",
+        "column_spacing_mobile": 12,
+        "row_spacing_mobile": 20,
+        "column_alignment_mobile": "left",
+        "background_behind_columns": true,
+        "background_color": "#ffddb4",
+        "text_color": "#0b133d",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "link_color_scheme": "dark"
+      }
+    },
+    "collapsible_row_image_ykezPz": {
+      "type": "collapsible-row-image",
+      "blocks": {
+        "item_wxPJpr": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2012",
+            "text": "<p>Born from garage heatwaves, Della began with a simple idea: comfort should be easier to access and simpler to trust. That belief became a mission to bring reliable cooling to more homes.</p>",
+            "image": "shopify://shop_images/D_1280x1400px_1948def4-b3ba-4b93-83d6-2e5f6c2b9e05.jpg"
+          }
+        },
+        "item_meDdTU": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2015",
+            "text": "<p>With a new Los Angeles warehouse, faster delivery and broader access brought reliable comfort closer to more homes.</p>",
+            "image": "shopify://shop_images/D_warehouse-1280x1400px_-19.jpg"
+          }
+        },
+        "item_W4JyWb": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2018-2020",
+            "text": "<p>As homes evolved, Della introduced mini split systems and expanded distribution in South Carolina, helping more households enjoy room-by-room comfort built for modern living.</p>",
+            "image": "shopify://shop_images/D_mini_split-1280x1400px_f3f1702c-f3c9-4804-a955-468edf244def.jpg"
+          }
+        },
+        "item_3UdhGk": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2022-2024",
+            "text": "<p>With growing trust from homeowners nationwide, Della refreshed its brand, expanded in Texas, enhanced the Della+ app, and became a leading mini split choice on Amazon.</p>",
+            "image": "shopify://shop_images/D_2025_beyond-1280x1400px.jpg"
+          }
+        },
+        "item_TdwkA9": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2025 & beyond",
+            "text": "<p>Della entered its next chapter with the launch of Central AC systems, Red Dot award-winning design, and a partnership with the LA Galaxy to bring smarter comfort to more local homes.</p>",
+            "image": "shopify://shop_images/D_mini_split-1280x1400px_76feaded-44c1-4fff-8c3a-ff92d5e2b89f.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "item_wxPJpr",
+        "item_meDdTU",
+        "item_W4JyWb",
+        "item_3UdhGk",
+        "item_TdwkA9"
+      ],
+      "name": "t:sections.collapsible_row_image.presets.name",
+      "settings": {
+        "subheading": "Designed Through Time",
+        "subheading_tag": "h3",
+        "subheading_font_class": "fs-body-200",
+        "subheading_color": "c-subheading-text-dark",
+        "title": "The Evolution of Comfort",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-3-base",
+        "heading_color": "c-heading-text-dark",
+        "heading_alignment": "left",
+        "item_heading_font": "heading",
+        "section_background_color": "#d8f0f7",
+        "media_aspect_ratio": "portrait",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "full",
+        "custom_content_width": 600,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_hero_qCJ6Pz": {
+      "type": "image-hero",
+      "blocks": {
+        "heading_LVgHK7": {
+          "type": "heading",
+          "settings": {
+            "title": "Life’s best chapters start here.",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-2-base",
+            "heading_tag": "h2",
+            "heading_color": "c-heading-text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LVgHK7"
+      ],
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": false,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "image": "shopify://shop_images/D_2880x1712px_45cdea2b-71a0-4800-9cd9-02320a81d693.jpg",
+        "image_mobile": "shopify://shop_images/D_786x1400px-29.jpg",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_flex-start",
+        "text_position_mobile": "center_flex-start",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#0b133d",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "multi_column_aRMzzx": {
+      "type": "multi-column",
+      "blocks": {
+        "icon_column_4KTyRD": {
+          "type": "icon_column",
+          "settings": {
+            "icon": "none",
+            "icon_width": 180,
+            "icon_width_mobile": 146,
+            "custom_icon_image": "shopify://shop_images/Screenshot_2026-01-21_at_4.14.03_PM_1.png",
+            "icon_position": "top-left",
+            "mobile_icon_position": "top-left",
+            "accent": "",
+            "heading": "",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "text": "",
+            "text_font_class": "fs-body-75",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark",
+            "bg_color": "#ffffff",
+            "border_color": "#ffffff"
+          }
+        },
+        "icon_column_PLgtPx": {
+          "type": "icon_column",
+          "settings": {
+            "icon": "none",
+            "icon_width": 180,
+            "icon_width_mobile": 146,
+            "custom_icon_image": "shopify://shop_images/Screenshot_2026-01-21_at_4.14.15_PM_1.png",
+            "icon_position": "top-left",
+            "mobile_icon_position": "top-left",
+            "accent": "",
+            "heading": "",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "text": "",
+            "text_font_class": "fs-body-75",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark",
+            "bg_color": "#ffffff",
+            "border_color": "#ffffff"
+          }
+        },
+        "icon_column_dgr3LC": {
+          "type": "icon_column",
+          "settings": {
+            "icon": "none",
+            "icon_width": 180,
+            "icon_width_mobile": 146,
+            "custom_icon_image": "shopify://shop_images/Screenshot_2026-01-21_at_4.14.20_PM_1.png",
+            "icon_position": "top-left",
+            "mobile_icon_position": "top-left",
+            "accent": "",
+            "heading": "",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "text": "",
+            "text_font_class": "fs-body-75",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark",
+            "bg_color": "#ffffff",
+            "border_color": "#ffffff"
+          }
+        },
+        "icon_column_gYgED8": {
+          "type": "icon_column",
+          "settings": {
+            "icon": "none",
+            "icon_width": 200,
+            "icon_width_mobile": 146,
+            "custom_icon_image": "shopify://shop_images/Screenshot_2026-02-18_at_9.18.57_AM_1.png",
+            "icon_position": "top-left",
+            "mobile_icon_position": "top-left",
+            "accent": "",
+            "heading": "",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "text": "",
+            "text_font_class": "fs-body-75",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark",
+            "bg_color": "#ffffff",
+            "border_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "icon_column_4KTyRD",
+        "icon_column_PLgtPx",
+        "icon_column_dgr3LC",
+        "icon_column_gYgED8"
+      ],
+      "name": "t:sections.multi_column.presets.name",
+      "settings": {
+        "title": "Pro-grade power, home-grown comfort.",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-3-base",
+        "heading_color": "c-heading-text-dark",
+        "subheading": "",
+        "subheading_color": "c-subheading-text-dark",
+        "link": "",
+        "link_text": "",
+        "header_button_style": "btn--light",
+        "heading_alignment": "left",
+        "content_vertical_alignment": "top",
+        "content_background_padding": "medium",
+        "columns": "5",
+        "column_spacing": 48,
+        "row_spacing": 48,
+        "column_alignment": "center",
+        "enable_slider_mobile": false,
+        "columns_mobile": "1",
+        "column_spacing_mobile": 4,
+        "row_spacing_mobile": 4,
+        "column_alignment_mobile": "left",
+        "background_behind_columns": false,
+        "background_color": "",
+        "text_color": "#000000",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-only",
+        "link_color_scheme": "dark"
+      }
+    },
+    "video_reels_KizEL7": {
+      "type": "video-reels",
+      "blocks": {
+        "product_Jrd3Lb": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/SaveClip.App_AQPQJ9Ben3fCMCF72cQuC8FnrO0eVBhFPk6PCxD-KFZ3FwoWc5ozqqcdxqQk2zngfFMMTcg_HjDNuo8NEqV0O3bdkZt7kdtWHie-MRY.mp4",
+            "media_display_type": "video",
+            "featured_product": "42-smart-tower-fan-tf01s"
+          }
+        },
+        "product_3tkhRc": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "media_image": "shopify://shop_images/Frame_369566_cc57ba61-9402-4104-afa8-a9f0e3e65737.png",
+            "media_display_type": "image",
+            "featured_product": "42-smart-tower-fan-tf01s"
+          }
+        },
+        "product_i976Kp": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/SaveClip.App_AQPLtC4IDTlRT-uWlSlihbYKyqyipKB8vOMdx_CL3Tu5uzBedme0cDh_Cnvr4R521SgRYsKKRyFB6RuKwfkVNRI6.mp4",
+            "media_display_type": "video",
+            "featured_product": "della-serena-series-18000-btu-dual-zone-mini-split-ac-9k-12k-up-to-950-sq-ft"
+          }
+        },
+        "product_ibRGKV": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/Creating the perfect reading sanctuary in my living room with the DELLA 42’’ Ultra Quiet Smart T.mp4",
+            "media_display_type": "video",
+            "featured_product": "42-smart-tower-fan-tf01s"
+          }
+        },
+        "product_wfchin": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/SnapInsta.to_AQPaeWkOvHHyM5dUTHjE4KaacxidSR8A8TjCAXceMxb3FK3Azi_szx4rA4PuiY4z0ulD5fBDqwJCyKMHv91MszSNccIzEkELhW9ATdA.mp4",
+            "media_display_type": "video",
+            "featured_product": "vario-series-12000-btu-seer2-21-mini-split-heat-pump-ac-up-to-550-sq-ft"
+          }
+        },
+        "product_tmqqhB": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "video_hosted": "shopify://files/videos/SaveClip.App_AQPLtC4IDTlRT-uWlSlihbYKyqyipKB8vOMdx_CL3Tu5uzBedme0cDh_Cnvr4R521SgRYsKKRyFB6RuKwfkVNRI6.mp4",
+            "media_display_type": "video",
+            "featured_product": "della-15-day-rental-install-kit"
+          }
+        },
+        "product_t3Qj8F": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/Small space, big comfort 🤍 The Della Vario Mini Split Heat Pump keeps my room perfectly cool in.mp4",
+            "media_display_type": "video",
+            "featured_product": "vario-series-12000-btu-seer2-21-mini-split-heat-pump-ac-up-to-550-sq-ft"
+          }
+        },
+        "product_R86zmN": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/Garage mini split EASY install🧊🔥Comment “DELLA” for the link! I installed the DELLA Optima Ser.mp4",
+            "media_display_type": "video",
+            "featured_product": "optima-series-12000-btu-seer2-23-ultra-heat-mini-split-ac-up-to-550-sq-ft"
+          }
+        }
+      },
+      "block_order": [
+        "product_Jrd3Lb",
+        "product_3tkhRc",
+        "product_i976Kp",
+        "product_ibRGKV",
+        "product_wfchin",
+        "product_tmqqhB",
+        "product_t3Qj8F",
+        "product_R86zmN"
+      ],
+      "name": "t:sections.shoppable-video.name",
+      "settings": {
+        "heading": "",
+        "quick_add_enabled": true,
+        "text_color": "#ffffff",
+        "background_color": "",
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "image_hero_bQ6wVM": {
+      "type": "image-hero",
+      "blocks": {
+        "accent_BJAJLq": {
+          "type": "accent",
+          "settings": {
+            "accent": "Comfort, handled."
+          }
+        },
+        "heading_6iwn4C": {
+          "type": "heading",
+          "settings": {
+            "title": "For every space you call home.",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_tag": "h2",
+            "heading_color": "c-heading-text-light"
+          }
+        },
+        "button_T8Nw3g": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://collections",
+            "link_text": "Explore Products",
+            "button_style": "btn--solid",
+            "button_color": "btn--light"
+          }
+        }
+      },
+      "block_order": [
+        "accent_BJAJLq",
+        "heading_6iwn4C",
+        "button_T8Nw3g"
+      ],
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": false,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "image": "shopify://shop_images/2880-1200_24d96235-5330-42cf-ad74-f74e4fa1f164.jpg",
+        "image_mobile": "shopify://shop_images/786-1000_08ebf70b-090b-4b95-96bf-abe575b867d1.jpg",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "flex-start_center",
+        "text_position_mobile": "flex-start_flex-start",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#fffefb",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_hero_fKfG8Q": {
+      "type": "image-hero",
+      "blocks": {
+        "heading_w3nxDQ": {
+          "type": "heading",
+          "settings": {
+            "title": "We take care of our customers",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_tag": "h2",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "subheading_gNVHUd": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Our dedicated customer service team is available around the clock to support you. Visit the Help Center for answers, guidance, and resources.",
+            "font_family_class": "ff-primary",
+            "subheading_font_class": "fs-body-200",
+            "subheading_color": "c-subheading-text-dark",
+            "enable_subheading_transparent_color": false,
+            "subheading_transparent_color": ""
+          }
+        },
+        "button_RwbUBR": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://pages/contact",
+            "link_text": "Get in touch",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        },
+        "button_HaRE73": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "link": "",
+            "link_text": "Read more",
+            "button_style": "btn--outline",
+            "button_color": "btn--light"
+          }
+        }
+      },
+      "block_order": [
+        "heading_w3nxDQ",
+        "subheading_gNVHUd",
+        "button_RwbUBR",
+        "button_HaRE73"
+      ],
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "https://cdn.shopify.com/videos/c/o/v/4e9e3d3128df44b3900b86f48ecde002.mp4",
+        "enable_box_container": true,
+        "fit_height_content": true,
+        "enable_image_cover": true,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 30,
+        "mobile_height": 70,
+        "image": "shopify://shop_images/Frame_369374_2b5d4594-d754-4b0c-8fb3-fbcf80f4d1c7.png",
+        "image_mobile": "shopify://shop_images/Frame_369374_f54483ce-e9a4-4b70-9fe2-d97c6a2a5e32.png",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_center",
+        "text_position_mobile": "center_center",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#0b133d",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": 598,
+        "top_left_corner_radius": 200,
+        "top_right_corner_radius": 200,
+        "bottom_left_corner_radius": 200,
+        "bottom_right_corner_radius": 200,
+        "link_color_scheme": "dark"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_hero_TQzayF",
+    "image_with_text_wGKmff",
+    "image_with_text_nGFFgg",
+    "multi_column_8UczJJ",
+    "collapsible_row_image_ykezPz",
+    "image_hero_qCJ6Pz",
+    "multi_column_aRMzzx",
+    "video_reels_KizEL7",
+    "image_hero_bQ6wVM",
+    "image_hero_fKfG8Q"
+  ]
+}

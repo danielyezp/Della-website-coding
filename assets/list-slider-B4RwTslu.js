@@ -1,0 +1,1 @@
+import{i as n}from"./intersection-watcher-8GvknGdC.js";import{d as e}from"./delay-offset-G3BUmTZ-.js";const o={sectionBlockItems:".animation--section-introduction > *",controls:".animation--controls",items:".animation--item"},r=s=>{const i=[o.sectionBlockItems,o.controls,o.items];e(s,i);const t=n(s);return{destroy(){t==null||t.destroy()}}};export{r as a};

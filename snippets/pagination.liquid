@@ -1,0 +1,129 @@
+{%- liquid
+  assign pagination_type = type | t
+  assign max_visible_pages = 7
+  assign total_pages = paginate.pages
+  assign range_start = 1
+  assign range_end = total_pages
+  assign end_range_threshold = total_pages | minus: 3
+
+  if total_pages > max_visible_pages
+    if paginate.current_page <= 4
+      assign range_start = 1
+      assign range_end = 6
+    elsif paginate.current_page >= end_range_threshold
+      assign range_start = total_pages | minus: 5
+      assign range_end = total_pages
+    else
+      assign range_start = paginate.current_page | minus: 2
+      assign range_end = paginate.current_page | plus: 2
+    endif
+  endif
+
+  assign pagination_current_item_start = paginate.current_offset | plus: 1
+  assign pagination_current_item_end = paginate.current_page | times: paginate.page_size
+  assign current_pagination_range = pagination_current_item_start
+
+  if pagination_current_item_end > paginate.items
+    assign pagination_current_item_end = paginate.items
+  endif
+
+  assign current_pagination_range = current_pagination_range | append: '-' | append: pagination_current_item_end
+  assign pagination_type = type | t
+-%}
+
+<div class="pagination">
+  {%- unless display_paginate_item_count_only -%}
+    <ul class="pagination__list">
+      <li class="pagination__item pagination__item--arrow">
+        <a
+          href="{{ paginate.previous.url }}"
+          class="
+            pagination__navigation-button
+            pagination__navigation-button--previous
+            {% if paginate.previous == blank %}pagination__navigation-button--hidden{% endif %}
+          "
+          aria-label="{{ 'general.pagination.previous_page' | t: type: pagination_type }}"
+        >
+          {% render 'icon', with icon: 'chevron' %}
+        </a>
+      </li>
+
+      {%- assign last_rendered_page = 0 -%}
+      {%- assign previous_page = paginate.current_page | minus: 1 -%}
+      {%- for part in paginate.parts -%}
+        {%- if part.title == "&hellip;" -%}
+          {% continue %}
+        {%- endif -%}
+
+        {%- assign page_number = part.title | plus: 0 -%}
+        {%- assign show_part = false -%}
+
+        {%- if total_pages <= max_visible_pages -%}
+          {%- assign show_part = true -%}
+        {%- elsif page_number == 1 or page_number == total_pages -%}
+          {%- assign show_part = true -%}
+        {%- elsif page_number >= range_start and page_number <= range_end -%}
+          {%- assign show_part = true -%}
+        {%- endif -%}
+
+        {%- unless show_part -%}
+          {% continue %}
+        {%- endunless -%}
+
+        {%- assign next_expected_page = last_rendered_page | plus: 1 -%}
+        {%- if last_rendered_page > 0 and page_number > next_expected_page -%}
+          <li class="pagination__item pagination__item--ellip">
+            <span class="pagination__navigation-button">…</span>
+          </li>
+        {%- endif -%}
+
+        {%- capture li_classes -%}
+          {%- if page_number == paginate.current_page -%}
+            pagination__item pagination__item--active
+          {%- elsif page_number == previous_page -%}
+            pagination__item pagination__item--previous-page
+          {%- else -%}
+            pagination__item
+          {%- endif -%}
+        {%- endcapture -%}
+
+        <li class="{{ li_classes }}">
+          {%- if part.is_link == true -%}
+            <a
+              href="{{ part.url }}"
+              class="pagination__navigation-button"
+              aria-label="{{ 'general.pagination.page' | t: number: part.title, type: pagination_type }}"
+            >
+              {{ part.title }}
+            </a>
+          {%- else -%}
+            <span class="pagination__navigation-button">{{ part.title }}</span>
+          {%- endif -%}
+        </li>
+
+        {%- assign last_rendered_page = page_number -%}
+      {%- endfor -%}
+
+      <li class="pagination__item pagination__item--arrow">
+        <a
+          href="{{ paginate.next.url }}"
+          class="
+            pagination__navigation-button
+            pagination__navigation-button--next
+            {% if paginate.next == blank %}pagination__navigation-button--hidden{% endif %}
+          "
+          aria-label="{{ 'general.pagination.next_page' | t: type: pagination_type }}"
+        >
+          {% render 'icon', with icon: 'chevron' %}
+        </a>
+      </li>
+    </ul>
+  {%- endunless -%}
+
+  {%- if show_item_count or display_paginate_item_count_only -%}
+    <p class="pagination__footer fs-body-75" data-pagination-item-count>
+      {{ 'general.pagination.viewing' | t: of: current_pagination_range, total: paginate.items }}
+      {{ pagination_type }}
+    </p>
+  {%- endif -%}
+</div>

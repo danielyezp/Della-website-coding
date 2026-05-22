@@ -1,0 +1,65 @@
+{%- comment -%}
+  Preload collection banner imagery on templates where that banner is the
+  expected first visual. This keeps the LCP image discoverable from the head.
+{%- endcomment -%}
+
+{%- liquid
+  assign should_preload_collection_banner = false
+
+  if request.page_type == 'collection'
+    if template.suffix == blank or template.suffix == 'multizone'
+      assign should_preload_collection_banner = true
+    endif
+  endif
+
+  assign collection_lcp_image = blank
+  assign collection_lcp_image_mobile = blank
+
+  if should_preload_collection_banner and collection.handle != 'vendors'
+    assign collection_lcp_image = collection.metafields.custom.barrel_featured_image.value | default: collection.image
+    assign collection_lcp_image_mobile = collection.metafields.custom.barrel_featured_image_mobile.value | default: collection_lcp_image
+  endif
+-%}
+
+{%- if collection_lcp_image != blank -%}
+  {%- if collection_lcp_image_mobile != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ collection_lcp_image_mobile | image_url: width: 850 }}"
+      imagesrcset="
+        {{ collection_lcp_image_mobile | image_url: width: 700 }} 700w,
+        {{ collection_lcp_image_mobile | image_url: width: 750 }} 750w,
+        {{ collection_lcp_image_mobile | image_url: width: 800 }} 800w,
+        {{ collection_lcp_image_mobile | image_url: width: 850 }} 850w
+      "
+      imagesizes="100vw"
+      media="(max-width: 959px)"
+      fetchpriority="high"
+    >
+  {%- endif -%}
+
+  <link
+    rel="preload"
+    as="image"
+    href="{{ collection_lcp_image | image_url: width: 2000 }}"
+    imagesrcset="
+      {{ collection_lcp_image | image_url: width: 700 }} 700w,
+      {{ collection_lcp_image | image_url: width: 850 }} 850w,
+      {{ collection_lcp_image | image_url: width: 1000 }} 1000w,
+      {{ collection_lcp_image | image_url: width: 1200 }} 1200w,
+      {{ collection_lcp_image | image_url: width: 1400 }} 1400w,
+      {{ collection_lcp_image | image_url: width: 1600 }} 1600w,
+      {{ collection_lcp_image | image_url: width: 1800 }} 1800w,
+      {{ collection_lcp_image | image_url: width: 2000 }} 2000w,
+      {{ collection_lcp_image | image_url: width: 2200 }} 2200w,
+      {{ collection_lcp_image | image_url: width: 2400 }} 2400w,
+      {{ collection_lcp_image | image_url: width: 2800 }} 2800w,
+      {{ collection_lcp_image | image_url: width: 3200 }} 3200w,
+      {{ collection_lcp_image | image_url: width: 3840 }} 3840w
+    "
+    imagesizes="100vw"
+    media="(min-width: 960px)"
+    fetchpriority="high"
+  >
+{%- endif -%}

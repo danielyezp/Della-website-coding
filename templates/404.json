@@ -1,0 +1,194 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "disabled": true,
+      "settings": {}
+    },
+    "image_hero_NxApDX": {
+      "type": "image-hero",
+      "blocks": {
+        "accent_iyCteP": {
+          "type": "accent",
+          "settings": {
+            "accent": "404"
+          }
+        },
+        "heading_4iqFj4": {
+          "type": "heading",
+          "settings": {
+            "title": "Uh oh ... this page is out of service",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-1-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "text_gHXXHR": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Don't worry, we'll have your comfort restored in no time. Let's get you back on track.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark"
+          }
+        },
+        "button_XNrPct": {
+          "type": "button",
+          "settings": {
+            "link": "https://dellahome.com",
+            "link_text": "Go to home",
+            "button_style": "btn--solid",
+            "button_color": "btn--light"
+          }
+        }
+      },
+      "block_order": [
+        "accent_iyCteP",
+        "heading_4iqFj4",
+        "text_gHXXHR",
+        "button_XNrPct"
+      ],
+      "disabled": true,
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": false,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "contain",
+        "image_aspect": "custom",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_center",
+        "text_position_mobile": "center_center",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#ffffff",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 40,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-bottom-only",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "rich_text_7zndCc": {
+      "type": "rich-text",
+      "blocks": {
+        "accent_QBGcYY": {
+          "type": "accent",
+          "settings": {
+            "accent": "404"
+          }
+        },
+        "heading_4KJmpX": {
+          "type": "heading",
+          "settings": {
+            "title": "Uh oh ... this page is out of service",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-2-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "text_4WiRDY": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Don't worry, we'll have your comfort restored in no time. Let's get you back on track.</p>",
+            "text_font_class": "fs-body-75",
+            "text_color": "c-body-text-dark"
+          }
+        },
+        "button_gcCPJ9": {
+          "type": "button",
+          "settings": {
+            "link": "/",
+            "link_text": "Back to home",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "accent_QBGcYY",
+        "heading_4KJmpX",
+        "text_4WiRDY",
+        "button_gcCPJ9"
+      ],
+      "name": "t:sections.rich_text.presets.name",
+      "settings": {
+        "alignment": "center_center",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "custom",
+        "custom_content_width": 700,
+        "link_color_scheme": "dark"
+      }
+    },
+    "featured_collection_slider_x9KeFV": {
+      "type": "featured-collection-slider",
+      "blocks": {
+        "collection_BfyqAG": {
+          "type": "collection",
+          "settings": {
+            "show_view_all": true,
+            "collection": "all",
+            "collection_name": "First collection"
+          }
+        }
+      },
+      "block_order": [
+        "collection_BfyqAG"
+      ],
+      "name": "t:sections.featured_collection_slider.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "heading": "",
+        "heading_font_class": "fs-heading-3-base",
+        "heading_tag": "h2",
+        "subheading": "",
+        "link": "",
+        "link_text": "",
+        "button_style": "btn--callout",
+        "hide_price": false,
+        "maximum_products": 8,
+        "columns": 4,
+        "mobile_columns": 1.2,
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "link_color_scheme": "dark"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_hero_NxApDX",
+    "rich_text_7zndCc",
+    "featured_collection_slider_x9KeFV"
+  ]
+}

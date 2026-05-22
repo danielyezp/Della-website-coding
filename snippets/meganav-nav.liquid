@@ -1,0 +1,36 @@
+{% capture link_data %}
+{% for link in link.links %}
+      {%- if has_child_menu and link.links.size == 0 -%}
+        {% continue %}
+      {%- endif -%}
+      <li class="{% if link.links.size > 0 %} has-children{% endif %}" depth="0"{% if nav_card_triggers %} data-nav-card-trigger="{{ link.handle }}"{% endif %}>
+        <h3{% if link.links.size > 0 %} class="meganav__heading"{% endif %}>
+          <a href="{{ link.url }}" class="{% if link.links.size > 0 %}ff-subheading fs-body-300{% else %}ff-body fs-body-75{% endif %}">{{ link.title }}</a>
+        </h3>
+        {% if link.links %}
+          {%- assign parent_handle = link.handle -%}
+          <ul depth="1">
+            {% for link in link.links %}
+              <li{% if nav_card_triggers %} data-nav-card-trigger="{{ link.handle }}"{% endif %}>
+                <a href="{{ link.url }}" class="ff-body fs-body-75">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+{% endcapture %}
+{% if link_data != blank %}
+<div
+  class="meganav__nav{% if meganav_settings.show_column_borders %} with-column-dividers{% endif %}"
+  data-column-count="{{ meganav_settings.column_count }}"
+>
+  <ul class="meganav__list-parent" depth="0">
+    {{ link_data }}
+  </ul>
+  {% assign dividers_needed = meganav_settings.column_count | minus: 1 %}
+  {%- for i in (1..dividers_needed) -%}
+    <span class="meganav__column-rule" data-index="{{ forloop.index }}"></span>
+  {%- endfor -%}
+</div>
+{% endif %}

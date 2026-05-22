@@ -1,0 +1,289 @@
+{%- liquid
+  assign overlay_opacity = meganav_settings.overlay_opacity | divided_by: 100.0
+  assign text_position = meganav_settings.text_position | split: "_"
+  assign horizontal_position = text_position | first
+  assign vertical_position = text_position | last
+  assign shop_all_link = meganav_settings.shop_all_link | default: link.url
+  assign shop_all_text = meganav_settings.shop_all_text
+  assign has_child_menu = false
+  for _link in link.links
+    if _link.links.size > 0
+      assign has_child_menu = true
+      break
+    endif
+  endfor
+-%}
+
+{%- capture card_list -%}
+  {% for i in (1..4) %}
+    {%- assign card_image_key = 'card_' | append: i | append: '_image' -%}
+    {%- assign card_title_key = 'card_' | append: i | append: '_title' -%}
+    {%- assign card_subtitle_key = 'card_' | append: i | append: '_subtitle' -%}
+    {%- assign card_link_text_key = 'card_' | append: i | append: '_link_text' -%}
+    {%- assign card_link_key = 'card_' | append: i | append: '_link' -%}
+    {%- assign card_image = meganav_settings[card_image_key] -%}
+    {%- assign card_title = meganav_settings[card_title_key] -%}
+    {%- assign card_subtitle = meganav_settings[card_subtitle_key] -%}
+    {%- assign card_link_text = meganav_settings[card_link_text_key] -%}
+    {%- assign card_link = meganav_settings[card_link_key] -%}
+    {%- if card_image == blank -%}
+      {%- continue -%}
+    {%- endif -%}
+    {%- if card_link != blank -%}<a href="{{- card_link -}}" class="meganav__card">{%- else -%}<div class="meganav__card">{%- endif -%}
+      <div class="meganav__card-image">
+        {%- assign card_image_alt = card_image.alt | strip | default: card_title | strip -%}
+        {{ card_image | image_url: width: 500 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', alt: card_image_alt, width: card_image.width, height: card_image.height, widths: '250, 350, 500', sizes: '(min-width: 960px) 260px, 45vw' }}
+      </div>
+      {%- if card_title != blank -%}
+        <h3 class="meganav__card-title fs-body-300">{{- card_title -}}</h3>
+      {%- endif -%}
+      {%- if card_subtitle != blank -%}
+        <span class="meganav__card-subtitle ff-body fs-body-50">{{- card_subtitle -}}</span>
+      {%- endif -%}
+
+      {% if card_link_text != blank %}
+        {%- render 'button-block' with
+          wrapper_class: "mt-3",
+          label: card_link_text,
+          button_style: 'btn--callout'
+        -%}
+      {% endif %}
+
+    {%- if card_link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+  {% endfor %}
+{%- endcapture -%}
+
+{%- if card_list != blank -%}
+  {%- assign has_child_menu = true -%}
+{%- endif -%}
+
+{%- capture collection_card_list -%}
+  {%- assign rendered_cards = 0 -%}
+  {%- for _link in link.links -%}
+    {%- assign coll = collections[_link.object.handle] -%}
+    {%- assign ccard_img = coll.metafields.custom.barrel_card_image | default: coll.featured_image -%}
+    {%- if ccard_img != blank -%}
+      {%- assign ccard_title = coll.metafields.custom.barrel_card_heading | default: coll.title | default: _link.title -%}
+      {%- assign ccard_subtitle = coll.metafields.custom.barrel_card_subtitle_badge -%}
+      <a href="{{ _link.url }}" class="meganav__collection-card{% if rendered_cards == 0 %} is-active{% endif %}" data-nav-card="{{ _link.handle }}">
+        <div class="meganav__card-image">
+          {%- assign ccard_alt = ccard_img.alt | strip | default: ccard_title -%}
+          {{- ccard_img | image_url: width: 400 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', alt: ccard_alt, widths: '200, 300, 400', sizes: '(min-width: 960px) 220px, 45vw' -}}
+        </div>
+        {%- if ccard_title != blank -%}
+          <h3 class="meganav__card-title fs-body-300">{{- ccard_title -}}</h3>
+        {%- endif -%}
+        {%- if ccard_subtitle != blank -%}
+          <span class="meganav__card-subtitle ff-body fs-body-50">{{- ccard_subtitle -}}</span>
+        {%- endif -%}
+      </a>
+      {%- assign rendered_cards = rendered_cards | plus: 1 -%}
+    {%- endif -%}
+    {%- for _child_link in _link.links -%}
+      {%- assign child_coll = collections[_child_link.object.handle] -%}
+      {%- assign child_ccard_img = child_coll.metafields.custom.barrel_card_image | default: child_coll.featured_image -%}
+      {%- if child_ccard_img == blank -%}{%- continue -%}{%- endif -%}
+      {%- assign child_ccard_title = child_coll.metafields.custom.barrel_card_heading | default: child_coll.title | default: _child_link.title -%}
+      {%- assign child_ccard_subtitle = child_coll.metafields.custom.barrel_card_subtitle_badge -%}
+      <a href="{{ _child_link.url }}" class="meganav__collection-card{% if rendered_cards == 0 %} is-active{% endif %}" data-nav-card="{{ _child_link.handle }}">
+        <div class="meganav__card-image">
+          {%- assign child_ccard_alt = child_ccard_img.alt | strip | default: child_ccard_title -%}
+          {{- child_ccard_img | image_url: width: 400 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', alt: child_ccard_alt, widths: '200, 300, 400', sizes: '(min-width: 960px) 220px, 45vw' -}}
+        </div>
+        {%- if child_ccard_title != blank -%}
+          <h3 class="meganav__card-title fs-body-300">{{- child_ccard_title -}}</h3>
+        {%- endif -%}
+        {%- if child_ccard_subtitle != blank -%}
+          <span class="meganav__card-subtitle ff-body fs-body-50">{{- child_ccard_subtitle -}}</span>
+        {%- endif -%}
+      </a>
+      {%- assign rendered_cards = rendered_cards | plus: 1 -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- liquid
+  assign show_collection_card_hover = false
+  if card_list == blank and collection_card_list != blank
+    assign show_collection_card_hover = true
+  endif
+-%}
+
+{%- capture meganav_primary -%}
+  <div class="meganav__primary" style="--column-divider-color: {{ meganav_settings.column_divider_color }};">
+    <div class="meganav__info">
+      <h2 class="meganav__heading ff-heading fs-heading-4-base">{{ link.title }}</h2>
+      {%- if has_child_menu or card_list != blank or collection_card_list != blank -%}
+        <ul class="meganav__list-parent ff-body fs-body-75 {% if shop_all_text != blank %}has-shop-all{% endif %}" depth="0">
+          {% for _link in link.links %}
+            {%- if _link.links.size > 0 -%}
+              {% continue %}
+            {%- endif -%}
+            <li depth="0"{% if show_collection_card_hover %} data-nav-card-trigger="{{ _link.handle }}"{% endif %}>
+              <h3>
+                <a href="{{ _link.url }}" class="ff-body fs-body-75">{{ _link.title }}</a>
+              </h3>
+            </li>
+          {% endfor %}
+        </ul>
+      {%- endif -%}
+      {%- if shop_all_text != blank -%}
+        <h3>
+          <a href="{{ shop_all_link }}" class="ff-body fs-body-75 hover:underline">{{ shop_all_text }}</a>
+        </h3>
+      {%- endif -%}
+    </div>
+    {% capture meganav_nav_wrapper %}
+    {% render 'meganav-nav', meganav_settings: meganav_settings, link: link, has_child_menu: has_child_menu, nav_card_triggers: show_collection_card_hover %}
+    {% endcapture %}
+    {% if meganav_nav_wrapper != blank %}
+      <div class="meganav__nav-wrapper">
+        {{ meganav_nav_wrapper }}
+      </div>
+    {% endif %}
+    {%- if card_list != blank -%}
+      <div class="meganav__card-list">
+        {{ card_list }}
+      </div>
+    {%- elsif collection_card_list != blank -%}
+      <div class="meganav__collection-cards" data-nav-cards-container>
+        {{ collection_card_list }}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endcapture -%}
+
+{%- capture meganav_secondary -%}
+  {%- if meganav_settings.show_promo -%}
+    <div class="meganav__secondary">
+      <div
+        {{ wrapping_attributes }}
+        class="meganav-promo"
+        style="
+          --text-horizontal-position: {{ horizontal_position }};
+          --text-vertical-position: {{ vertical_position }};
+          --min-promo-height: {{ meganav_settings.promo_height }}px;
+        "
+      >
+        {%- assign meganav_promo_fallback_alt = meganav_settings.image.alt | strip | default: meganav_settings.promo_text | strip | default: meganav_settings.link_text | strip -%}
+        {%- if meganav_settings.link != blank -%}
+          <a href="{{ meganav_settings.link }}" class="meganav__promo-image-link">
+        {%- endif -%}
+        {%- render 'image',
+          wrapper_class: "meganav__promo-image",
+          image: meganav_settings.image,
+          mobile_image: meganav_settings.image_mobile,
+          sizes_px: meganav_settings.promo_width,
+          focal_point: meganav_settings.focal_point,
+          include_placeholder: true,
+          aspect_ratio: "externally_set",
+          fallback_alt: meganav_promo_fallback_alt
+        -%}
+        {%- if meganav_settings.link != blank -%}
+          </a>
+        {%- endif -%}
+
+        <div class="meganav__secondary-promo-overlay"></div>
+
+        <div class="meganav__secondary-promo-text">
+          {% unless meganav_settings.promo_text == blank %}
+            <h3 class="ff-heading fs-heading-4-base meganav__secondary-promo-text-heading">{{ meganav_settings.promo_text }}</h3>
+          {% endunless %}
+          {% if meganav_settings.link and meganav_settings.link != blank %}
+            {%- render 'button-block',
+              wrapper_class: "meganav__secondary-promo-text-button",
+              label: meganav_settings.link_text,
+              link: meganav_settings.link,
+              allow_linkless: true
+            -%}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+{%- endcapture -%}
+
+{%- capture meganav_featured_products -%}
+  {%- if meganav_settings.show_featured_products -%}
+    <div class="meganav__featured-products">
+      {%- if meganav_settings.featured_products_label != blank -%}
+        <p class="mb-4">{{ meganav_settings.featured_products_label }}</p>
+      {%- endif -%}
+      {%- if meganav_settings.featured_products != blank -%}
+        <ul class="meganav__featured-products-list">
+          {% for _product in meganav_settings.featured_products %}
+            <li class="meganav__featured-products-item relative">
+              {% render 'product-item',
+                prod: _product,
+                aspect_ratio: 'square',
+                heading_level: 'h2'
+              %}
+            </li>
+          {% endfor %}
+        </ul>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endcapture -%}
+
+<div
+  class="
+    meganav
+    {% if meganav_settings.show_promo %}
+      meganav--has-promo
+      meganav--promo-position-{{ meganav_settings.secondary_position }}
+    {% endif %}
+    {% if settings.enable_section_animations %}
+      animation
+      animation--dropdown
+    {% endif %}
+  "
+  id="{{ menu_id }}"
+  data-submenu data-hidden="true"
+  data-menu-handle="{{ menu }}"
+  data-meganav-type={{ meganav_type }}
+  {% unless meganav_type == 'full_width_meganav' %}data-align-to-trigger="true"{% endunless %}
+  style="
+  --column-count: {{ meganav_settings.column_count }};
+  --columns-width: {{ meganav_settings.columns_width }}px;
+  {% unless meganav_type == 'full_width_meganav' %}--columns-width: {{ meganav_settings.columns_width }}px;{% endunless %}
+  --secondary-width: {{ meganav_settings.promo_width }}px;
+  --color-promo-text: {{ meganav_settings.text_color }};
+  --color-text-overlay-button: {{ meganav_settings.text_color }};
+  --color-background-overlay-button: {{ meganav_settings.text_color }};
+  --color-background-overlay-outline-button-alpha:
+{{ meganav_settings.text_color | color_modify: 'alpha', 0.1 }};
+  --overlay-background: {{ meganav_settings.color_overlay }};
+  {% if meganav_settings.color_overlay_gradient != blank %}
+    --overlay-background-gradient: {{ meganav_settings.color_overlay_gradient }};
+  {% endif %}
+  --overlay-opacity: {{ overlay_opacity }};
+  "
+{{ shopify_attributes }}
+>
+  <div class="meganav__inner">
+    {% if meganav_settings.show_promo and meganav_settings.secondary_position == 'left' %}
+      {{ meganav_secondary }}
+    {% endif %}
+
+    {% if meganav_settings.show_featured_products and meganav_settings.product_position == 'left' %}
+      {{ meganav_featured_products }}
+    {% endif %}
+
+    {{ meganav_primary }}
+
+    {% if meganav_settings.show_featured_products and meganav_settings.product_position == 'right' %}
+      {{ meganav_featured_products }}
+    {% endif %}
+
+    {% if meganav_settings.show_promo and meganav_settings.secondary_position == 'right' %}
+      {{ meganav_secondary }}
+    {% endif %}
+  </div>
+  <div class="meganav__inner">
+    {% if meganav_settings.show_promo and meganav_settings.secondary_position == 'below' %}
+      {{ meganav_secondary }}
+    {% endif %}
+  </div>
+</div>

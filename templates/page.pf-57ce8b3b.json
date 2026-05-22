@@ -1,0 +1,23 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pf-57ce8b3b": {
+      "type": "pf-57ce8b3b",
+      "settings": {
+        "pf_5e3ae66f_value": "Thank you for your interest in participating in the Della in-home interview project!\nPlease complete the short questionnaire below to help us better understand your installation setup and living environment.",
+        "pf_7abf51bc_value": "Della In-Home Interview – Candidate Information Form"
+      }
+    }
+  },
+  "order": [
+    "pf-57ce8b3b"
+  ]
+}

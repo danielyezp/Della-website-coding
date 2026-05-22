@@ -1,0 +1,67 @@
+{%- liquid
+  assign show_toc = show_toc | default: true
+  assign show_categories = show_categories | default: true
+  assign container_class = container_class | default: ''
+  assign toc_title = toc_title | default: 'Table of Contents'
+  assign categories_title = categories_title | default: 'Shop Product Categories'
+  assign raw_collection_handles = collection_handles | default: 'mini-split-single-zone,mini-split-multi-zone,mini-split-heat-pump,mini-split-energy-star,window-ac,portable-ac'
+  assign collection_handles_list = raw_collection_handles | split: ','
+-%}
+
+{%- capture categories_list -%}
+  {% for handle in collection_handles_list %}
+    {% assign handle = handle | strip %}
+    {% if handle == blank %}
+      {% continue %}
+    {% endif %}
+
+    {% if handle == "mini-split-single-zone" %}
+      {% assign category_page = pages["mini-split-ac"] %}
+      {% if category_page %}
+        <li class="blog-sidebar-article__item" role="listitem">
+          <a class="blog-sidebar-article__link ff-subheading fs-body-300" href="{{ category_page.url }}">Mini Split</a>
+          <p class="blog-sidebar-article__description fs-body-50">
+            Efficient cooling, independent control
+          </p>
+        </li>
+      {% endif %}
+    {% else %}
+      {% assign category_collection = collections[handle] %}
+      {% if category_collection and category_collection.products_count > 0 %}
+        <li class="blog-sidebar-article__item" role="listitem">
+          <a class="blog-sidebar-article__link ff-subheading fs-body-300" href="{{ category_collection.url }}">
+            {{ category_collection.title }}
+          </a>
+          {% if category_collection.description != blank %}
+            <p class="blog-sidebar-article__description fs-body-50">
+              {{ category_collection.description | strip_html | truncate: 80, "..." }}
+            </p>
+          {% endif %}
+        </li>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{%- endcapture -%}
+
+<div class="blog-sidebar-article {% if container_class != blank %}{{ container_class }}{% endif %} {% if show_toc %}js-blog-sidebar-article{% endif %}">
+  {%- if show_toc -%}
+    <div class="blog-sidebar-article__toc">
+      <button
+        type="button"
+        class="blog-sidebar-article__toc-toggle ff-heading fs-heading-5-base"
+      >
+        <span>{{ toc_title }}</span>
+      </button>
+      <ul class="blog-sidebar-article__toc-list js-blog-toc-list" role="list"></ul>
+    </div>
+  {%- endif -%}
+
+  {%- if show_categories -%}
+    <div class="blog-sidebar-article__section blog-sidebar-article__section--categories">
+      <p class="blog-sidebar-article__title ff-heading fs-heading-5-base">{{ categories_title }}</p>
+      <ul class="blog-sidebar-article__list" role="list">
+        {{ categories_list }}
+      </ul>
+    </div>
+  {%- endif -%}
+</div>

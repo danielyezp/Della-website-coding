@@ -1,0 +1,121 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+        "display_type": "all",
+        "collection_list": [],
+        "columns": "3",
+        "mobile_columns": "1",
+        "rows": "4",
+        "collection_listing_aspect_ratio": "square",
+        "label_style": "beneath",
+        "overlay_title_background_style": "gradient",
+        "overlay_text_color": "#ffffff",
+        "overlay_title_background": "#000000",
+        "enable_animation": true
+      }
+    },
+    "image_hero_KpixqF": {
+      "type": "image-hero",
+      "blocks": {
+        "heading_zjTi7d": {
+          "type": "heading",
+          "settings": {
+            "title": "Best in class support",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_tag": "h2",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "subheading_9BwPBn": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Our expert customer service team is available around the clock to support you. Visit the Help Center for answers, guidance, and resources.",
+            "font_family_class": "ff-primary",
+            "subheading_font_class": "fs-body-200",
+            "subheading_color": "c-subheading-text-dark",
+            "enable_subheading_transparent_color": false,
+            "subheading_transparent_color": ""
+          }
+        },
+        "button_8Djy36": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://pages/contact",
+            "link_text": "Get in touch",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        },
+        "button_8RmPKA": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "link": "",
+            "link_text": "Read more",
+            "button_style": "btn--outline",
+            "button_color": "btn--light"
+          }
+        }
+      },
+      "block_order": [
+        "heading_zjTi7d",
+        "subheading_9BwPBn",
+        "button_8Djy36",
+        "button_8RmPKA"
+      ],
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "https://cdn.shopify.com/videos/c/o/v/4e9e3d3128df44b3900b86f48ecde002.mp4",
+        "enable_box_container": true,
+        "fit_height_content": true,
+        "enable_image_cover": true,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 30,
+        "mobile_height": 70,
+        "image": "shopify://shop_images/Desktop_1.5x_-_1980px_x_410px_1.5x.png",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_center",
+        "text_position_mobile": "center_center",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#0b133d",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": 598,
+        "top_left_corner_radius": 200,
+        "top_right_corner_radius": 200,
+        "bottom_left_corner_radius": 200,
+        "bottom_right_corner_radius": 200,
+        "link_color_scheme": "dark"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_hero_KpixqF"
+  ]
+}

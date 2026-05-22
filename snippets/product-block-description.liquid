@@ -1,0 +1,29 @@
+{%- liquid
+  if product != blank
+    assign description = product.description
+  else
+    assign description = 'sections.featured_product.placeholder.description' | t
+  endif
+-%}
+
+{% if block_settings.display_as_collapsible_row %}
+  {%-
+    render 'product-block-accordion' with
+    block: block,
+    block_settings: block.settings,
+    heading: block.settings.title,
+    content: description,
+    label_font: 'ff-subheading',
+    label_font_size: 'fs-body-250',
+    content_font_class: block.settings.text_font_class,
+    content_text_color: block.settings.text_color,
+  -%}
+{% else %}
+  {%
+    render 'product-block-text' with
+    content: description,
+    heading: block.settings.title,
+    block_settings: block_settings,
+    block: block,
+  %}
+{% endif %}

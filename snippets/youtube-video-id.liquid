@@ -1,0 +1,16 @@
+{%- liquid
+  assign youtube_video_link = youtube_video_link | default: ''
+
+  if youtube_video_link != blank
+    if youtube_video_link contains '/embed/'
+      assign youtube_video_id = youtube_video_link | split: '/embed/' | last | split: '?' | first
+    elsif youtube_video_link contains '/watch?v='
+      assign youtube_video_id = youtube_video_link | split: '/watch?v=' | last | split: '&' | first
+    elsif youtube_video_link contains 'youtu.be/'
+      assign youtube_video_id = youtube_video_link | split: 'youtu.be/' | last | split: '?' | first
+    endif
+    echo youtube_video_id
+  else
+    echo nil
+  endif
+-%}

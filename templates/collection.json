@@ -1,0 +1,267 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_breadcrumbs": false,
+        "show_collection_description": true,
+        "show_collection_image": true,
+        "image": "{{ collection.metafields.custom.barrel_featured_image.value }}",
+        "image_mobile": "{{ collection.metafields.custom.barrel_featured_image_mobile.value }}",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "focal_point": "image_presentation",
+        "text_position": "flex-start_center",
+        "text_position_mobile": "flex-start_flex-end",
+        "text_color": "#ffffff",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 30,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "link_color_scheme": "light"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "item_3BLmhy": {
+          "type": "item",
+          "settings": {
+            "placement_after_card": 5,
+            "video_source": "shopify",
+            "video_url": "",
+            "video_embed": "",
+            "image": "{{ collection.metafields.custom.barrel_promo_banner.value.image.value }}",
+            "mobile_image": "{{ collection.metafields.custom.barrel_promo_banner.value.mobile_image.value }}",
+            "title": "{{ collection.metafields.custom.barrel_promo_banner.value.content_title.value }}",
+            "description": "",
+            "link": "{{ collection.metafields.custom.barrel_promo_banner.value.content_button_link.value }}",
+            "link_text": "{{ collection.metafields.custom.barrel_promo_banner.value.content_button.value }}",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark",
+            "enable_signup": false,
+            "text_position": "flex-start_flex-end",
+            "text_position_mobile": "flex-start_flex-end",
+            "text_color": "#0b133d",
+            "color_overlay": "#000000",
+            "color_overlay_gradient": "",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "item_3BLmhy"
+      ],
+      "settings": {
+        "columns_desktop": "3",
+        "columns_mobile": "2",
+        "rows": "4",
+        "show_item_count": true,
+        "show_sort": true,
+        "show_filters": true,
+        "enable_sticky_filter_bar": true,
+        "desktop_filter_location": "sidebar",
+        "collapse_filter_bar": false,
+        "enable_sticky_filter_sidebar": true,
+        "collapse_filter_groups_desktop": true,
+        "collapse_filter_groups_mobile": true,
+        "show_swatch_filters": true,
+        "show_chip_filters": true,
+        "chip_layout": "3col",
+        "pagination": "paginated",
+        "enable_animation": true,
+        "divider_style": "none"
+      }
+    },
+    "blog_posts_jfpkQA": {
+      "type": "blog-posts",
+      "name": "t:sections.blog_posts.presets.name",
+      "settings": {
+        "heading": "Guides for every step of comfort",
+        "subheading": "",
+        "button_link": "shopify://blogs/della-blog",
+        "link_text": "See all resources",
+        "display_type": "all",
+        "blog": "della-blog",
+        "max_articles": 3,
+        "show_tags": true,
+        "show_author": false,
+        "show_date": false,
+        "show_excerpt": false,
+        "show_featured_image": true,
+        "aspect_ratio": "natural",
+        "enable_slider": true,
+        "show_pagination": false,
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "link_color_scheme": "dark"
+      }
+    },
+    "collapsible_row_list_khyJjb": {
+      "type": "collapsible-row-list",
+      "blocks": {
+        "item_DzyfAL": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": true,
+            "icon": "none",
+            "title": "Are multi-zone mini splits worth it?",
+            "text": "<p>Yes, multi-zone mini splits are worth it if you need to heat or cool multiple rooms or zones independently. They allow precise temperature control in each area, improving comfort and energy efficiency. While the initial installation cost is higher than for a single-zone system, multi head mini splits are more cost-effective in the long run as they eliminate the cost for multiple outdoor units and reduce energy waste.</p>"
+          }
+        },
+        "item_n976LC": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": false,
+            "icon": "none",
+            "title": "What is the difference between single zone and multi head mini split?",
+            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.</p>"
+          }
+        },
+        "item_QaYWxL": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": false,
+            "icon": "none",
+            "title": "How many multi room mini splits do you need for a 3 bedroom house?",
+            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.</p>"
+          }
+        },
+        "item_UPjXk8": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": false,
+            "icon": "none",
+            "title": "Do you need a mini split in every room?",
+            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.</p>"
+          }
+        },
+        "item_4PtK6p": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": false,
+            "icon": "none",
+            "title": "What are the benefits and disadvantages of mini split for multiple rooms?",
+            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.</p>"
+          }
+        },
+        "item_M3RR9V": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": false,
+            "icon": "none",
+            "title": "Can a mini split heat pump have multiple zones?",
+            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.</p>"
+          }
+        },
+        "item_ah3VJK": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": false,
+            "icon": "none",
+            "title": "Can a multi-zone heat pump heat and cool at the same time?",
+            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a temperature to improve trust overall.</p>"
+          }
+        },
+        "item_VmWpfr": {
+          "type": "item",
+          "settings": {
+            "expand_by_default": false,
+            "icon": "none",
+            "title": "What is the warranty period for Della's multi-zone mini split system?",
+            "text": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_DzyfAL",
+        "item_n976LC",
+        "item_QaYWxL",
+        "item_UPjXk8",
+        "item_4PtK6p",
+        "item_M3RR9V",
+        "item_ah3VJK",
+        "item_VmWpfr"
+      ],
+      "disabled": true,
+      "name": "t:sections.collapsible_row_list.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "title": "FAQs",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-3-base",
+        "heading_color": "c-heading-text-dark",
+        "subheading": "",
+        "subheading_tag": "h3",
+        "subheading_font_class": "fs-body-200",
+        "subheading_color": "c-subheading-text-dark",
+        "heading_alignment": "center",
+        "button_link": "https://support.dellahome.com/hc/en-us",
+        "button_link_text": "View our help center",
+        "button_style": "btn--outline",
+        "button_color": "btn--dark",
+        "video_source": "external",
+        "video_url": "",
+        "side_by_side": "above",
+        "side_by_side_desktop": "right",
+        "item_heading_font": "heading",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "custom",
+        "custom_content_width": 700,
+        "link_color_scheme": "dark"
+      }
+    },
+    "collapsible_row_collection_YmnJbp": {
+      "type": "collapsible-row-collection",
+      "name": "t:sections.collapsible_row_collection.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "title": "FAQS",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-3-base",
+        "heading_color": "c-heading-text-dark",
+        "subheading": "",
+        "subheading_tag": "h3",
+        "subheading_font_class": "fs-body-200",
+        "subheading_color": "c-subheading-text-dark",
+        "heading_alignment": "center",
+        "button_link": "https://support.dellahome.com/hc/en-us",
+        "button_link_text": "View our help center",
+        "button_style": "btn--outline",
+        "button_color": "btn--dark",
+        "video_source": "shopify",
+        "video_url": "",
+        "side_by_side": "above",
+        "side_by_side_desktop": "right",
+        "item_heading_font": "heading",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "custom",
+        "custom_content_width": 700,
+        "link_color_scheme": "dark"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "blog_posts_jfpkQA",
+    "collapsible_row_list_khyJjb",
+    "collapsible_row_collection_YmnJbp"
+  ]
+}

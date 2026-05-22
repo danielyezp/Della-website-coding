@@ -1,0 +1,99 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "header_content_rtjG6j": {
+          "type": "header_content",
+          "settings": {
+            "intro_background": "#f4f3ed",
+            "show_breadcrumbs": true,
+            "show_tags": true,
+            "show_author": false,
+            "show_date": false,
+            "show_social_icons": true
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {
+            "left_column_title": "Skill Level - Easy",
+            "left_column_title_2": "Makes - 4 to 6 servings",
+            "left_column_sub_title": "Made with:",
+            "featured_products": [],
+            "max_featured_products": 2,
+            "show_shop_product_categories": true,
+            "toc_title": "Table of Contents",
+            "shop_product_categories_title": "Shop Product Categories",
+            "collection_handles": "mini-split-single-zone,mini-split-multi-zone,mini-split-heat-pump,mini-split-energy-star,window-ac,portable-ac"
+          }
+        },
+        "pagination": {
+          "type": "pagination",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "header_content_rtjG6j",
+        "content",
+        "pagination"
+      ],
+      "settings": {
+        "content_width": "full",
+        "custom_content_width": 800,
+        "enable_animation": true,
+        "link_color_scheme": "dark"
+      }
+    },
+    "custom_liquid_k9zXEa": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom_liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<link type=\"text/css\" rel=\"stylesheet\" href=\"https://cdnapps.avada.io/ag-blog/DynamicProduct/swiper-bundle.avada.min.css\n\"/>",
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "blog_posts_LWVTfJ": {
+      "type": "blog-posts",
+      "name": "t:sections.blog_posts.presets.name",
+      "settings": {
+        "heading": "Related articles",
+        "subheading": "",
+        "button_link": "shopify://blogs/della-blog",
+        "link_text": "Explore All articles",
+        "display_type": "all",
+        "blog": "della-blog",
+        "max_articles": 2,
+        "show_tags": true,
+        "show_author": false,
+        "show_date": false,
+        "show_excerpt": true,
+        "show_featured_image": true,
+        "aspect_ratio": "landscape",
+        "enable_slider": false,
+        "show_pagination": false,
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-bottom-only",
+        "link_color_scheme": "dark"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_k9zXEa",
+    "blog_posts_LWVTfJ"
+  ]
+}

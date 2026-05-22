@@ -1,0 +1,1 @@
+import{d as o}from"./delay-offset-G3BUmTZ-.js";import{i as n}from"./intersection-watcher-8GvknGdC.js";const r={textContent:".video__text-container > *"},i=e=>{o(e,[r.textContent],3);const t=n(e);return{destroy(){t==null||t.destroy()}}};export{i as a};

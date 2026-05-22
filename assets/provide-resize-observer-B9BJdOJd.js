@@ -1,0 +1,1 @@
+import{_ as e}from"./evx.es-DeZd_zDv.js";function i(){return window.ResizeObserver?Promise.resolve({ResizeObserver}):e(()=>import("./polyfill-resize-observer-Cr4o9yiT.js"),[],import.meta.url)}export{i as p};

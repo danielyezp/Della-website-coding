@@ -1,0 +1,668 @@
+{% liquid
+  capture current_brand
+    render 'current-brand'
+  endcapture
+
+  assign brand_list = section.settings.brands_menu_items | default: shop.metaobjects.brand.values
+
+  for item in brand_list
+    if item.system.handle == current_brand or current_brand == blank and item.system.handle == 'bbf'
+      assign logo = item.logo.value
+    endif
+  endfor
+
+  assign structured_logo = logo | default: shop.brand.logo | default: settings.favicon
+  assign structured_logo_url = ''
+  assign structured_logo_1200_url = ''
+
+  if structured_logo != blank
+    assign structured_logo_url = structured_logo | image_url: width: 100 | prepend: 'https:'
+    assign structured_logo_1200_url = structured_logo | image_url: width: 1200 | prepend: 'https:'
+  endif
+%}
+
+{%- if template contains 'index' -%}
+  <script type="application/ld+json">
+    [
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "@id": "{{ shop.url }}/#organization_schema",
+        "url": "{{ shop.url }}",
+        "name": "{{ shop.name | escape }}",
+        "email": "{{ shop.email | escape }}",
+        "description": "{{ shop.description | escape }}",
+        "logo": {
+          "@type": "ImageObject",
+          "name": "{{ shop.name | escape }} Logo",
+          "url": "{{ structured_logo_url }}"
+        },
+        "sameAs": [],
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "url": "{{ shop.url }}"
+        }
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "@id": "{{ shop.url }}/#website_schema",
+        "name": "{{ shop.name | escape }}",
+        "url": "{{ shop.url }}",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "{{ shop.url }}/search?q={query}",
+          "name": "{{ shop.name | escape }}",
+          "query-input": "required name=query"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "@id": "{{ shop.url }}/#organization_schema"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "OnlineStore",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": {{ shop.address.city | json }},
+          "addressRegion": {{ shop.address.province | json }},
+          "streetAddress": {{ shop.address.street | json }},
+          "postalCode": {{ shop.address.zip | json }},
+          "addressCountry": {{ shop.address.country_code | strip | upcase | json }}
+        },
+        "@id": "{{ shop.url }}/#local_business_schema",
+        "name": "{{ shop.name | escape }}",
+        "alternateName": null,
+        "description": "{{ shop.description | escape }}",
+        "email": "{{ shop.email | escape }}",
+        "telephone": "{{ shop.phone | escape }}",
+        "faxNumber": null,
+        "image": "{{ shop.brand.logo | img_url: '100x' | escape }}",
+        "priceRange": null
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "Corporation",
+        "url": "{{ shop.url }}"
+        {% if shop.phone != blank -%}
+          ,"contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "{{ shop.phone }}",
+              "contactType": "customer service"
+            }
+          ]
+        {%- endif -%}
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": {{ shop.address.city | json }},
+          "addressRegion": {{ shop.address.province | json }},
+          "streetAddress": {{ shop.address.street | json }},
+          "postalCode": {{ shop.address.zip | json }},
+          "addressCountry": {{ shop.address.country_code | strip | upcase | json }}
+        },
+        "description": "{{ shop.description | replace: '"', '\"' | strip_html | split: ' ' | join: ' ' | truncate: 163, '...' | strip }}",
+        "name": "{{ shop.name }}",
+        "telephone": {{ shop.phone | json }},
+        "image": {{ structured_logo_1200_url | json }},
+        "priceRange": "$$"
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "BreadcrumbList",
+        "name": "{{ shop.name | escape }}",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "WebPage",
+              "@id": "{{ shop.url }}",
+              "name": "{{ shop.name }}"
+            }
+          }
+        ]
+      }
+    ]
+  </script>
+{%- elsif template contains 'collection' -%}
+  {%- liquid
+    assign faq_question_list = nil
+    assign faq_answer_list = nil
+    if collection != blank
+      assign collection_custom_metafields = collection.metafields.custom
+      if collection_custom_metafields != blank
+        assign faq_question_metafield = collection_custom_metafields.faq_question
+        assign faq_answer_metafield = collection_custom_metafields.faq_answer
+        if faq_question_metafield != blank and faq_question_metafield.value != blank
+          assign faq_question_list = faq_question_metafield.value
+        endif
+        if faq_answer_metafield != blank and faq_answer_metafield.value != blank
+          assign faq_answer_list = faq_answer_metafield.value
+        endif
+      endif
+    endif
+    assign has_faq_for_json_ld = false
+  -%}
+  {%- if collection != blank and faq_question_list != blank -%}
+    {%- for faq_question_item in faq_question_list -%}
+      {%- liquid
+        assign faq_answer_item = blank
+        if faq_answer_list != blank
+          assign faq_answer_item = faq_answer_list[forloop.index0]
+        endif
+      -%}
+      {%- capture stripped_faq_question -%}{{- faq_question_item -}}{%- endcapture -%}
+      {%- assign stripped_faq_question = stripped_faq_question | strip -%}
+      {%- capture stripped_faq_answer -%}{{- faq_answer_item -}}{%- endcapture -%}
+      {%- assign stripped_faq_answer = stripped_faq_answer | strip_html | strip -%}
+      {%- if stripped_faq_question != blank and stripped_faq_answer != blank -%}
+        {%- assign has_faq_for_json_ld = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  <script type="application/ld+json">
+    [
+      {
+        "@context": "http://schema.org",
+        "@type": "OfferCatalog",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "{{ collection.url }}"
+        },
+        "description": "{{ collection.description | strip_html | truncatewords: 30 }}",
+        "name": "{{ collection.title | escape }}",
+        "url": "{{ collection.url }}",
+        "image": "{{ collection.image.src | img_url: '600x600' }}",
+        "numberOfItems": "{{ collection.products_count }}",
+        "itemListElement": [
+          {% for product in collection.products %}
+          {
+            "@type": "Offer",
+            "url": "{{ product.url }}",
+            "name": "{{ product.title | escape }}",
+            "price": "{{ product.price | divided_by: 100 }}",
+            "priceCurrency": "{{ shop.currency }}",
+            "availability": "{% if product.available %}http://schema.org/InStock{% else %}http://schema.org/OutOfStock{% endif %}",
+            "sku": "{{ product.variants.first.sku }}"
+          }
+          {% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement":
+        [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item":
+            {
+              "@id": "{{ routes.root_url | prepend: shop.url }}",
+              "name": "{{ 'general.navigation.home' | t }}"
+            }
+          }
+          {%- if current_tags -%}
+            ,{
+              "@type": "ListItem",
+              "position": 2,
+              "item":
+              {
+                "@id": "{{ collection.url | prepend: shop.url  }}",
+                "name": "{{ collection.title }}"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item":
+              {
+                "@id": "{{ collection.url | prepend: shop.url }}",
+                "name": "{{ current_tags | join: ' + ' }}"
+              }
+            }
+          {%- else -%}
+            ,{
+              "@type": "ListItem",
+              "position": 2,
+              "item":
+              {
+                "@id": "{{ collection.url | prepend: shop.url }}",
+                "name": "{{ collection.title }}"
+              }
+            }
+          {%- endif -%}
+        ]
+      }
+      {%- if has_faq_for_json_ld -%}
+      ,{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {%- assign prefix_comma_before_next_faq = false -%}
+          {%- for faq_question_item in faq_question_list -%}
+            {%- liquid
+              assign faq_answer_item = blank
+              if faq_answer_list != blank
+                assign faq_answer_item = faq_answer_list[forloop.index0]
+              endif
+            -%}
+            {%- capture faq_question_plain -%}{{- faq_question_item -}}{%- endcapture -%}
+            {%- assign faq_question_plain = faq_question_plain | strip -%}
+            {%- capture faq_answer_plain -%}{{- faq_answer_item -}}{%- endcapture -%}
+            {%- assign faq_answer_plain = faq_answer_plain | strip_html | strip -%}
+            {%- if faq_question_plain != blank and faq_answer_plain != blank -%}
+              {%- if prefix_comma_before_next_faq -%},{%- endif -%}
+              {
+                "@type": "Question",
+                "name": {{ faq_question_plain | json }},
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": {{ faq_answer_plain | json }}
+                }
+              }
+              {%- assign prefix_comma_before_next_faq = true -%}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      }
+      {%- endif -%}
+    ]
+  </script>
+{%- elsif template contains 'product' -%}
+  <script type="application/ld+json">
+    [
+      {
+        "@context": "http://schema.org/",
+        "@type": "Product",
+        "name": {{ product.title | json }},
+        "url": {{ product_url | json }},
+        {% if product.featured_media -%}
+          "image": [{{ product.featured_media | image_url | prepend: 'https:' | json }}],
+        {%- endif %}
+        "description": {{ product.description | strip_html | json }},
+        {% if current_variant.sku != blank -%}
+          "sku": {{ current_variant.sku | json }},
+        {%- endif %}
+        {% if product.metafields.loox.num_reviews > 0 -%}
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "{{- product.metafields.loox.avg_rating | default: 0 -}}",
+            "reviewCount": "{{- product.metafields.loox.num_reviews | default: 0 -}}"
+          },
+        {%- endif %}
+        "brand": {
+          "@type": "Thing",
+          "name": {{ product.vendor | json }}
+        },
+        "offers": [
+          {% for variant in product.variants -%}
+            {
+              "@type" : "Offer",
+              {% if variant.sku != blank -%}
+                "sku": {{ variant.sku | json }},
+              {%- endif %}
+              "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+              "price" : {{ variant.price | divided_by: 100.00 | json }},
+              "priceCurrency" : {{ cart.currency.iso_code | json }},
+              "url" : {{ shop.url | append: variant.url | json }},
+              "priceValidUntil": {{ "today" | date: '%s' | plus: 7776000 | date: "%Y-%m-%d" | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {%- endfor %}
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement":
+        [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item":
+            {
+              "@id": "{{ routes.root_url | prepend: shop.url }}",
+              "name": "{{ 'general.navigation.home' | t }}"
+            }
+          },
+          {%- if collection.url -%}
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item":
+              {
+                "@id": "{{ collection.url | prepend: shop.url }}",
+                "name": "{{ collection.title }}"
+              }
+            },
+          {%- endif -%}
+          {
+            "@type": "ListItem",
+            "position": {%- if collection.url -%}3{%- else -%}2{%- endif -%},
+            "item":
+            {
+              "@id": "{{ product.url | prepend: shop.url }}",
+              "name": "{{ product.title }}"
+            }
+          }
+        ]
+      }
+    ]
+  </script>
+{%- elsif template contains 'article' -%}
+  {%- liquid
+    assign article_video_url = ''
+    if article.metafields.bbf.hero_video_url != blank
+      assign article_video_url = article.metafields.bbf.hero_video_url
+    else
+      assign article_video_url = article.metafields.bbf.youtube_video_link
+    endif
+    assign youtube_video_link = article.metafields.bbf.youtube_video_link
+    capture youtube_video_id
+      render 'youtube-video-id', youtube_video_link: youtube_video_link
+    endcapture
+    assign article_title = article.title | strip_html | strip_newlines | escape
+    assign article_author = article.metafields.bbf.blog_author.value.name | default: article.author | escape
+    assign article_description = article.excerpt | strip_html | strip_newlines | escape
+    assign image_metafield = article.metafields.bbf.hero_image
+
+    if image_metafield != blank
+      assign article_image = image_metafield
+    elsif youtube_video_id != blank
+      assign youtube_video_id_strip = youtube_video_id | strip
+      assign article_image = "https://img.youtube.com/vi/youtube_video_id_strip/hqdefault.jpg" | replace: "youtube_video_id_strip", youtube_video_id_strip
+    else
+      assign article_image = article.image | image_url: width: article.image.width | prepend: 'https:'
+    endif
+
+    assign article_recipe_category = ''
+    assign article_recipe_cuisine = ''
+    for tag in article.tags
+      if tag contains 'recipe_category:'
+        assign article_recipe_category = tag | remove: 'recipe_category: '
+      elsif tag contains 'recipe_cuisine:'
+        assign article_recipe_cuisine = tag | remove: 'recipe_cuisine: '
+      endif
+    endfor
+  -%}
+  {%- if blog.handle == 'recipes' -%}
+    <script type="application/ld+json" >
+      {
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "name": "{{ article_title }}",
+        "image": [
+          "{{ article_image }}"
+        ],
+        "author": {
+          "@type": "Person",
+          "name": "{{ article_author }}"
+        },
+        "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}",
+        "description": "{{ article_description }}",
+        {%- liquid
+          assign cook_time = article.metafields.bbf.recipe_cook_time
+          assign prep_time = article.metafields.bbf.recipe_prep_time
+
+          assign prep_hours = 0
+          assign prep_minutes = 0
+          if prep_time contains 'hour' or prep_time contains 'h'
+            assign prep_hours = prep_time | split: 'hour' | first | split: 'h' | first | strip
+            assign prep_hours = prep_hours | replace: 's', '' | plus: 0
+          endif
+          if prep_time contains 'minute' or prep_time contains 'm'
+            assign prep_minutes = prep_time | split: 'minute' | first | split: 'm' | first | split: ' ' | last | strip
+            assign prep_minutes = prep_minutes | replace: 's', '' | plus: 0
+          endif
+          assign prep_iso = 'PT' | append: prep_hours | append: 'H' | append: prep_minutes | append: 'M'
+
+          assign cook_hours = 0
+          assign cook_minutes = 0
+          if cook_time contains 'hour' or cook_time contains 'h'
+            assign cook_hours = cook_time | split: 'hour' | first | split: 'h' | first | strip
+            assign cook_hours = cook_hours | replace: 's', '' | plus: 0
+          endif
+          if cook_time contains 'minute' or cook_time contains 'm'
+            assign cook_minutes = cook_time | split: 'minute' | first | split: 'm' | first | split: ' ' | last | strip
+            assign cook_minutes = cook_minutes | replace: 's', '' | plus: 0
+          endif
+          assign cook_iso = 'PT' | append: cook_hours | append: 'H' | append: cook_minutes | append: 'M'
+
+          assign total_minutes = prep_minutes | plus: cook_minutes
+          assign total_hours = total_minutes | divided_by: 60
+          assign remaining_minutes = total_minutes | modulo: 60
+          assign total_iso = 'PT' | append: total_hours | append: 'H' | append: remaining_minutes | append: 'M'
+        %}
+        "prepTime": "{{ prep_iso }}",
+        "cookTime": "{{ cook_iso }}",
+        "totalTime": "{{ total_iso }}",
+        "keywords": "{{ article.tags | join: ', ' }}",
+        "recipeYield": "{{ article.metafields.bbf.recipe_servings }}",
+        "recipeCategory": "{{ article_recipe_category }}",
+        "recipeCuisine": "{{ article_recipe_cuisine }}",
+        {%- if article.metafields.bbf.reviews_rating != blank and article.metafields.bbf.reviews_rating != 0.0 %}
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "{{ article.metafields.bbf.reviews_rating }}",
+            "ratingCount": "{{ article.metafields.bbf.reviews_count }}"
+          },
+        {%- endif %}
+        "recipeIngredient": [
+          {%- capture ingredients_list -%}
+            {%- assign ingredients_list = article.metafields.bbf.recipe_ingredients.value | newline_to_br | split: '<br />' -%}
+            {%- for item in ingredients_list -%}
+              {%- assign first_character = item | strip | slice: 0 -%}
+              {%- assign last_character = item | strip | slice: -1 -%}
+              {%- assign item_text = item | strip_html | strip -%}
+              {%- if item_text == blank or first_character == '[' and last_character == ']' -%}
+                {%- continue -%}
+              {%- else -%}
+                ,"{{ item_text | strip_html | strip_newlines | escape }}"
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          {{- ingredients_list | remove_first: ',' -}}
+        ],
+        {%- liquid
+          if article.content contains '<ol>'
+            assign content_split = article.content | split: '<ol>' | last | split: '</ol>' | first
+            assign content_ol_steps = content_split | split: '<li>'
+          endif
+        %}
+        "recipeInstructions": [
+          {%- if content_ol_steps != blank -%}
+            {% assign steps_count = 0 %}
+            {% for step in content_ol_steps %}
+              {% assign step_text = step | split: '</li>' | first | strip_html | strip %}
+              {% if step_text == blank %}
+                {% continue %}
+              {% endif %}
+              {% assign steps_count = steps_count | plus: 1 %}
+              {
+                "@type": "HowToStep",
+                "name": "step {{ steps_count }}",
+                "text": {{ step_text | json }},
+                "url": "{{- shop.url -}}{{- article.url -}}#step{{ steps_count }}",
+                "image": "{{ article_image }}"
+              }{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+          {%- else -%}
+          {
+            "@type": "HowToStep",
+            "name": "step 1",
+            "text": {{ article.content | strip_html | strip | json }},
+            "url": "{{- shop.url -}}{{- article.url -}}",
+            "image": "{{ article_image }}"
+          }
+          {%- endif -%}
+        ],
+        "nutrition": {
+          "@type": "NutritionInformation",
+          "calories": "{{ article.metafields.bbf.recipe_calories }}"
+        }
+        {%- if article_video_url != blank -%}
+          ,"video": {
+            "@type": "VideoObject",
+            "name": "{{ article_title }}",
+            "description": "{{ article_description }}",
+            "thumbnailUrl": [
+              "{{ article_image }}"
+            ],
+            "contentUrl": "{{ article_video_url }}",
+            "uploadDate": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}"
+          }
+        {%- endif -%}
+      }
+    </script>
+  {%- else -%}
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "{{- shop.url -}}{{- article.url -}}"
+        },
+        "headline": "{{ article_title }}",
+        "image": [
+          "{{ article_image }}"
+        ],
+        "datePublished": "{{- article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' -}}",
+        "dateModified": "{{- article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' -}}",
+        "author": {
+          "@type": "Person",
+          "name": "{{ article_author }}",
+          "url": "{{- shop.url -}}{{- article.url -}}"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "{{- shop.name -}}",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ structured_logo_url }}"
+          }
+        },
+        "description": "{{ article_description }}"
+        {%- if article_video_url != blank -%}
+          ,"video": {
+            "@type": "VideoObject",
+            "name": "{{ article_title }}",
+            "description": "{{ article_description }}",
+            "thumbnailUrl": [
+              "{{ article_image }}"
+            ],
+            "contentUrl": "{{ article_video_url }}",
+            "uploadDate": "{{- article.updated_at | date: '%Y-%m-%dT%H:%M:%S%:z' -}}"
+          }
+        {%- endif -%}
+      }
+    </script>
+  {%- endif -%}
+{%- elsif template contains 'page' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebPage",
+      "author": {
+        "@type": "Person",
+        "name": ""
+      },
+      "creator": null,
+      "dateCreated": "{{- page.created_at | date: '%Y-%m-%dT%H:%M:%S%:z' -}}",
+      "dateModified": "{{- page.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' -}}",
+      "datePublished": "{{- page.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' -}}",
+      "headline": "{{- page.title -}}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "url": "{{- shop.url -}}{{- page.url -}}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{- shop.name -}}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ structured_logo_url }}"
+        }
+      },
+      "url": "{{ shop.url }}{{- page.url -}}"
+    }
+  </script>
+{%- elsif template contains 'blog' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Blog",
+      "@id": "{{ shop.url }}{{- blog.url -}}",
+      "mainEntityOfPage": "{{ shop.url }}{{- blog.url -}}",
+      "name": {{ blog.title | json }},
+      "description": "{{ blog.description | strip_html | escape }}",
+      {% unless request.path contains '/tagged/' -%}
+        "blogPost": [
+          {%- for article in blog.articles -%}
+            {%- liquid
+              assign article_title = article.title | strip_html | strip_newlines | escape
+              assign article_description = page_description
+              if article.excerpt != blank
+                assign article_description = article.excerpt | strip_html | strip_newlines | escape
+              endif
+              assign youtube_video_link = article.metafields.bbf.youtube_video_link
+              capture youtube_video_id
+                render 'youtube-video-id', youtube_video_link: youtube_video_link
+              endcapture
+              assign image_metafield = article.metafields.bbf.hero_image
+              if image_metafield != blank
+                assign article_image = image_metafield
+              elsif youtube_video_id != blank
+                assign youtube_video_id_strip = youtube_video_id | strip
+                assign article_image = "https://img.youtube.com/vi/youtube_video_id_strip/hqdefault.jpg" | replace: "youtube_video_id_strip", youtube_video_id_strip
+              else
+                assign article_image = article.image | image_url: width: article.image.width | prepend: 'https:'
+              endif
+            -%}
+            {
+              "@type": "BlogPosting",
+              "@id": "{{ shop.url }}{{- article.url -}}",
+              "mainEntityOfPage": "{{ shop.url }}{{- article.url -}}",
+              "headline": "{{ article_title }}",
+              "name": "{{ article_title }}",
+              "description": "{{ article_description }}",
+              "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}",
+              "dateModified": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}",
+              "author": {
+                  "@type": "Person",
+                  "@id": "{{ shop.url }}{{- article.url -}}/#{{article.author}}",
+                  "url": "{{ shop.url }}{{- article.url -}}/#{{article.author}}",
+                  "name": {{- article.author | json -}}
+              },
+              "image": {
+                "@type": "ImageObject",
+                "@id": "{{ article_image }}",
+                "url": "{{ article_image }}"
+              },
+              "url": "{{- shop.url -}}{{- article.url -}}",
+              "keywords": "{{ article.tags | join: ', ' }}"
+            }
+            {% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ],
+      {%- endunless %}
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://dataliberate.com",
+        "name": "Data Liberate",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ structured_logo_url }}"
+        }
+      }
+    }
+  </script>
+{%- endif -%}

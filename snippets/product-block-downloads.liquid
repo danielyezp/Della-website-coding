@@ -1,0 +1,80 @@
+{% assign downloads_background_color = block_settings.background_color | default: '#FFDDB4' %}
+{% assign has_downloads = false %}
+
+{% capture download_link_icon %}
+  <span class="product__callouts-item-icon product__downloads-link-icon" aria-hidden="true">
+    {% render 'icon', icon: 'download', view_box_custom: '0 0 20 20' %}
+  </span>
+{% endcapture %}
+
+{% capture downloads_markup %}
+  {% for index in (1..3) %}
+    {% assign text_key = 'button_text_' | append: index %}
+    {% assign link_key = 'button_link_' | append: index %}
+    {% assign download_text = block_settings[text_key] | default: '' | strip %}
+    {% assign download_link = block_settings[link_key] | default: '' | strip %}
+
+    {% assign index_word = '' %}
+    {% if index == 1 %}
+      {% assign index_word = 'one' %}
+    {% elsif index == 2 %}
+      {% assign index_word = 'two' %}
+    {% elsif index == 3 %}
+      {% assign index_word = 'three' %}
+    {% endif %}
+
+    {% if download_link == blank and product != blank %}
+      {% assign metafield_key = 'download_' | append: index_word | append: '_file' %}
+      {% assign metafield_value = product.metafields.custom[metafield_key] | default: blank %}
+      {% if metafield_value != blank %}
+        {% assign download_link = metafield_value.url | default: metafield_value | file_url %}
+      {% endif %}
+    {% endif %}
+
+    {% if download_text == blank and product != blank %}
+      {% assign metafield_title_key = 'download_' | append: index_word | append: '_title' %}
+      {% assign metafield_title_value = product.metafields.custom[metafield_title_key] | default: blank %}
+      {% if metafield_title_value != blank %}
+        {% assign download_text = metafield_title_value %}
+      {% endif %}
+    {% endif %}
+
+    {% if download_text != blank and download_link != blank %}
+      <div class="product__callouts-item fs-body-50">
+        {{ download_link_icon }}
+        <div class="product__callouts-item-text rte">
+          <a
+            href="{{ download_link }}"
+            class="btn btn--text-link fs-body-50"
+            download
+            rel="noopener noreferrer"
+          >
+            <span>{{ download_text }}</span>
+          </a>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% assign downloads_markup = downloads_markup | strip %}
+
+{% if downloads_markup != blank %}
+  {% assign has_downloads = true %}
+{% endif %}
+
+{% if has_downloads %}
+  <div
+    class="product__block product__block-callouts product__callouts product__block--medium product__block--callouts product__block--downloads"
+    {{ block.shopify_attributes }}
+  >
+    <div
+      class="product__callouts-items"
+      data-with-box="true"
+      data-with-dividers="false"
+      style="--product-callouts-bg: {{ downloads_background_color }};"
+    >
+      {{ downloads_markup }}
+    </div>
+  </div>
+{% endif %}

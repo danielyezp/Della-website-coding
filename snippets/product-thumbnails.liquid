@@ -1,0 +1,82 @@
+{%- comment -%}
+  Pass these variables into snippet:
+  Required:
+
+  * featured_media: { Object } Used to highlight the initial selected thumbnail.
+  * aspect_ratio: { String } Applies the media's aspect ratio setting to the thumbnails.
+
+  Optional:
+
+  * initial_variant_media_position: { Number } The first of a variant's media range. Used in conjunction with `next_variant_media_index` for multiple variant media.
+  * next_variant_media_index: { Number } The last of a variant's media range. Used in conjunction with `initial_variant_media_position` for multiple variant media.
+{%- endcomment -%}
+
+{% if product.media.size > 1 %}
+  <div
+    class="product-thumbnails"
+    data-product-thumbnails
+  >
+    <button
+      class="js-product-thumbnails-prev product-thumbnails__prev"
+      data-position="start"
+      data-direction="backwards"
+      title="{{ 'general.accessibility.up' | t }}"
+      aria-label="{{ 'general.accessibility.up' | t }}"
+    >
+      {%- render 'icon' with icon: 'arrow-down', view_box_custom: '0 0 15 8' -%}
+    </button>
+    <div class="js-product-thumbs product-thumbnails__viewport swiper">
+      <ul class="product-thumbnails__items swiper-wrapper">
+        {% for media in product.media %}
+          {% if forloop.index < initial_variant_media_position or forloop.index > next_variant_media_index %}
+            {% continue %}
+          {% endif %}
+          <li class="swiper-slide product-thumbnails__item" data-index="{{ forloop.index }}" data-slide-thumbnail-id="{{ media.id }}">
+            <button
+              type="button"
+              class="product-thumbnails__item-link{% if media.id == featured_media.id %} active{% endif %}"
+              data-thumbnail-id="{{ media.id }}"
+              data-product-thumbnail
+              aria-label="{{ 'general.accessibility.image_thumbail' | t: number: forloop.index }}"
+            >
+              {%
+                render 'image' with
+                image: media.preview_image,
+                id: media.id,
+                wrapper_class: 'product-thumbnails__item-image',
+                aspect_ratio: aspect_ratio,
+                sizes: '80px',
+                fetch_priority: 'low',
+                src_set_type: 'thumbnail'
+              %}
+
+              {% case media.media_type %}
+                {% when 'video' %}
+                  <div class="product-thumbnails__item-badge">
+                    {% render 'play-icon', class: 'product-thumbnails__play-icon' %}
+                  </div>
+                {% when 'external_video' %}
+                  <div class="product-thumbnails__item-badge">
+                    {% render 'play-icon', class: 'product-thumbnails__play-icon' %}
+                  </div>
+                {% when 'model' %}
+                  <div class="product-thumbnails__item-badge">
+                    {% render 'icon' with icon: '3d-badge' %}
+                  </div>
+              {% endcase %}
+            </button>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <button
+      class="js-product-thumbnails-next product-thumbnails__next"
+      data-position="end"
+      data-direction="forwards"
+      title="{{ 'general.accessibility.down' | t }}"
+      aria-label="{{ 'general.accessibility.down' | t }}"
+    >
+      {%- render 'icon' with icon: 'arrow-down', view_box_custom: '0 0 15 8' -%}
+    </button>
+  </div>
+{% endif %}

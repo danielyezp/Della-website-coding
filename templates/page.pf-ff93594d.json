@@ -1,0 +1,57 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pf-ff93594d": {
+      "type": "pf-ff93594d",
+      "settings": {
+        "pf_311b1259_value": "<strong>Note:</strong> Rates range from 0-36% APR. Payment options through Shop Pay Installments are subject to an eligibility check and are provided by these lending partners: affirm.com/lenders. Options depend on your purchase amount, and a down payment may be required. More options may be available upon approval. State notices to consumers: affirm.com/licenses.",
+        "pf_8f7a5ebd_value": "We partner with Affirm to provide you with flexible financing options tailored to your needs. Depending on the product, you can choose plans for <strong>3, 6, 12, 18, or 24 months</strong>. Use the \"<strong>Check Your Purchasing Power</strong>\" feature on the product page to view the installment options available for your selection.",
+        "pf_dc22657d_value": "Take home the comfort you deserve with Della. Enjoy premium air conditioning with flexible Shop Pay Installments starting at 0% APR.&nbsp;<br><br>Choose \"Pay in monthly installments\" at checkout and make your home more comfortable on your terms!",
+        "pf_a6ec6f24_value": "You can verify your eligibility for installments by using the \"Check if you qualify\" option, available both on the product page and during checkout. Simply enter the required details to view the available plans for your purchase.",
+        "pf_b233ab93_value": "The available installment plans depend on your purchase. Shop Pay, powered by Affirm, may offer options such as 3, 6, 12, 18, or 24 months based on the product. You'll see the specific options during the checkout process.",
+        "pf_b14784ad_value": "If you need to return a financed item, contact our support team to initiate the return process. Once the return is approved and processed, Affirm will adjust your loan or refund any applicable payments.",
+        "pf_40e5c0ec_value": "To begin, add all the products you wish to purchase to your cart. During checkout, choose Shop Pay as your payment option. Follow the steps to select the \"Pay in monthly installments\" option.",
+        "pf_71f20269_value": "No, Shop Pay Installments, powered by Affirm, currently only supports debit cards for installment payments. Credit cards and prepaid cards are not eligible.",
+        "pf_93e5b683_value": "No, checking your eligibility for installments through Shop Pay uses a soft credit pull, which will not impact your credit score.",
+        "pf_781a3732_value": "With Shop Pay Installments, powered by Affrm, you'll always know the totaamount you owe and when you'll finish paying.",
+        "pf_a2ba2be1_value": "Review your options, verify eligibility, pick a plan, and complete your purchase with Shop Pay powered by Affirm.",
+        "pf_6bd42239_value": "Log in to Shop Pay, select \"Pay in monthly installments,\" and enter your debit card details to proceed.",
+        "pf_90f9ce16_value": "Shop Pay and Affirm are transparent. There are no late fees, prepayment penalties, or hidden charges.",
+        "pf_7519348e_value": "<strong>For example, a$899.96 purchase might cost $149.99/month over 6 months at 0% APR.</strong>",
+        "pf_e81d3b1c_value": "Choose Shop Pay as your payment option to pay in full or split your purchase into installments.",
+        "pf_23062bb1_value": "Add all of the products you want to purchase to your cart and start the checkout process.\r",
+        "pf_881189c0_value": "Affirm tells you up front the total amount you'll pay.That number will never goup.",
+        "pf_f0e92010_value": "Affirm won't charge you late fees or penalties of any kind, ever.",
+        "pf_40e21f8b_label": "\n3. Will checking eligibility affect my credit score?",
+        "pf_5b05112c_value": "<strong></strong>Flexible Payment Options with Della",
+        "pf_8837b73f_value": "You choose the payment schedule that works for you.",
+        "pf_7c1659f8_label": "1. How do I start the installment payment process?",
+        "pf_f7380739_value": "How to Use Shop Pay Installments with Affirm",
+        "pf_42af07dc_value": "Pay Over Time with Shop Pay Installments",
+        "pf_6f353726_label": "2. What payment plans are available?",
+        "pf_0b163980_value": "Select your&nbsp;Air Conditioner",
+        "pf_46c57520_label": "4. Are there any hidden fees?",
+        "pf_332a5ce8_value": "Choose Payment Method&nbsp;",
+        "pf_06c70661_value": "Frequently Asked Questions",
+        "pf_10d3c223_value": "&nbsp;Add to Cart&nbsp;",
+        "pf_94d79d6b_value": "Choose Installment Plan",
+        "pf_adc63aad_value": "Buy With Confidence",
+        "pf_36fa6ba2_value": "Pay Over Time",
+        "pf_ffeb3f88_value": "Transparent",
+        "pf_e7d39688_value": "Flexible",
+        "pf_375231f0_value": "Fair"
+      }
+    }
+  },
+  "order": [
+    "pf-ff93594d"
+  ]
+}

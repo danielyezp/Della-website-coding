@@ -1,0 +1,52 @@
+{%- if section.settings.collections_list != blank -%}
+  <div
+    class="
+      collection-bar
+      section
+      section--full-width
+      {% if settings.enable_section_animations and section.settings.enable_animation %}
+        animation
+        animation--collection-bar
+      {% endif %}
+    "
+    data-section-id="{{ section.id }}"
+    data-section-type="collection-bar"
+  >
+    <div class="collection-bar__inner js-collection-bar">
+      {%- for link in linklists[section.settings.collections_list].links -%}
+        <a class="collection-bar__item btn btn--text-link animation--item fs-body-300{% if link.active %} is-current{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+
+{% schema %}
+{
+  "name": "t:sections.collection_bar.name",
+  "class": "collection-bar-section",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "collections_list",
+      "label": "t:sections.collection_bar.settings.collections_list.label"
+    },
+    {
+      "type": "header",
+      "content": "t:shared.settings.section_style.header_style.content"
+    },
+    {
+      "id": "enable_animation",
+      "type": "checkbox",
+      "label": "t:shared.settings.section_style.enable_animation.label",
+      "info": "t:shared.settings.section_style.enable_animation.info",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.collection_bar.name"
+    }
+  ]
+}
+{% endschema %}

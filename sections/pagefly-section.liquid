@@ -1,0 +1,162 @@
+
+{% if section.settings.section_id.size > 0 %}
+  <!-- PageFlyGlobalSection -->
+  {% render 'pagefly-main-js' %}
+  {% render 'pagefly-main-css' %}
+  {% include section.settings.section_id %}
+{% else %}
+  
+    {% if request.design_mode %}
+      <style>.pf-ph{font-size:14px!important;background:#fafafa;padding:20px;text-align:center;border:1px solid #f0f0f0;border-radius:4px;margin:15px}.pf-ph span{display:block;background:#e6f7ff;padding:8px 15px;border:1px solid #91d5ff}</style>
+      <div class="pf-ph">
+        <h3>PageFly Section</h3>
+        <span>No section selected. Please select your section from the list</span>
+      </div>
+    {% endif %}
+  
+{% endif %}
+
+{% schema %}
+{
+  "name": "PageFly Section",
+  "settings": [
+    {
+      "id": "section_id",
+      "type": "select",
+      "label": "Sections",
+      "options": [
+        {
+          "label": "Select section",
+          "value": ""
+        },
+        {
+          "label": "subscribe Section",
+          "value": "pf-05d6ebef"
+        },
+        {
+          "label": "product Section",
+          "value": "pf-818fce93"
+        },
+        {
+          "label": "WARRANTY POLICY",
+          "value": "pf-c76bbf14"
+        },
+        {
+          "label": "review",
+          "value": "pf-3335efe4"
+        },
+        {
+          "label": "Section",
+          "value": "pf-d35bf25a"
+        },
+        {
+          "label": "faq",
+          "value": "pf-dea3fab3"
+        },
+        {
+          "label": "review - copy",
+          "value": "pf-c53d72d8"
+        },
+        {
+          "label": "subscibe",
+          "value": "pf-88f9f851"
+        },
+        {
+          "label": "brand-story-6",
+          "value": "pf-a5014743"
+        },
+        {
+          "label": "brand-story-7",
+          "value": "pf-f0339a71"
+        },
+        {
+          "label": "brand-story-2 - copy",
+          "value": "pf-99cded3e"
+        },
+        {
+          "label": "brand-story-2",
+          "value": "pf-01474317"
+        },
+        {
+          "label": "review",
+          "value": "pf-11ee12db"
+        },
+        {
+          "label": "blog",
+          "value": "pf-1a10c4b0"
+        },
+        {
+          "label": "icon",
+          "value": "pf-4f6ebb0a"
+        },
+        {
+          "label": "brand-story-3",
+          "value": "pf-57a50147"
+        },
+        {
+          "label": "brand-story-4",
+          "value": "pf-40471157"
+        },
+        {
+          "label": "reviews1",
+          "value": "pf-e677e516"
+        },
+        {
+          "label": "deals",
+          "value": "pf-86bcf55c"
+        },
+        {
+          "label": "hot deals",
+          "value": "pf-92fc1ddb"
+        },
+        {
+          "label": "icon",
+          "value": "pf-4836a38e"
+        },
+        {
+          "label": "review",
+          "value": "pf-0d3bacd1"
+        },
+        {
+          "label": "折扣",
+          "value": "pf-ed251552"
+        },
+        {
+          "label": "信任incon",
+          "value": "pf-aa122a3f"
+        },
+        {
+          "label": "产品展示",
+          "value": "pf-25e2fa87"
+        },
+        {
+          "label": "della-3",
+          "value": "pf-8b591a84"
+        },
+        {
+          "label": "della-2",
+          "value": "pf-0e540724"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "Find and edit your section on the [section listing](https://dellahome-store.myshopify.com/admin/apps/pagefly/sections)"
+    },
+    {
+      "type": "paragraph",
+      "content": "To add block to a section, please use the App Block element on PageFly section editor."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PageFly Section"
+    }
+  ]
+}
+{% endschema %}

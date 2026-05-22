@@ -1,0 +1,181 @@
+{%- render 'asset' with 'typography.css', preload_stylesheet: true -%}
+
+{%- if template contains 'customers' -%}
+  <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
+{%- endif -%}
+
+<script>
+  flu = window.flu || {};
+</script>
+
+{% # Set the following line to true to import custom-events.js %}
+{% assign useCustomEvents = false %}
+
+{% # Set the following line to true to import custom.css %}
+{% assign useCustomCSS = true %}
+
+{% if useCustomEvents %}
+  <script src="{{ 'custom-events.js' | asset_url }}" defer></script>
+  <script>
+    window.flu.states = {
+      useCustomEvents: true,
+    };
+  </script>
+{% endif %}
+
+<script>
+  var defineVH = function () {
+    document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+  };
+
+  var defineVHFrame = null;
+  var scheduleDefineVH = function () {
+    if (defineVHFrame !== null) return;
+
+    defineVHFrame = window.requestAnimationFrame(function () {
+      defineVHFrame = null;
+      defineVH();
+    });
+  };
+
+  window.addEventListener('resize', scheduleDefineVH, { passive: true });
+  window.addEventListener('orientationchange', scheduleDefineVH, { passive: true });
+  defineVH();
+</script>
+
+<script>
+  (function () {
+    var selector = 'video[data-video-lazy]';
+
+    var loadVideo = function (video) {
+      if (!video || video.dataset.videoLoaded === 'true') return;
+
+      var src = video.dataset.src;
+      var sources = video.querySelectorAll('source[data-src]');
+      if (!src && !sources.length) return;
+
+      video.dataset.videoLoaded = 'true';
+
+      if (src) {
+        video.src = src;
+        video.removeAttribute('data-src');
+      }
+
+      sources.forEach(function (source) {
+        source.src = source.dataset.src;
+        source.removeAttribute('data-src');
+      });
+
+      video.load();
+
+      if (video.hasAttribute('autoplay')) {
+        var playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(function () {});
+        }
+      }
+    };
+
+    var initLazyVideos = function (root) {
+      var context = root || document;
+      var videos = context.querySelectorAll(selector);
+      if (!videos.length) return;
+
+      if (!('IntersectionObserver' in window)) {
+        videos.forEach(loadVideo);
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+
+          observer.unobserve(entry.target);
+          loadVideo(entry.target);
+        });
+      }, { rootMargin: '0px 0px' });
+
+      videos.forEach(function (video) {
+        observer.observe(video);
+      });
+    };
+
+    document.addEventListener('click', function (event) {
+      var button = event.target.closest('.js-button-video');
+      if (!button) return;
+
+      var container = button.closest('video-control');
+      var video = container && container.querySelector(selector);
+      loadVideo(video);
+    }, true);
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () {
+        initLazyVideos(document);
+      }, { once: true });
+    } else {
+      initLazyVideos(document);
+    }
+
+    document.addEventListener('shopify:section:load', function (event) {
+      initLazyVideos(event.target);
+    });
+  })();
+</script>
+
+{%- render 'asset' with 'theme.css', preload_stylesheet: true -%}
+
+{% if useCustomCSS %}
+  {%- render 'asset' with 'custom.css', preload_stylesheet: true -%}
+{% endif %}
+
+<style>
+  .shopify-section.header__outer-wrapper,
+  html.sticky-header-enabled .shopify-section.header__outer-wrapper,
+  html.sticky-header-active body.scroll-lock .shopify-section.header__outer-wrapper,
+  html.sticky-header-active body[quick-search-open='true'] .shopify-section.header__outer-wrapper {
+    z-index: 1500 !important;
+  }
+
+  .header,
+  .header__inner,
+  .header__row.header__row-desktop {
+    position: relative;
+    z-index: 1501 !important;
+  }
+
+  .header .header__links,
+  .header .header__links-list,
+  .header .header__links-list > li,
+  .header .navigation__submenu,
+  .header .meganav {
+    z-index: 1501 !important;
+  }
+
+  .header-overlay {
+    z-index: 1490 !important;
+  }
+
+  .quick-cart__wrapper,
+  .quick-cart__overlay,
+  .quick-cart__container,
+  .modal,
+  .modal__wash,
+  .modal__inner,
+  .modal.modal--slideout {
+    z-index: 2300 !important;
+  }
+
+  .template-index .trustpilot-widget,
+  .template-index .trustpilot-widget iframe,
+  .template-index iframe[src*='trustpilot'] {
+    position: relative;
+    z-index: 1 !important;
+  }
+</style>
+
+{%- if request.design_mode -%}
+  {%- render 'asset' with 'theme-design-mode.js' -%}
+{%- else -%}
+  {%- render 'asset' with 'theme.js' -%}
+{%- endif -%}

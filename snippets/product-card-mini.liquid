@@ -1,0 +1,234 @@
+{%- liquid
+  comment
+    minimal product experience
+
+    Pass in:
+
+    * block
+    * prod
+    * custom_product_image
+    * aspect_ratio
+    * render_shopify_attributes (optional) - render block.shopify_attibures
+    * image_sizes
+    * form_id (optional)
+  endcomment
+
+  unless image_sizes
+    assign image_sizes = '80px'
+  endunless
+
+  if aspect_ratio == blank
+    assign aspect_ratio = settings.product_listing_aspect_ratio
+  endif
+
+  if prod.has_only_default_variant
+    assign product_has_variants = false
+  else
+    assign product_has_variants = true
+  endif
+
+  assign current_variant = prod.selected_or_first_available_variant
+  assign select_item_currency = cart.currency.iso_code | default: shop.currency
+  assign select_item_index = forloop.index | default: index | default: blank
+
+  # Quick add takes precedence over quick view
+  # Use quick view for products with variants and sold out products
+  if settings.enable_quick_add and prod.available
+    if product_has_variants
+      assign quick_shop_type = 'quick-view'
+      assign quick_shop_button_text = 'products.product.choose_options' | t
+    else
+      assign quick_shop_type = 'quick-add'
+      assign quick_shop_button_text = 'products.product.add_to_cart' | t
+    endif
+  elsif settings.enable_quick_view
+    assign quick_shop_type = 'quick-view'
+    assign quick_shop_button_text = 'products.product.quick_view' | t
+  else
+    assign quick_shop_type = 'none'
+  endif
+
+  if shoppable_image_layout
+    assign quick_shop_type = 'none'
+  endif
+-%}
+
+{% if quick_shop_type != 'none' %}
+  {% capture quick_shop_button_attributes %}
+      data-quick-shop-trigger="{{ quick_shop_type }}"
+
+      {% if quick_shop_type == 'quick-add' %}
+        data-product-id="{{ prod.variants[0].id }}"
+      {% else %}
+        data-product-url="{{ prod.url }}"
+      {% endif %}
+  {% endcapture %}
+
+  {% capture quick_shop_button %}
+    <button
+      class="btn btn--dark btn--solid btn--x-small product-card-mini__quick-view-button"
+      {{ quick_shop_button_attributes }}
+    >
+      <span>{{ quick_shop_button_text }}</span>
+
+      <div class="btn__loading-wrap">
+        <div class="btn__loading-bar"></div>
+      </div>
+    </button>
+  {% endcapture %}
+{% endif %}
+
+{% liquid
+  # wrap add-to-cart buttons in a product form for no-js or if purchase confirmation and quick cart are disabled
+  if quick_shop_type == 'quick-add'
+    if form_id == blank
+      assign product_form_id = 'product-card-mini-form'
+
+      if section.id
+        assign product_form_id = product_form_id | append: '-' | append: section.id
+      endif
+
+      assign product_form_id = product_form_id | append: '-' | append: prod.id
+
+      if index
+        assign product_form_id = product_form_id | append: '-' | append: index
+      endif
+    else
+      assign product_form_id = form_id
+    endif
+
+    capture product_form_tags
+      echo '<input class="product-card-mini__product-form-variant-input" name="id" type="hidden" value="[[vi]]">' | replace: '[[vi]]', prod.variants[0].id
+    endcapture
+
+    capture quick_shop_button
+      form 'product', prod, class: 'product-item__product-form', id: product_form_id
+        echo product_form_tags
+        echo quick_shop_button
+      endform
+    endcapture
+  endif
+%}
+
+{% capture select_item_data_attributes %}
+  data-select-item="true"
+  data-select-item-event="select_item"
+  data-select-item-id="{{ prod.id }}"
+  data-select-item-variant-id="{{ current_variant.id }}"
+  data-select-item-handle="{{ prod.handle }}"
+  data-select-item-title="{{ prod.title | escape }}"
+  data-select-item-vendor="{{ prod.vendor | escape }}"
+  data-select-item-price-cents="{{ current_variant.price }}"
+  data-select-item-currency="{{ select_item_currency }}"
+  {% if select_item_index != blank %}data-select-item-index="{{ select_item_index }}"{% endif %}
+{% endcapture %}
+
+<div
+  class="product-card-mini {{class}}"
+  {% if render_shopify_attributes %}
+    {{- block.shopify_attributes -}}
+  {% endif %}
+  {% if prod %}
+    {{ select_item_data_attributes }}
+  {% endif %}
+>
+  <div class="product-card-mini__inner">
+    {%- if custom_product_image or prod.featured_media -%}
+      {% assign image = prod.featured_media %}
+      {% if custom_product_image %}
+        {% assign image = custom_product_image %}
+      {% endif %}
+      <a
+        class="product-card-mini__image-link"
+        {% if prod %}
+          href="{{ prod.url }}"
+          aria-label="{{ prod.title }}"
+          data-select-item-link="image"
+          {{ select_item_data_attributes }}
+        {% endif %}
+      >
+        {%
+          render 'image',
+          image: image,
+          aspect_ratio: aspect_ratio,
+          wrapper_class: 'product-card-mini__image',
+          sizes: image_sizes,
+          fetch_priority: 'low',
+          src_set_type: 'thumbnail'
+        %}
+      </a>
+    {% else %}
+      <div class="product-card-mini__image-link">
+        {%-
+          render 'placeholder-image',
+          wrapper_class: "product-card-mini__image",
+          aspect_ratio: aspect_ratio,
+          placeholder_name: "product-1",
+        -%}
+      </div>
+    {%- endif -%}
+
+    <div class="product-card-mini__meta fs-body-75">
+      <div class="product-card-mini__text ff-body">
+        <h3 class="product-card-mini__product-title ff-heading fs-heading-6-base">
+          {%- if placeholder or prod == blank -%}
+            {{ 'homepage.onboarding.product_title' | t }}
+          {%- else -%}
+            <a href="{{ prod.url }}" data-select-item-link="title" {{ select_item_data_attributes }}>{{ prod.title }}</a>
+          {%- endif -%}
+        </h3>
+
+        {% if shoppable_image_layout %}
+          {% if placeholder or prod == blank %}
+            <p class="product-card-mini__price ff-body fs-body-50">
+              <span class="product-card-mini__price-prefix">{{ 'products.product.starting_at_prefix' | t }}</span>
+              {{ 9999 | money }}
+            </p>
+          {% else %}
+            <p class="product-card-mini__price ff-body fs-body-50">
+              <span class="product-card-mini__price-prefix">{{ 'products.product.starting_at_prefix' | t }}</span>
+              {{ prod.price | money }}
+            </p>
+          {% endif %}
+        {% else %}
+          {% if placeholder or prod == blank %}
+            {{ 9999 | money }}
+          {% elsif prod.compare_at_price > prod.price %}
+            <p class="product-card-mini__price ff-body fs-body-50">
+              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              <s class="t-subdued">{{ prod.compare_at_price | money }}</s>
+
+              {% if prod.price_varies %}
+                {%- assign sale_price = prod.price | money -%}
+
+                <span class="sale">
+                  {{- 'products.product.on_sale_from_html' | t: price: sale_price -}}
+                </span>
+              {% else %}
+                <span class="sale">{{ prod.price | money }}</span>
+              {% endif %}
+            </p>
+          {% else %}
+            {% if prod.price_varies %}
+              {%- assign price = prod.price | money -%}
+              <p class="product-card-mini__price ff-body fs-body-50">
+                {{ 'products.product.from_lowest_price_html' | t: lowest_price: price }}
+              </p>
+            {% else %}
+              <span class="product-card-mini__price ff-body fs-body-50">{{ prod.price | money }}</span>
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {% unless shoppable_image_layout %}
+          <div>
+            {% render 'unit-price', item: current_variant %}
+          </div>
+        {% endunless %}
+      </div>
+      {% if quick_shop_type != 'none' %}
+        {{ quick_shop_button }}
+      {%- endif -%}
+    </div>
+  </div>
+</div>

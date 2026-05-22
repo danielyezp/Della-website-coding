@@ -1,0 +1,31 @@
+<div class="js-product-media-thumbs product__media-thumbs carousel swiper">
+  <div class="swiper-wrapper">
+    {% for media in product.media -%}
+      {% liquid
+        if forloop.index < initial_variant_media_position or forloop.index > next_variant_media_index
+          continue
+        endif
+
+        assign media_aspect_ratio = aspect_ratio
+
+        if media.media_type == 'model'
+          assign media_aspect_ratio = 'square'
+        endif
+      -%}
+      <div class="product__media-item-thumb carousel_slide swiper-slide group">
+        {% render 'image',
+          image: media.preview_image,
+          aspect_ratio: media_aspect_ratio,
+          sizes: '60px',
+          fetch_priority: 'low',
+          src_set_type: 'thumbnail'
+        %}
+        {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+          <span class="video-play__wrapper video-play__wrapper--thumb">
+            {% render 'play-icon', class: 'video-play__thumb-icon' %}
+          </span>
+        {%- endif %}
+      </div>
+    {%- endfor %}
+  </div>
+</div>

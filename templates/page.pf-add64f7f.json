@@ -1,0 +1,54 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pf-add64f7f": {
+      "type": "pf-add64f7f",
+      "settings": {
+        "pf_32a066dc_value": "During our Independence Day Sale, make a purchase to receive an order number. If your order number ends in a 4, you will receive a Della gift card automatically.\n<br><br>&nbsp;<strong>🎟️Rewards🎟️:</strong><br>&nbsp;If your order number ends in #xxx4 = $40 Della gift card.\n<br>If your order number ends in #xxx4 = $100 Della gift card.\n&nbsp;\n<br><br>&nbsp;<strong>Fine Print:&nbsp;</strong>\n<br>📦Order numbers are auto-generated and auto-assigned.&nbsp;\n<br>📆Orders made between July 1st 12am PST to July 7th 11:59pm PST will be counted.&nbsp;\n<br>✅All purchases count, regardless of total amount and number of products.&nbsp;\n<br>✅Unlimited entries are permitted.&nbsp;\n<br><br><strong>&nbsp;Gift Card Delivery</strong>\n<br>📧Della gift card will sent out to the email address provided at checkout.\n<br>⏰Della gift card will be emailed on July 9th.\n<br>📆There is no expiration on the Della gift card.",
+        "pf_fd9e0419_value": "A1. All products on the dellahome.com are eligible for discounts. Mix and match freely to unlock Independence Day deals!🔥\n<br><br>&nbsp;⏰<strong>From June&nbsp;30&nbsp;-July 7</strong>⏰, enjoy special Independence Day prices.\n<br><br>🎟️Independence Day Discounts🎟️: All product get <strong>15% OFF</strong>",
+        "pf_1fc0f7a8_value": "A4. Dellahome usually takes one business day to arrange the shipping for your order. However,during the holiday season, you can expect your order to shipapproximately 2-3 business days after being placed. eu fugiat nulla pariatur.",
+        "pf_a3dfecbd_value": "Upgrade your cooking game with our 20-piece kitchen utensil set. Crafted from durable and heat-resistant materials, this set covers all your culinary needs. Elevate your kitchen experience today!",
+        "pf_dd2f73b3_value": "Don't miss out on our exclusive deals, product launches, and culinary insights. Subscribe to our newsletter and stay updated with Kitchen Crafters!",
+        "pf_7b9cdff4_value": "A5.No, we don’t offer international shipping. We only ship within the continental United States. This excludes Alaska, Hawaii, and Puerto Rico.",
+        "pf_250f00c9_value": "A2.\n1.The discount will be automatically applied when you check out.\n<br>2.&nbsp;Cannot be used in conjunction with other discounts.<br>",
+        "pf_aeac934c_value": "Share Your Moment with&nbsp;<span style=\"color: rgb(71, 93, 57);\"><span style=\"color: rgb(71, 93, 57);\">@Kitchen Crafters</span></span>",
+        "pf_74dd5fc3_label": "<strong>Q1. What promotional products are available and what benefts are offered?</strong> ",
+        "pf_f0742550_value": "A6. We, unfortunately, can't ship orders to a PO. Box. Thanks for understanding!<br>",
+        "pf_230ba641_label": "Q2. How do l use the discount? Can it be used together with other discounts?",
+        "pf_3fe2c4e8_label": "Q3. How do I get Della's free $40 and $100 gift cards?🎫",
+        "pf_760db1c5_label": "Q4.How long will it take for my order to ship?",
+        "pf_3743ccd5_value": "Ultimate Kitchen Utensil Set - 12 Pieces",
+        "pf_40cd6d1e_value": "Hassle-Free Shopping &amp; Fast Shipping",
+        "pf_1187186d_value": "<strong>Sign up and save!</strong>",
+        "pf_a0e1ae1e_value": "Find Your Ideal Air Conditioner",
+        "pf_23e2c223_label": "Q6.Will you ship to a PO. Box?",
+        "pf_2c602ce7_label": "Q5.Do We ship internationally?",
+        "pf_e0415bf2_value": "Premium Kitchenware Collection",
+        "pf_18e8fcf2_value": "Exceptional Customer Support",
+        "pf_a1384fc3_value": "<strong>PORTABLE AC</strong>",
+        "pf_27724fa8_value": "<strong>MINI SPLIT</strong>",
+        "pf_6492be73_value": "<strong>WINDOW AC</strong>",
+        "pf_a9b4227e_value": "Expert Advice &amp; Guides",
+        "pf_7acdf6ab_value": "<strong>FAQ</strong>",
+        "pf_a801d209_value": "Bestseller Alert!",
+        "pf_13151b72_value": "Get It&nbsp; Now",
+        "pf_f279efbd_placeholder": "Enter your email",
+        "pf_b855438b_value": "Be In The Know",
+        "pf_12f2d068_value": "Sign Up Now",
+        "pf_8ce0e684_value": "Subscribes",
+        "pf_520ade69_placeholder": "E-mail"
+      }
+    }
+  },
+  "order": [
+    "pf-add64f7f"
+  ]
+}

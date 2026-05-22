@@ -1,0 +1,68 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "blog_banner_MybYJm": {
+      "type": "blog-banner",
+      "name": "t:sections.blog_banner.presets.name",
+      "settings": {
+        "show_breadcrumbs": true,
+        "show_search": true,
+        "heading": "The Della Blog",
+        "show_banner_image": true,
+        "image": "shopify://shop_images/120_89ded57c-a933-4d0a-b929-bf0da0bbcdd4.jpg",
+        "image_mobile": "shopify://shop_images/Frame_1171275380_85e85730-7ea2-4c60-9ac7-ee932b9d8a12.png",
+        "enable_image_full_width": true,
+        "image_aspect": "custom",
+        "desktop_height": 20,
+        "mobile_height": 50,
+        "focal_point": "image_presentation",
+        "text_position": "center_center",
+        "text_position_mobile": "center_center",
+        "text_color": "#0b133d",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "link_color_scheme": "dark"
+      }
+    },
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "show_tag_nav": true,
+        "article_per_page": 12,
+        "article_column": "3",
+        "show_tags": true,
+        "show_author": false,
+        "show_date": false,
+        "show_excerpt": false,
+        "show_featured_image": true,
+        "aspect_ratio": "landscape",
+        "card_columns": "1",
+        "card_background": "shopify://shop_images/Frame_369464_1.png",
+        "card_headline": "Have a specific question? No worries, we got you",
+        "card_text": "",
+        "card_button_text": "View our help center",
+        "card_button_link": "shopify://pages/contact",
+        "card_position": "4",
+        "card_text_color": "#000000",
+        "enable_animation": true,
+        "post_column": 2,
+        "link_color_scheme": "dark"
+      }
+    }
+  },
+  "order": [
+    "blog_banner_MybYJm",
+    "main"
+  ]
+}

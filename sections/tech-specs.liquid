@@ -1,0 +1,586 @@
+{%- liquid
+  assign has_background_color = false
+  if section.settings.background_color != blank and section.settings.background_color != 'rgba(0,0,0,0)'
+    assign has_background_color = true
+  endif
+
+  assign show_animations = false
+  if settings.enable_section_animations and section.settings.enable_animation
+    assign show_animations = true
+  endif
+
+  assign has_block_content = false
+  assign has_spec_content = false
+  assign resolved_button_link = section.settings.button_link | default: '' | strip
+  assign resolved_button_label = section.settings.button_link_text | default: '' | strip
+  
+  if product != blank
+    if resolved_button_link == blank
+      assign user_manual_metafield = product.metafields.custom.user_manual | default: blank
+      if user_manual_metafield != blank
+        assign resolved_button_link = user_manual_metafield.url | default: user_manual_metafield | file_url
+      endif
+    endif
+    
+    if resolved_button_label == blank
+      assign user_manual_title_metafield = product.metafields.custom.user_manual_title | default: blank
+      if user_manual_title_metafield != blank
+        assign resolved_button_label = user_manual_title_metafield
+      endif
+    endif
+  endif
+  
+  assign button_link_attributes = 'target="_blank" rel="noopener noreferrer"'
+
+  for block in section.blocks
+    if block.type == 'unit_specs'
+      if block.settings.unit_dimensions != blank or block.settings.net_gross_weight != blank
+        assign has_block_content = true
+        assign has_spec_content = true
+      endif
+    elsif block.type == 'spec'
+      if block.settings.title != blank or block.settings.icon != blank
+        assign has_block_content = true
+      endif
+      assign specs_raw = ''
+      if product != blank
+        assign metafield_val = product.metafields.custom.tech_specs.value
+        if metafield_val != blank
+          assign specs_raw = metafield_val | json
+        endif
+      endif
+      if specs_raw != blank
+        assign has_block_content = true
+        assign has_spec_content = true
+        break
+      endif
+    endif
+  endfor
+-%}
+
+{%- capture section_classes -%}
+  section section--divider-{{ section.settings.divider_style }} {{ section.settings.section_padding }}
+{%- endcapture -%}
+
+{%- if section.blocks.size > 0 and has_block_content and has_spec_content -%}
+  <div
+    class="
+      tech-specs
+      {% unless has_background_color %}
+        section
+        section--large-gaps
+        section--divider-{{ section.settings.divider_style }}
+        {{ section.settings.section_padding }}
+      {% endunless %}
+      {% if show_animations %}
+        animation
+        animation--tech-specs
+      {% endif %}
+      link-color-scheme--{{ section.settings.link_color_scheme }}
+    "
+    {% if section.settings.anchor_id != blank %}id="{{ section.settings.anchor_id | strip | handleize }}"{% endif %}
+    data-section-id="{{ section.id }}"
+    data-section-type="tech-specs"
+    style="
+      --section-background-color: {{ section.settings.background_color }};
+      --color-text: {{ section.settings.text_color }};
+      --color-text-alpha-60: {{ section.settings.text_color | color_modify: 'alpha', 0.6 }};
+      --color-text-link: {{ section.settings.text_color }};
+    "
+  >
+    <div
+      class="
+        tech-specs__inner
+        {% if has_background_color %}
+          {{ section_classes }}
+        {% endif %}
+      "
+    >
+      <div class="tech-specs__grid">
+        <div class="tech-specs__left">
+          {%- if section.settings.heading != blank -%}
+            <{{ section.settings.heading_tag }} class="tech-specs__heading ff-heading {{ section.settings.heading_font_class }}">
+              {{ section.settings.heading }}
+            </{{ section.settings.heading_tag }}>
+          {%- endif -%}
+
+          {%- if resolved_button_label != blank and resolved_button_link != blank -%}
+            {%-
+              render 'button-block',
+              wrapper_class: 'tech-specs__button',
+              link: resolved_button_link | file_url,
+              label: resolved_button_label,
+              button_style: section.settings.button_style,
+              button_color: section.settings.button_color,
+              button_attributes: button_link_attributes
+            -%}
+          {%- endif -%}
+        </div>
+
+        <div class="tech-specs__right">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'unit_specs' -%}
+              {%- if block.settings.unit_dimensions != blank or block.settings.net_gross_weight != blank -%}
+                {%- liquid
+                  assign block_title_handle = block.settings.title | default: '' | strip | handleize
+                -%}
+                <div class="tech-specs__block {% if block.settings.icon != blank %}tech-specs__block--has-icon{% endif %} {% if block_title_handle != blank %}tech-specs__block--title-{{ block_title_handle }}{% endif %}" {{ block.shopify_attributes }}>
+                  {%- if block.settings.title != blank or block.settings.icon != blank -%}
+                    <div class="tech-specs__block-header">
+                      {%- if block.settings.icon != blank -%}
+                        <div class="tech-specs__block-icon">
+                          {%- render 'image' with image: block.settings.icon, sizes: '48px' -%}
+                        </div>
+                      {%- endif -%}
+                      {%- if block.settings.title != blank -%}
+                        <h3 class="tech-specs__block-title ff-heading fs-heading-6-base">{{ block.settings.title }}</h3>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+
+                  <div class="tech-specs__block-specs">
+                    {%- if block.settings.unit_dimensions != blank -%}
+                      <div class="tech-specs__item">
+                        <div class="tech-specs__item-label">
+                          <p class="ff-subheading fs-body-200"><span class="tech-specs__item-label-text">{{ 'sections.tech_specs.unit_dimensions' | t }}:</span><span class="tech-specs__item-content ff-body fs-body-50">{{ block.settings.unit_dimensions }}</span></p>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if block.settings.net_gross_weight != blank -%}
+                      <div class="tech-specs__item">
+                        <div class="tech-specs__item-label">
+                          <p class="ff-subheading fs-body-200"><span class="tech-specs__item-label-text">{{ 'sections.tech_specs.net_gross_weight' | t }}:</span><span class="tech-specs__item-content ff-body fs-body-50">{{ block.settings.net_gross_weight }}</span></p>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- elsif block.type == 'spec' -%}
+              {%- liquid
+                assign specs_raw = ''
+                assign block_title_handle = block.settings.title | default: '' | strip | handleize
+                if product != blank
+                  assign metafield_val = product.metafields.custom.tech_specs.value
+                  if metafield_val != blank
+                    assign specs_raw = metafield_val | json
+                  endif
+                endif
+              -%}
+              {%- if specs_raw != blank -%}
+                <div class="tech-specs__block {% if block.settings.icon != blank %}tech-specs__block--has-icon{% endif %} {% if block_title_handle != blank %}tech-specs__block--title-{{ block_title_handle }}{% endif %}" {{ block.shopify_attributes }}>
+                  {%- if block.settings.title != blank or block.settings.icon != blank -%}
+                    <div class="tech-specs__block-header">
+                      {%- if block.settings.icon != blank -%}
+                        <div class="tech-specs__block-icon">
+                          {%- render 'image' with image: block.settings.icon, sizes: '48px' -%}
+                        </div>
+                      {%- endif -%}
+                      {%- if block.settings.title != blank -%}
+                        <h3 class="tech-specs__block-title ff-heading fs-heading-6-base">{{ block.settings.title }}</h3>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+
+                  <div class="tech-specs__block-specs">
+                    {%- if specs_raw != blank -%}
+                      {%- assign specs_clean = specs_raw | replace: '&quot;', '"' -%}
+                      {%- assign tech_specs = specs_clean | split: '"label":"' -%}
+                      {%- for spec in tech_specs -%}
+                        {%- if forloop.first -%}
+                          {%- continue -%}
+                        {%- endif -%}
+                        {%- liquid
+                          assign spec_parts = spec | split: '","value":"'
+                          assign spec_label = spec_parts.first | strip
+                          assign spec_content = spec_parts.last | split: '"' | first | strip
+                        -%}
+                        {%- if spec_label != blank or spec_content != blank -%}
+                          {%- liquid
+                            assign matching_tooltip = nil
+                            assign spec_label_stripped = spec_label | strip
+                            if spec_label_stripped != blank
+                              for tooltip_block in section.blocks
+                                if tooltip_block.type == 'tooltip'
+                                  assign tooltip_text = tooltip_block.settings.text | strip
+                                  assign tooltip_content = tooltip_block.settings.tooltip_content | strip
+                                  if tooltip_text == spec_label_stripped
+                                    assign matching_tooltip = tooltip_block
+                                    break
+                                  endif
+                                endif
+                              endfor
+                            endif
+                            assign modal_id = 'tech-specs-modal-' | append: section.id | append: '-' | append: block.id | append: '-' | append: forloop.index
+                          -%}
+                          <div class="tech-specs__item">
+                            <div class="tech-specs__item-label">
+                              {%- if matching_tooltip != nil and tooltip_content != blank and block.settings.enable_tooltip -%}
+                                <button
+                                  type="button"
+                                  class="tech-specs__tooltip-trigger"
+                                  data-popup-trigger
+                                  data-modal-slideout="true"
+                                  data-modal-content-id="{{ modal_id }}"
+                                  aria-haspopup="dialog"
+                                  aria-controls="{{ modal_id }}"
+                                  aria-label="{% if spec_label != blank %}{{ 'sections.tech_specs.learn_more_about' | t: label: spec_label }}{% else %}{{ 'sections.events.learn_more' | t }}{% endif %}"
+                                >
+                                  {% render 'icon', icon: 'tooltip', view_box_custom: '0 0 15 15' %}
+                                </button>
+                              {%- endif -%}
+                              <p class="ff-subheading fs-body-200"><span class="tech-specs__item-label-text">{{- spec_label -}}{% if spec_content != blank %}:{% endif %}</span>{% if spec_content != blank %}<span class="tech-specs__item-content ff-body fs-body-50">{{- spec_content -}}</span>{% endif %}</p>
+                            </div>
+                            {%- if matching_tooltip != nil and tooltip_content != blank and block.settings.enable_tooltip -%}
+                              <div
+                                id="{{ modal_id }}"
+                                class="information-popup__content modal-content modal-content--slideout"
+                                data-modal-slideout="true"
+                                aria-modal="true"
+                              >
+                                {%- if spec_label != blank -%}
+                                  <h2 class="information-popup__heading ff-heading fs-heading-6-base">{{ spec_label }}</h2>
+                                {%- endif -%}
+                                <div class="information-popup__inner-content rte rte--modal">
+                                  {{ tooltip_content }}
+                                </div>
+                                {%- if matching_tooltip.settings.tooltip_button_text != blank and matching_tooltip.settings.tooltip_button_link != blank -%}
+                                  {%-
+                                    render 'button-block' with
+                                    wrapper_class: 'tech-specs__slideout-button',
+                                    link: matching_tooltip.settings.tooltip_button_link,
+                                    label: matching_tooltip.settings.tooltip_button_text,
+                                    button_style: 'btn--callout'
+                                  -%}
+                                {%- endif -%}
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.tech_specs.name",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:shared.settings.anchor.content"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:shared.settings.anchor.anchor_id.label",
+      "info": "t:shared.settings.anchor.anchor_id.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.collection_sections_shared.settings.header_heading.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.tech_specs.settings.heading.label",
+      "default": "Tech specs"
+    },
+    {
+      "id": "heading_tag",
+      "type": "select",
+      "label": "t:shared.section_blocks.heading.settings.heading_tag.label",
+      "default": "h2",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:shared.section_blocks.heading.settings.heading_tag.options.h2"
+        },
+        {
+          "value": "h3",
+          "label": "t:shared.section_blocks.heading.settings.heading_tag.options.h3"
+        },
+        {
+          "value": "h4",
+          "label": "t:shared.section_blocks.heading.settings.heading_tag.options.h4"
+        },
+        {
+          "value": "h5",
+          "label": "t:shared.section_blocks.heading.settings.heading_tag.options.h5"
+        },
+        {
+          "value": "h6",
+          "label": "t:shared.section_blocks.heading.settings.heading_tag.options.h6"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "t:shared.section_blocks.heading.settings.heading_tag.info"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_class",
+      "label": "t:shared.settings.heading_font_class.label",
+      "default": "fs-heading-3-base",
+      "options": [
+        {
+          "value": "fs-heading-1-base",
+          "label": "t:shared.settings.heading_font_class.option_heading_1"
+        },
+        {
+          "value": "fs-heading-2-base",
+          "label": "t:shared.settings.heading_font_class.option_heading_2"
+        },
+        {
+          "value": "fs-heading-3-base",
+          "label": "t:shared.settings.heading_font_class.option_heading_3"
+        },
+        {
+          "value": "fs-heading-4-base",
+          "label": "t:shared.settings.heading_font_class.option_heading_4"
+        },
+        {
+          "value": "fs-heading-5-base",
+          "label": "t:shared.settings.heading_font_class.option_heading_5"
+        },
+        {
+          "value": "fs-heading-6-base",
+          "label": "t:shared.settings.heading_font_class.option_heading_6"
+        }
+      ]
+    },
+    {
+      "id": "button_link",
+      "type": "url",
+      "label": "t:shared.settings.button_link.label",
+      "info": "Leave blank to auto-populate from product.metafields.custom.user_manual"
+    },
+    {
+      "id": "button_link_text",
+      "type": "text",
+      "label": "t:shared.settings.button_link_text.label",
+      "default": "Download User Manual",
+      "info": "Leave blank to auto-populate from product.metafields.custom.user_manual_title"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "t:shared.settings.button_style.label",
+      "default": "btn--outline",
+      "options": [
+        {
+          "value": "btn--solid",
+          "label": "t:shared.settings.button_style.option_solid"
+        },
+        {
+          "value": "btn--outline",
+          "label": "t:shared.settings.button_style.option_outline"
+        },
+        {
+          "value": "btn--callout",
+          "label": "t:shared.settings.button_style.option_text"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_color",
+      "label": "t:shared.settings.button_color.label",
+      "default": "btn--dark",
+      "options": [
+        {
+          "value": "btn--dark",
+          "label": "t:shared.settings.button_color.dark"
+        },
+        {
+          "value": "btn--light",
+          "label": "t:shared.settings.button_color.light"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:shared.settings.header_color.content"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:shared.settings.background_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:shared.settings.text_color.label",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "t:shared.settings.section_style.header_style.content"
+    },
+    {
+      "id": "enable_animation",
+      "type": "checkbox",
+      "label": "t:shared.settings.section_style.enable_animation.label",
+      "info": "t:shared.settings.section_style.enable_animation.info",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "divider_style",
+      "label": "t:shared.settings.section_style.divider_style.label",
+      "default": "none",
+      "options": [
+        {
+          "label": "t:shared.settings.section_style.divider_style.option_none",
+          "value": "none"
+        },
+        {
+          "label": "t:shared.settings.section_style.divider_style.option_solid",
+          "value": "solid"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_padding",
+      "label": "t:shared.settings.section_style.section_padding.label",
+      "default": "section--vertical-padding-top-bottom",
+      "options": [
+        {
+          "label": "t:shared.settings.section_style.section_padding.option_none",
+          "value": "section--vertical-padding-none"
+        },
+        {
+          "label": "t:shared.settings.section_style.section_padding.option_both",
+          "value": "section--vertical-padding-top-bottom"
+        },
+        {
+          "label": "t:shared.settings.section_style.section_padding.option_top",
+          "value": "section--vertical-padding-top-only"
+        },
+        {
+          "label": "t:shared.settings.section_style.section_padding.option_bottom",
+          "value": "section--vertical-padding-bottom-only"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "link_color_scheme",
+      "label": "t:shared.settings.link_color_scheme.label",
+      "options": [
+        {
+          "value": "light",
+          "label": "t:shared.settings.link_color_scheme.option_light"
+        },
+        {
+          "value": "dark",
+          "label": "t:shared.settings.link_color_scheme.option_dark"
+        }
+      ],
+      "default": "dark"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "t:sections.tech_specs.blocks.spec.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "📋 Data Source: These specifications are dynamically pulled from **product.metafields.custom.tech_specs** (JSON format). Configure this metafield on your products to populate this block automatically."
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "t:sections.tech_specs.blocks.spec.settings.icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.tech_specs.blocks.spec.settings.title"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_tooltip",
+          "label": "t:sections.tech_specs.blocks.spec.settings.enable_tooltip",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "unit_specs",
+      "name": "t:sections.tech_specs.blocks.unit_specs.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "t:sections.tech_specs.blocks.spec.settings.icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.tech_specs.blocks.unit_specs.settings.title"
+        },
+        {
+          "type": "text",
+          "id": "unit_dimensions",
+          "label": "t:sections.tech_specs.blocks.unit_specs.settings.unit_dimensions"
+        },
+        {
+          "type": "text",
+          "id": "net_gross_weight",
+          "label": "t:sections.tech_specs.blocks.unit_specs.settings.net_gross_weight"
+        }
+      ]
+    },
+    {
+      "type": "tooltip",
+      "name": "t:sections.tech_specs.blocks.tooltip.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:sections.tech_specs.blocks.tooltip.settings.tooltip_text.label",
+          "info": "t:sections.tech_specs.blocks.tooltip.settings.tooltip_text.info"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_content",
+          "label": "t:sections.tech_specs.blocks.tooltip.settings.tooltip_content.label",
+          "info": "t:sections.tech_specs.blocks.tooltip.settings.tooltip_content.info"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_button_text",
+          "label": "t:sections.tech_specs.blocks.tooltip.settings.tooltip_button_text.label"
+        },
+        {
+          "type": "url",
+          "id": "tooltip_button_link",
+          "label": "t:sections.tech_specs.blocks.tooltip.settings.tooltip_button_link.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.tech_specs.presets.name"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1031 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "enable_animation": true,
+        "content_width": "custom",
+        "custom_content_width": 700,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_hero_TQzayF": {
+      "type": "image-hero",
+      "blocks": {
+        "text_7qUHXn": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Modern comfort for everyday living.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark"
+          }
+        },
+        "accent_7jQwK4": {
+          "type": "accent",
+          "disabled": true,
+          "settings": {
+            "accent": "Modern comfort for everyday living."
+          }
+        },
+        "heading_EUdUww": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "title": "Comfort, handled.",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-1-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "text_7qUHXn",
+        "accent_7jQwK4",
+        "heading_EUdUww"
+      ],
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": false,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "image": "shopify://shop_images/2800x1000px-06_1.webp",
+        "image_mobile": "shopify://shop_images/800x800px-07.webp",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_center",
+        "text_position_mobile": "center_flex-start",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#0b133d",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_with_text_wGKmff": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_QVXYkq": {
+          "type": "heading",
+          "settings": {
+            "title": "Image with text",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "subheading_GGybXP": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Use these sections to promote a particular feature with editorial photography",
+            "subheading_tag": "h3",
+            "font_family_class": "ff-primary",
+            "subheading_font_class": "fs-body-200",
+            "subheading_color": "c-subheading-text-dark"
+          }
+        },
+        "button_PrVLiJ": {
+          "type": "button",
+          "settings": {
+            "link": "",
+            "link_text": "Read more",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_QVXYkq",
+        "subheading_GGybXP",
+        "button_PrVLiJ"
+      ],
+      "disabled": true,
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "media_position": "right",
+        "media_mobile_position": "above-content",
+        "text_alignment": "center",
+        "aspect_ratio": "square",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "show_small_image": true,
+        "image_small_aspect_ratio": "square",
+        "image_small_focal_point": "image_presentation",
+        "background_color": "",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "link_color_scheme": "dark"
+      }
+    },
+    "rich_text_nq6h7t": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_cNTaCz": {
+          "type": "heading",
+          "settings": {
+            "title": "Honoring Those Who Serve",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-2-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "text_xtLzHD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>As a thank-you to military personnel and first responders, Della offers a 10% discount site-wide on our store. Verify quickly and securely with <a href=\"https://dellahome.com/pages/della-hero-discount#\">GovX ID</a> to unlock your exclusive savings, then apply your discount at checkout.</p>",
+            "text_font_class": "fs-body-75",
+            "text_color": "c-body-text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_cNTaCz",
+        "text_xtLzHD"
+      ],
+      "name": "t:sections.rich_text.presets.name",
+      "settings": {
+        "alignment": "center_center",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "custom",
+        "custom_content_width": 700,
+        "link_color_scheme": "dark"
+      }
+    },
+    "multi_column_aRMzzx": {
+      "type": "multi-column",
+      "blocks": {
+        "icon_column_LEx6fR": {
+          "type": "icon_column",
+          "settings": {
+            "icon": "plant",
+            "icon_width": 200,
+            "icon_width_mobile": 100,
+            "custom_icon_image": "shopify://shop_images/90x90px-03.avif",
+            "icon_position": "top-left",
+            "mobile_icon_position": "top-left",
+            "accent": "",
+            "heading": "Verify Your Status",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "text": "<p>Sign in or create a free GovX ID account to confirm your eligibility.</p>",
+            "text_font_class": "fs-body-75",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark",
+            "bg_color": "#ffffff",
+            "border_color": "#ffffff"
+          }
+        },
+        "icon_column_aDXfEf": {
+          "type": "icon_column",
+          "settings": {
+            "icon": "plant",
+            "icon_width": 200,
+            "icon_width_mobile": 100,
+            "custom_icon_image": "shopify://shop_images/90x90px-04_641e4013-2e6c-4250-8b2a-183623731f1d.webp",
+            "icon_position": "top-left",
+            "mobile_icon_position": "top-left",
+            "accent": "",
+            "heading": "Get Your Code",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "text": "<p>Instantly receive a 10% discount code for use at checkout.</p>",
+            "text_font_class": "fs-body-75",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark",
+            "bg_color": "#ffffff",
+            "border_color": "#ffffff"
+          }
+        },
+        "icon_column_6FWbcx": {
+          "type": "icon_column",
+          "settings": {
+            "icon": "plant",
+            "icon_width": 200,
+            "icon_width_mobile": 100,
+            "custom_icon_image": "shopify://shop_images/90x90px-03.avif",
+            "icon_position": "top-left",
+            "mobile_icon_position": "top-left",
+            "accent": "",
+            "heading": "Shop and Save",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-4-base",
+            "text": "<p>Apply your code to any Della purchase and enjoy your savings.</p>",
+            "text_font_class": "fs-body-75",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark",
+            "bg_color": "#ffffff",
+            "border_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "icon_column_LEx6fR",
+        "icon_column_aDXfEf",
+        "icon_column_6FWbcx"
+      ],
+      "name": "t:sections.multi_column.presets.name",
+      "settings": {
+        "title": "Pro-grade power, home-grown comfort.",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-3-base",
+        "heading_color": "c-heading-text-dark",
+        "subheading": "",
+        "subheading_color": "c-subheading-text-dark",
+        "link": "",
+        "link_text": "",
+        "header_button_style": "btn--light",
+        "heading_alignment": "center",
+        "content_vertical_alignment": "center",
+        "content_background_padding": "medium",
+        "columns": "3",
+        "column_spacing": 48,
+        "row_spacing": 48,
+        "column_alignment": "center",
+        "enable_slider_mobile": false,
+        "columns_mobile": "1",
+        "column_spacing_mobile": 4,
+        "row_spacing_mobile": 4,
+        "column_alignment_mobile": "center",
+        "background_behind_columns": false,
+        "background_color": "",
+        "text_color": "#0b133d",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-only",
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_with_text_nGFFgg": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_FYJUXY": {
+          "type": "heading",
+          "settings": {
+            "title": "Military Discount",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-2-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "text_cmdWyX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Salute the military community with an exclusive 10% discount for active duty, veterans, military spouses, and families. Simply verify quickly and securely with GovX ID to receive your discount.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark"
+          }
+        },
+        "button_mJEETF": {
+          "type": "button",
+          "settings": {
+            "link": "https://dellahome.com/pages/della-hero-discount#",
+            "link_text": "Verify with GovX ID",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FYJUXY",
+        "text_cmdWyX",
+        "button_mJEETF"
+      ],
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "media_position": "right",
+        "media_mobile_position": "above-content",
+        "text_alignment": "left",
+        "image": "shopify://shop_images/900x600px_4ed77be4-0b39-4eae-9df2-ba6dc34f64e8_1.webp",
+        "image_mobile": "shopify://shop_images/900x600px_4ed77be4-0b39-4eae-9df2-ba6dc34f64e8_1.webp",
+        "aspect_ratio": "natural",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "show_small_image": false,
+        "image_small_aspect_ratio": "square",
+        "image_small_focal_point": "image_presentation",
+        "background_color": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background_color": "#0b133d",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-none",
+        "link_color_scheme": "light"
+      }
+    },
+    "image_with_text_zD8p3L": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_cQhtF3": {
+          "type": "heading",
+          "settings": {
+            "title": "First Responder Discount",
+            "heading_tag": "h2",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-2-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "text_kbHqkK": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Thank you for all that you do. First responders, firefighters, law enforcement, paramedics, and more can enjoy an extra 10% off sitewide. Simply verify quickly and securely with GovX ID to receive your discount.</p>",
+            "text_font_class": "fs-body-75",
+            "custom_text_color": "c-body-text-dark"
+          }
+        },
+        "button_k8BGeU": {
+          "type": "button",
+          "settings": {
+            "link": "https://dellahome.com/pages/della-hero-discount#",
+            "link_text": "Verify with GovX ID",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_cQhtF3",
+        "text_kbHqkK",
+        "button_k8BGeU"
+      ],
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "media_position": "left",
+        "media_mobile_position": "above-content",
+        "text_alignment": "left",
+        "image": "shopify://shop_images/900x600px.webp",
+        "image_mobile": "shopify://shop_images/900x600px.webp",
+        "aspect_ratio": "natural",
+        "focal_point": "image_presentation",
+        "image_caption": "",
+        "show_small_image": false,
+        "image_small_aspect_ratio": "square",
+        "image_small_focal_point": "image_presentation",
+        "background_color": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background_color": "#0b133d",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-none",
+        "link_color_scheme": "light"
+      }
+    },
+    "multi_column_8UczJJ": {
+      "type": "multi-column",
+      "blocks": {
+        "column_rGGEtD": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Built on experience",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Expertise engineered for your lifestyle</p>",
+            "text_font_class": "fs-body-50",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "column_Cp3bnV": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Power that respects your peace",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Smart design that saves energy and elevates comfort</p>",
+            "text_font_class": "fs-body-50",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "column_zA7y9P": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Precision in every part",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Precision-built from first sketch to final support</p>",
+            "text_font_class": "fs-body-50",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        },
+        "column_EemGHa": {
+          "type": "column",
+          "settings": {
+            "accent": "",
+            "heading": "Silent performance, visible comfort",
+            "heading_tag": "h3",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark",
+            "text": "<p>Better living should be felt, not heard</p>",
+            "text_font_class": "fs-body-50",
+            "custom_text_color": "c-body-text-dark",
+            "text_max_width": 100,
+            "link": "",
+            "link_text": "",
+            "button_style": "btn--dark"
+          }
+        }
+      },
+      "block_order": [
+        "column_rGGEtD",
+        "column_Cp3bnV",
+        "column_zA7y9P",
+        "column_EemGHa"
+      ],
+      "disabled": true,
+      "name": "t:sections.multi_column.presets.name",
+      "settings": {
+        "background_image": "shopify://shop_images/6184e305e29faaf11bfbd0ec74c67317f388ca13.jpg",
+        "title": "How It Works",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-4-base",
+        "heading_color": "c-heading-text-light",
+        "subheading": "",
+        "subheading_color": "c-subheading-text-light",
+        "link": "",
+        "link_text": "",
+        "header_button_style": "btn--light",
+        "heading_alignment": "center",
+        "content_vertical_alignment": "center",
+        "content_background_padding": "small",
+        "columns": "4",
+        "column_spacing": 12,
+        "row_spacing": 28,
+        "column_alignment": "center",
+        "enable_slider_mobile": true,
+        "columns_mobile": "1.3",
+        "column_spacing_mobile": 12,
+        "row_spacing_mobile": 20,
+        "column_alignment_mobile": "center",
+        "background_behind_columns": true,
+        "background_color": "#ffddb4",
+        "text_color": "#0b133d",
+        "button_background_color": "#000000",
+        "button_text_color": "#ffffff",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "link_color_scheme": "dark"
+      }
+    },
+    "collapsible_row_image_rxFn77": {
+      "type": "collapsible-row-image",
+      "blocks": {
+        "item_y6AiiL": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "What is GovX ID?",
+            "text": "<p>GovX ID is a trusted third-party service we partner with to verify eligibility for military and first responder discounts.</p>"
+          }
+        },
+        "item_kRzTgW": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "Who qualifies?",
+            "text": "<p>This discount is available to:<br/></p><ul><li>Current and former U.S. military</li><li>Military spouses and dependents</li><li>First responders (law enforcement, fire, EMS)</li></ul>"
+          }
+        },
+        "item_VryLHc": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "What products are eligible?",
+            "text": "<p>The discount applies to all air conditioner units on our website. It does not apply to Replacement Parts.</p>"
+          }
+        },
+        "item_hp3TEy": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "How do I get the discount?",
+            "text": "<p>Verify your service with GovX ID.<br/><br/>If you have an account, sign in. If not, sign up and verify your status.<br/><br/>You'll receive a 10% discount code to use at checkout.</p>"
+          }
+        },
+        "item_zhThyz": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "Can I combine this with other discounts?",
+            "text": "<p>This discount can be used on sale items, but can't be combined with other promo codes or coupons.</p>"
+          }
+        },
+        "item_iipepc": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "Is my information secure?",
+            "text": "<p>Yes. Your personal details remain private with GovX ID. DELLA never sees your data, and you can delete your GovX ID account at any time.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_y6AiiL",
+        "item_kRzTgW",
+        "item_VryLHc",
+        "item_hp3TEy",
+        "item_zhThyz",
+        "item_iipepc"
+      ],
+      "name": "t:sections.collapsible_row_image.presets.name",
+      "settings": {
+        "subheading": "",
+        "subheading_tag": "h3",
+        "subheading_font_class": "fs-body-200",
+        "subheading_color": "c-subheading-text-dark",
+        "title": "Frequently Asked Questions",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-3-base",
+        "heading_color": "c-heading-text-dark",
+        "heading_alignment": "center",
+        "item_heading_font": "heading",
+        "section_background_color": "",
+        "media_aspect_ratio": "portrait",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "custom",
+        "custom_content_width": 700,
+        "link_color_scheme": "dark"
+      }
+    },
+    "collapsible_row_image_ykezPz": {
+      "type": "collapsible-row-image",
+      "blocks": {
+        "item_wxPJpr": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2012",
+            "text": "<p>Born from garage heatwaves, Della began with a simple idea: comfort should be easier to access and simpler to trust. That belief became a mission to bring reliable cooling to more homes.</p>",
+            "image": "shopify://shop_images/Frame_14453.png"
+          }
+        },
+        "item_meDdTU": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2015",
+            "text": "<p>With a new Los Angeles warehouse, faster delivery and broader access brought reliable comfort closer to more homes.</p>",
+            "image": "shopify://shop_images/Sylro_Portable_AC_9_40c32386-f755-41d9-bddb-3415601884a3.jpg"
+          }
+        },
+        "item_W4JyWb": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2018-2020",
+            "text": "<p>As homes evolved, Della introduced mini split systems and expanded distribution in South Carolina, helping more households enjoy room-by-room comfort built for modern living.</p>",
+            "video": "shopify://files/videos/Creating the perfect reading sanctuary in my living room with the DELLA 42’’ Ultra Quiet Smart T.mp4"
+          }
+        },
+        "item_3UdhGk": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2022-2024",
+            "text": "<p>With growing trust from homeowners nationwide, Della refreshed its brand, expanded in Texas, enhanced the Della+ app, and became a leading mini split choice on Amazon.</p>",
+            "image": "shopify://shop_images/Sylro_Portable_AC_4.jpg"
+          }
+        },
+        "item_TdwkA9": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "title": "2025 & beyond",
+            "text": "<p>Della entered its next chapter with the launch of Central AC systems, Red Dot award-winning design, and a partnership with the LA Galaxy to bring smarter comfort to more local homes.</p>",
+            "video": "shopify://files/videos/SaveClip.App_AQPQJ9Ben3fCMCF72cQuC8FnrO0eVBhFPk6PCxD-KFZ3FwoWc5ozqqcdxqQk2zngfFMMTcg_HjDNuo8NEqV0O3bdkZt7kdtWHie-MRY.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "item_wxPJpr",
+        "item_meDdTU",
+        "item_W4JyWb",
+        "item_3UdhGk",
+        "item_TdwkA9"
+      ],
+      "disabled": true,
+      "name": "t:sections.collapsible_row_image.presets.name",
+      "settings": {
+        "subheading": "Designed Through Time",
+        "subheading_tag": "h3",
+        "subheading_font_class": "fs-body-200",
+        "subheading_color": "c-subheading-text-dark",
+        "title": "The Evolution of Comfort",
+        "heading_tag": "h2",
+        "heading_font_class": "fs-heading-3-base",
+        "heading_color": "c-heading-text-dark",
+        "heading_alignment": "left",
+        "item_heading_font": "heading",
+        "section_background_color": "#d8f0f7",
+        "media_aspect_ratio": "portrait",
+        "enable_animation": true,
+        "divider_style": "none",
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": "full",
+        "custom_content_width": 600,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_hero_qCJ6Pz": {
+      "type": "image-hero",
+      "blocks": {
+        "heading_LVgHK7": {
+          "type": "heading",
+          "settings": {
+            "title": "Life’s best chapters start here.",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LVgHK7"
+      ],
+      "disabled": true,
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": false,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "image": "shopify://shop_images/Frame_369566_cf53a30e-5761-4875-a04c-ca7e0b1477f1.png",
+        "image_mobile": "shopify://shop_images/Frame_369566_cc57ba61-9402-4104-afa8-a9f0e3e65737.png",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_flex-start",
+        "text_position_mobile": "center_flex-start",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#0b133d",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "video_reels_KizEL7": {
+      "type": "video-reels",
+      "blocks": {
+        "product_Jrd3Lb": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/SaveClip.App_AQPQJ9Ben3fCMCF72cQuC8FnrO0eVBhFPk6PCxD-KFZ3FwoWc5ozqqcdxqQk2zngfFMMTcg_HjDNuo8NEqV0O3bdkZt7kdtWHie-MRY.mp4",
+            "media_display_type": "video",
+            "featured_product": "della-12000-btu-wifi-enabled-20-seer2-cools-up-to-550-sq-ft-110-120v-energy-efficient-mini-split-air-conditioner-heater-ductless-inverter-system-with-1-ton-heat-pump-ja-series"
+          }
+        },
+        "product_3tkhRc": {
+          "type": "product",
+          "settings": {
+            "media_image": "shopify://shop_images/Frame_369566_cc57ba61-9402-4104-afa8-a9f0e3e65737.png",
+            "media_display_type": "image",
+            "featured_product": "42-smart-tower-fan-tf01s"
+          }
+        },
+        "product_i976Kp": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/SaveClip.App_AQPLtC4IDTlRT-uWlSlihbYKyqyipKB8vOMdx_CL3Tu5uzBedme0cDh_Cnvr4R521SgRYsKKRyFB6RuKwfkVNRI6.mp4",
+            "media_display_type": "video",
+            "featured_product": "tl-series-36000-btu-seer2-19-mini-split-heat-pump-ac-up-to-2500-sq-ft"
+          }
+        },
+        "product_ibRGKV": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/Creating the perfect reading sanctuary in my living room with the DELLA 42’’ Ultra Quiet Smart T.mp4",
+            "media_display_type": "video",
+            "featured_product": "18000-btu-dual-zone-ceiling-cassette-mini-split-ac-9k-9k-up-to-800-sq-ft"
+          }
+        },
+        "product_wfchin": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/SnapInsta.to_AQPaeWkOvHHyM5dUTHjE4KaacxidSR8A8TjCAXceMxb3FK3Azi_szx4rA4PuiY4z0ulD5fBDqwJCyKMHv91MszSNccIzEkELhW9ATdA.mp4",
+            "media_display_type": "video",
+            "featured_product": "della-12000-btu-22-seer2-ceiling-cassette-ductless-mini-split-ac-indoor-unit-with-installation-kit"
+          }
+        },
+        "product_tmqqhB": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/SaveClip.App_AQPLtC4IDTlRT-uWlSlihbYKyqyipKB8vOMdx_CL3Tu5uzBedme0cDh_Cnvr4R521SgRYsKKRyFB6RuKwfkVNRI6.mp4",
+            "media_display_type": "video",
+            "featured_product": "della-15-day-rental-install-kit"
+          }
+        },
+        "product_t3Qj8F": {
+          "type": "product",
+          "settings": {
+            "video_hosted": "shopify://files/videos/Small space, big comfort 🤍 The Della Vario Mini Split Heat Pump keeps my room perfectly cool in.mp4",
+            "media_display_type": "video",
+            "featured_product": "della-11000-btu-19-seer2-concealed-ducted-mini-split-air-conditioner"
+          }
+        },
+        "product_R86zmN": {
+          "type": "product",
+          "settings": {
+            "media_image": "shopify://shop_images/Frame_369566_cc57ba61-9402-4104-afa8-a9f0e3e65737.png",
+            "media_display_type": "image",
+            "featured_product": "della-12000-btu-22-seer2-ceiling-cassette-ductless-mini-split-ac-indoor-unit-with-installation-kit-dual"
+          }
+        }
+      },
+      "block_order": [
+        "product_Jrd3Lb",
+        "product_3tkhRc",
+        "product_i976Kp",
+        "product_ibRGKV",
+        "product_wfchin",
+        "product_tmqqhB",
+        "product_t3Qj8F",
+        "product_R86zmN"
+      ],
+      "disabled": true,
+      "name": "t:sections.shoppable-video.name",
+      "settings": {
+        "heading": "",
+        "quick_add_enabled": true,
+        "text_color": "#ffffff",
+        "background_color": "",
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-top-bottom"
+      }
+    },
+    "image_hero_bQ6wVM": {
+      "type": "image-hero",
+      "blocks": {
+        "accent_BJAJLq": {
+          "type": "accent",
+          "settings": {
+            "accent": "Comfort, handled."
+          }
+        },
+        "heading_6iwn4C": {
+          "type": "heading",
+          "settings": {
+            "title": "For every space you call home.",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-light"
+          }
+        },
+        "button_T8Nw3g": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://collections",
+            "link_text": "Explore Products",
+            "button_style": "btn--solid",
+            "button_color": "btn--light"
+          }
+        }
+      },
+      "block_order": [
+        "accent_BJAJLq",
+        "heading_6iwn4C",
+        "button_T8Nw3g"
+      ],
+      "disabled": true,
+      "name": "t:sections.image_hero.presets.name",
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "",
+        "enable_box_container": false,
+        "fit_height_content": false,
+        "enable_image_cover": false,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 100,
+        "mobile_height": 100,
+        "image": "shopify://shop_images/3a1613ef4146c18c7e47a28f4e9e1419330d45b7.png",
+        "image_mobile": "shopify://shop_images/Frame_10230.png",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "flex-start_center",
+        "text_position_mobile": "flex-start_flex-start",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#fffefb",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-none",
+        "content_width": 598,
+        "top_left_corner_radius": 0,
+        "top_right_corner_radius": 0,
+        "bottom_left_corner_radius": 0,
+        "bottom_right_corner_radius": 0,
+        "link_color_scheme": "dark"
+      }
+    },
+    "image_hero_fKfG8Q": {
+      "type": "image-hero",
+      "blocks": {
+        "heading_w3nxDQ": {
+          "type": "heading",
+          "settings": {
+            "title": "We take care of our customers",
+            "font_family_class": "ff-primary",
+            "heading_font_class": "fs-heading-3-base",
+            "heading_color": "c-heading-text-dark"
+          }
+        },
+        "subheading_gNVHUd": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Our dedicated customer service team is available around the clock to support you. Visit the Help Center for answers, guidance, and resources.",
+            "font_family_class": "ff-primary",
+            "subheading_font_class": "fs-body-200",
+            "subheading_color": "c-subheading-text-dark",
+            "enable_subheading_transparent_color": false,
+            "subheading_transparent_color": ""
+          }
+        },
+        "button_RwbUBR": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://pages/contact",
+            "link_text": "Get in touch",
+            "button_style": "btn--solid",
+            "button_color": "btn--dark"
+          }
+        },
+        "button_HaRE73": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "link": "",
+            "link_text": "Read more",
+            "button_style": "btn--outline",
+            "button_color": "btn--light"
+          }
+        }
+      },
+      "block_order": [
+        "heading_w3nxDQ",
+        "subheading_gNVHUd",
+        "button_RwbUBR",
+        "button_HaRE73"
+      ],
+      "disabled": true,
+      "settings": {
+        "anchor_id": "",
+        "show_breadcrumbs": false,
+        "enable_hero_video": false,
+        "video_url_hero": "https://cdn.shopify.com/videos/c/o/v/4e9e3d3128df44b3900b86f48ecde002.mp4",
+        "enable_box_container": true,
+        "fit_height_content": true,
+        "enable_image_cover": true,
+        "image_size": "contain",
+        "image_aspect": "original",
+        "desktop_height": 30,
+        "mobile_height": 70,
+        "image": "shopify://shop_images/Frame_369374_2b5d4594-d754-4b0c-8fb3-fbcf80f4d1c7.png",
+        "image_mobile": "shopify://shop_images/Frame_369374_f54483ce-e9a4-4b70-9fe2-d97c6a2a5e32.png",
+        "focal_point": "image_presentation",
+        "mobile_focal_point": "image_presentation",
+        "media_link": "",
+        "text_position": "center_center",
+        "text_position_mobile": "center_center",
+        "logo_position": "flex-end_center",
+        "logo_position_mobile": "flex-end_center",
+        "logo_width": 550,
+        "logo_width_mobile": 265,
+        "text_color": "#0b133d",
+        "button_background_color": "#ffffff",
+        "button_text_color": "#000000",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "enable_animation": true,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "content_width": 598,
+        "top_left_corner_radius": 200,
+        "top_right_corner_radius": 200,
+        "bottom_left_corner_radius": 200,
+        "bottom_right_corner_radius": 200,
+        "link_color_scheme": "dark"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_hero_TQzayF",
+    "image_with_text_wGKmff",
+    "rich_text_nq6h7t",
+    "multi_column_aRMzzx",
+    "image_with_text_nGFFgg",
+    "image_with_text_zD8p3L",
+    "multi_column_8UczJJ",
+    "collapsible_row_image_rxFn77",
+    "collapsible_row_image_ykezPz",
+    "image_hero_qCJ6Pz",
+    "video_reels_KizEL7",
+    "image_hero_bQ6wVM",
+    "image_hero_fKfG8Q"
+  ]
+}

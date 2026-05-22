@@ -1,0 +1,25 @@
+.DS_Store
+Thumbs.db
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+.shopify/
+.theme/
+config.yml
+
+# Dependency and build caches
+node_modules/
+.cache/
+.parcel-cache/
+.vite/
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+

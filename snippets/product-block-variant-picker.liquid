@@ -1,0 +1,333 @@
+{%- liquid
+  assign swatch_options = settings.swatch_options | downcase | split: ', '
+  assign chip_options = settings.chip_options | downcase | split: ', '
+
+  # Sibling products
+  # Merchants often make the mistake of inputting sibling_collection instead of the
+  # documented siblings_collection. We now support both to help with support debt.
+  assign sibling_products = product.metafields.stiletto.sibling_collection.value.products | default: product.metafields.stiletto.siblings_collection.value.products
+
+  case settings.swatch_shape
+    when 'rectangle'
+      case block_settings.swatch_size
+        when 'large'
+          assign swatch_width = 72
+        when 'medium'
+          assign swatch_width = 60
+        else
+          assign swatch_width = 44
+      endcase
+    else
+      case block_settings.swatch_size
+        when 'large'
+          assign swatch_width = 48
+        when 'medium'
+          assign swatch_width = 38
+        else
+          assign swatch_width = 30
+      endcase
+  endcase
+
+  assign swatch_image_width = swatch_width | times: 2
+
+  capture swatch_style
+    echo '--swatch-width: [[sw]]px;' | replace: '[[sw]]', swatch_width
+    echo '--swatch-image-fit: [[sif]];' | replace: '[[sif]]', settings.swatch_image_fit
+  endcapture
+-%}
+
+{% comment %} Siblings {% endcomment %}
+{%- if show_siblings
+  and product.metafields.stiletto.sibling_option_name
+  and sibling_products
+  and settings.siblings_option_name != blank
+-%}
+  <div class="product__block product__block--medium" data-sibling-products>
+    <div class="product__label-wrapper">
+      <label class="product__label ff-subheading fs-body-250">
+        {{ settings.siblings_option_name }}
+      </label>
+    </div>
+    <div class="product__color-swatches" style="{{ swatch_style }}">
+      <div class="product__color-swatches--inner">
+        {%- for sibling_product in sibling_products -%}
+          {% render 'product-swatch',
+            context: 'product-page',
+            prod: product,
+            forloop_index: forloop.index,
+            swatch_size: block_settings.swatch_size,
+            swatch_image_width: swatch_image_width,
+            sibling_product: sibling_product,
+            option_name: settings.siblings_option_name,
+            option_value: sibling_product.metafields.stiletto.sibling_option_name
+          %}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{%- unless product.has_only_default_variant -%}
+  {%- liquid
+    assign variant_popup_page = pages[block_settings.variant_popup_page]
+    assign variant_popup_content_exists = false
+    assign variant_popup_option = ''
+    assign variants_heading = block_settings.variants_heading | strip
+
+    if block_settings.variant_popup_option != blank and block_settings.variant_popup_text != blank and variant_popup_page.content != blank
+      assign variant_popup_content_exists = true
+      assign variant_popup_option = block_settings.variant_popup_option | downcase
+    endif
+  -%}
+
+  <div
+    class="product__controls-group product__variants-wrapper product__block product__block--top-line product__block--medium"
+    data-enable-dynamic-product-options="{{ settings.enable_dynamic_product_options }}"
+    data-current-variant-id="{{ product.selected_or_first_available_variant.id }}"
+    style="{{ swatch_style }}"
+    {{ block.shopify_attributes }}
+  >
+    {% if variants_heading != blank %}
+      <h2 class="product__variants-heading ff-heading fs-heading-6-base">{{ variants_heading }}</h2>
+    {% endif %}
+
+    {%- for option in product.options_with_values -%}
+      {%- liquid
+        assign option_name = option.name | downcase
+        assign show_popup_trigger = false
+        assign show_variant_tooltip_trigger = false
+        assign rendered_popup_trigger = ''
+        assign rendered_variant_tooltip_trigger = ''
+        assign rendered_variant_tooltip_content = ''
+        assign variant_tooltip_title = ''
+        assign variant_tooltip_content = ''
+        assign variant_tooltip_button_label = ''
+        assign variant_tooltip_button_link = ''
+        assign variant_tooltip_id = ''
+        assign option_values = ''
+
+        if variant_popup_content_exists and option_name == variant_popup_option
+          assign show_popup_trigger = true
+        endif
+
+        if blocks != blank
+          for tooltip_block in blocks
+            if tooltip_block.type == 'tooltip'
+              assign tooltip_variant = tooltip_block.settings.variant | downcase | strip
+              assign tooltip_title = tooltip_block.settings.title | strip
+              assign tooltip_content = tooltip_block.settings.content
+              assign tooltip_button_label = tooltip_block.settings.button_label | strip
+              assign tooltip_button_link = tooltip_block.settings.button_link
+
+              if tooltip_variant != blank and tooltip_variant == option_name and tooltip_title != blank and tooltip_content != blank
+                assign show_variant_tooltip_trigger = true
+                assign variant_tooltip_title = tooltip_title
+                assign variant_tooltip_content = tooltip_content
+                assign variant_tooltip_button_label = tooltip_button_label
+                assign variant_tooltip_button_link = tooltip_button_link
+                assign variant_tooltip_id = tooltip_block.id
+                break
+              endif
+            endif
+          endfor
+        endif
+      -%}
+
+      {% if show_popup_trigger %}
+        {% capture rendered_popup_trigger %}
+          {%
+            render 'product-block-information-popup' with
+            block: block,
+            popup_page_target: block_settings.variant_popup_page,
+            popup_page: variant_popup_page,
+            icon: block_settings.variant_popup_icon,
+            custom_icon_image: block_settings.custom_icon_image,
+            text: block_settings.variant_popup_text
+          %}
+        {% endcapture %}
+      {% endif %}
+
+      {% if show_variant_tooltip_trigger %}
+        {% capture rendered_variant_tooltip_trigger %}
+          <button
+            type="button"
+            class="product__variant-tooltip-trigger btn btn--text-link fs-body-50"
+            data-popup-trigger
+            data-modal-slideout="true"
+            data-modal-content-id="modal-variant-tooltip-{{ variant_tooltip_id }}-{{ option.position }}"
+            aria-controls="modal-variant-tooltip-{{ variant_tooltip_id }}-{{ option.position }}"
+          >
+            {{ variant_tooltip_title }}
+          </button>
+        {% endcapture %}
+
+        {% capture rendered_variant_tooltip_content %}
+          <div
+            id="modal-variant-tooltip-{{ variant_tooltip_id }}-{{ option.position }}"
+            class="information-popup__content modal-content modal-content--slideout"
+            data-modal-slideout="true"
+            aria-modal="true"
+            data-class-name="modal--tooltip"
+          >
+            <h2 class="information-popup__heading ff-heading fs-heading-6-base">{{ variant_tooltip_title }}</h2>
+            <div class="information-popup__inner-content rte rte--modal">
+              {{ variant_tooltip_content }}
+            </div>
+            {% if variant_tooltip_button_link != blank and variant_tooltip_button_label != blank %}
+              {%-
+                render 'button-block' with
+                wrapper_class: "product__variant-tooltip-article-link section-introduction__button",
+                link: variant_tooltip_button_link,
+                label: variant_tooltip_button_label,
+                button_style: "btn--callout"
+              -%}
+            {% endif %}
+          </div>
+        {% endcapture %}
+      {% endif %}
+
+      {% comment %}
+        All inputs that have `name=options[Name]` will be picked up by
+        ProductForm, registered as an option input, and made available
+        at ProductForm.optionsInputs
+      {% endcomment %}
+      {%- capture option_values -%}
+        <select
+          id="option{{ option.position }}"
+          name="options[{{ option.name | escape }}]"
+          class="
+            input
+            {% if settings.enable_dynamic_product_options %}
+              dynamic-variant-input
+            {% endif %}
+          "
+          data-index="option{{ forloop.index }}"
+        >
+          {%- for value in option.values -%}
+            <option
+              data-value-handle="{{ value | handleize }}--{{ forloop.index }}"
+              value="{{ value | escape }}"
+              {%- if option.selected_value == value -%}
+                selected="selected"
+              {%- endif -%}
+            >
+              {{ value }}
+            </option>
+          {%- endfor -%}
+        </select>
+      {%- endcapture -%}
+
+      {% capture rendered_option_inner %}
+        {%- if swatch_options contains option_name -%}
+          <!-- Handle swatches -->
+          <div
+            class="product__color-swatches"
+            data-option-buttons
+            data-product-option="option{{ option.position }}"
+          >
+            <div
+              class="
+                product__color-swatches--inner
+                {% if settings.enable_dynamic_product_options %}
+                  dynamic-variant-input-wrap
+                {% endif %}
+              "
+              data-index="option{{ forloop.index }}"
+            >
+              {%- for value in option.values -%}
+                {% render 'product-swatch',
+                  context: 'product-page',
+                  prod: product,
+                  forloop_index: forloop.index,
+                  swatch_size: block_settings.swatch_size,
+                  swatch_image_width: swatch_image_width,
+                  option_index: option.position,
+                  option_name: option_name,
+                  option_value: value,
+                  selected_value: option.selected_value
+                %}
+              {%- endfor -%}
+
+              {{ option_values }}
+            </div>
+          </div>
+        {%- elsif chip_options contains option_name -%}
+          <!-- Handle chips -->
+          <div
+            class="
+              product__color-chips
+              {% if settings.enable_dynamic_product_options %}
+                dynamic-variant-input-wrap
+              {% endif %}
+            "
+            data-option-buttons
+            data-product-option="option{{ option.position }}"
+            data-index="option{{ forloop.index }}"
+            data-layout="{{ block_settings.chip_layout }}"
+          >
+            {%- for value in option.values -%}
+              <button
+                type="button"
+                data-button
+                data-label="{{ value | url_encode }}"
+                aria-label="{{ value | replace: '"', "'" }}"
+                data-option-value="{{ value | escape }}"
+                data-option-handle="{{ value | handleize }}--{{ forloop.index }}"
+                class="
+                  product__chip
+                  {% if option.selected_value == value %}
+                    selected
+                  {% endif %}
+                  {% if settings.enable_dynamic_product_options %}
+                    dynamic-variant-button
+                  {% endif %}
+                "
+              >
+                {{ value }}
+              </button>
+            {%- endfor -%}
+
+            {{ option_values }}
+          </div>
+        {%- else -%}
+          <div
+            class="
+              select-wrapper
+              {% if settings.enable_dynamic_product_options %}
+                dynamic-variant-input-wrap
+              {% endif %}
+            "
+            data-index="option{{ forloop.index }}"
+          >
+            {{ option_values }}
+
+            {% render 'icon' with icon: 'chevron-down', view_box_custom: '0 0 11 6' %}
+          </div>
+        {%- endif -%}
+      {% endcapture %}
+
+      {% capture rendered_option %}
+        <div class="js-enabled product__option" data-product-option>
+          <div class="product__label-wrapper">
+            <label class="product__label ff-subheading fs-body-250" for="option{{ option.position }}">
+              {{ option.name }}
+            </label>
+            {{ rendered_variant_tooltip_trigger }}
+          </div>
+          {{ rendered_option_inner }}
+          {{ rendered_popup_trigger }}
+          {{ rendered_variant_tooltip_content }}
+        </div>
+      {% endcapture %}
+
+      {%- comment -%}Due to dynamic product options, options will be displayed in order of appearance{%- endcomment -%}
+      {{ rendered_option }}
+    {% endfor %}
+
+    {%- if settings.enable_dynamic_product_options -%}
+      <script type="application/json" data-variant-json>
+        {{ product.variants | json }}
+      </script>
+    {%- endif -%}
+  </div>
+{% endunless %}

@@ -1,0 +1,1 @@
+import{a,t as o}from"./evx.es-DeZd_zDv.js";import{A as r}from"./accordions-BA01Lx1e.js";import{w as i,a as t}from"./wrapTables-BziL4gGw.js";import"./slide-anim.module-BD6L1fKk.js";a("contact",{onLoad(){this.accordions=r(o(".accordion",this.container)),i(o("iframe",this.container)),t(o("table",this.container))},onUnload(){this.accordions.unload()}});
