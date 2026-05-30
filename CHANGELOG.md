@@ -2,6 +2,7 @@
 
 ## 2026-05-30
 
+- Hid single-value collection filter groups while preserving price filters and active selections.
 - Moved the collection FAQ title/help-center panel to the left side and the question list to the right side on desktop.
 - Added a collection FAQ desktop layout override so all collection templates keep the title/help-center panel on the left.
 - Moved collection FAQ accordion plus/minus icons to the left of each question.

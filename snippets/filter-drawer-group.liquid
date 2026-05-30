@@ -1,4 +1,13 @@
 {%- liquid
+  assign hide_single_value_filter_group = false
+  if hide_single_value_filters == true
+    if filter.type != 'price_range'
+      if filter.active_values.size == 0 and filter.values.size <= 1
+        assign hide_single_value_filter_group = true
+      endif
+    endif
+  endif
+
   assign group_active_filters = blank
 
   if filter.active_values
@@ -12,6 +21,7 @@
   endfor
 -%}
 
+{%- unless hide_single_value_filter_group -%}
 <div class="filter-drawer__group animation--filter-drawer-item">
   <button
     type="button"
@@ -154,3 +164,4 @@
     {%- endcase -%}
   </div>
 </div>
+{%- endunless -%}

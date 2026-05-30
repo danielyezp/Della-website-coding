@@ -143,14 +143,16 @@
               chip_options: chip_options,
               enable_sticky_filter_bar: section.settings.enable_sticky_filter_bar,
               collapse_filter_bar: section.settings.collapse_filter_bar,
-              chip_layout: section.settings.chip_layout
+              chip_layout: section.settings.chip_layout,
+              hide_single_value_filters: true
             %}
 
             {% render 'mobile-filters',
               results: collection,
               show_sort: section.settings.show_sort,
               show_filters: section.settings.show_filters,
-              enable_sticky_filter_bar: section.settings.enable_sticky_filter_bar
+              enable_sticky_filter_bar: section.settings.enable_sticky_filter_bar,
+              hide_single_value_filters: true
             %}
 
             <div class="collection__main-area">
@@ -164,7 +166,8 @@
                   swatch_options: swatch_options,
                   show_chip_filters: section.settings.show_chip_filters,
                   chip_options: chip_options,
-                  chip_layout: section.settings.chip_layout
+                  chip_layout: section.settings.chip_layout,
+                  hide_single_value_filters: true
                 %}
               {%- endif -%}
 
@@ -289,7 +292,8 @@
         show_chip_filters: section.settings.show_chip_filters,
         chip_options: chip_options,
         chip_layout: section.settings.chip_layout,
-        collapse_filter_groups: effective_collapse_filter_bar
+        collapse_filter_groups: effective_collapse_filter_bar,
+        hide_single_value_filters: true
       %}
     {%- else -%}
       <div class="collection__empty ta-c">

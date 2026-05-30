@@ -1,4 +1,32 @@
 {%- liquid
+  assign hide_single_value_filter_groups = false
+  if hide_single_value_filters == true
+    assign hide_single_value_filter_groups = true
+  endif
+
+  assign filters_valid = false
+  assign visible_filter_count = 0
+  if results.filters != empty and show_filters
+    for filter in results.filters
+      assign filter_is_visible = true
+      if hide_single_value_filter_groups
+        if filter.type != 'price_range'
+          if filter.active_values.size == 0 and filter.values.size <= 1
+            assign filter_is_visible = false
+          endif
+        endif
+      endif
+
+      if filter_is_visible
+        assign visible_filter_count = visible_filter_count | plus: 1
+      endif
+    endfor
+
+    if visible_filter_count > 0
+      assign filters_valid = true
+    endif
+  endif
+
   assign results_count = 0
   if results.products_count != blank
     assign results_count = results.products_count
@@ -7,7 +35,7 @@
   endif
 -%}
 
-{%- if results.filters != empty or show_sort -%}
+{%- if filters_valid or show_sort -%}
   <form class="filter-drawer popover" data-filter-modal-wrapper data-filter-form data-filter-drawer>
     {%- if search.terms -%}
       <input
@@ -36,7 +64,7 @@
       <input type="hidden" name="q" value="{{ results.current_vendor | escape }}">
     {%- endif -%}
 
-    {%- if results.filters != empty -%}
+    {%- if filters_valid -%}
       {%- liquid
         assign filters_active = false
         assign active_filter_count = 0
@@ -97,7 +125,8 @@
               swatch_options: swatch_options,
               show_chip_filters: show_chip_filters,
               chip_options: chip_options,
-              chip_layout: chip_layout
+              chip_layout: chip_layout,
+              hide_single_value_filters: hide_single_value_filter_groups
             %}
           {% endfor %}
         </div>
