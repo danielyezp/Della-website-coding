@@ -246,7 +246,7 @@
         "video_source": "shopify",
         "video_url": "",
         "side_by_side": "above",
-        "side_by_side_desktop": "right",
+        "side_by_side_desktop": "left",
         "item_heading_font": "heading",
         "enable_animation": true,
         "divider_style": "none",

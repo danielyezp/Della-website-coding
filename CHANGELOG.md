@@ -2,6 +2,7 @@
 
 ## 2026-05-30
 
+- Moved the collection FAQ title/help-center panel to the left side and the question list to the right side on desktop.
 - Moved collection FAQ accordion plus/minus icons to the left of each question.
 - Aligned expanded collection FAQ answers with the question text.
 - Kept Shopify live untouched; this change is for GitHub/local sync only.
