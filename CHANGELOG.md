@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-05-30
+
+- Moved collection FAQ accordion plus/minus icons to the left of each question.
+- Aligned expanded collection FAQ answers with the question text.
+- Kept Shopify live untouched; this change is for GitHub/local sync only.
+
 ## 2026-05-29
 
 - Raised the mobile drawer menu above the header and floating widgets while the menu is open.
