@@ -183,6 +183,30 @@
     z-index: 2402 !important;
   }
 
+  body[mobile-menu-open='true'] .shopify-section.header__outer-wrapper,
+  body[mobile-menu-open='true'] .header {
+    z-index: 2147483600 !important;
+  }
+
+  body[mobile-menu-open='true'] .drawer-menu,
+  body[mobile-menu-open='true'] .drawer-menu__overlay,
+  body[mobile-menu-open='true'] .drawer-menu__panel {
+    z-index: 2147483647 !important;
+  }
+
+  body[mobile-menu-open='true'] .drawer-menu__close {
+    z-index: 2147483647 !important;
+  }
+
+  body[mobile-menu-open='true'] div#smile-ui-container,
+  body[mobile-menu-open='true'] div#smile-ui-lite-container,
+  body[mobile-menu-open='true'] iframe[src*='smile.io'],
+  body[mobile-menu-open='true'] iframe[src*='smile'] {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+
   .template-index .trustpilot-widget,
   .template-index .trustpilot-widget iframe,
   .template-index iframe[src*='trustpilot'] {
