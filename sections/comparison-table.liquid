@@ -59,7 +59,7 @@
         -%}
       </div>
     {%- endif -%}
-    <div class="comparison-table__container section section--large-gaps {{ section.settings.section_padding }} {% if show_animations %}animation--section-blocks{% endif %}">
+    <div class="comparison-table__container section section--large-gaps {{ section.settings.section_padding }} {% if show_animations and section.settings.enable_content_animation %}animation--section-blocks{% endif %}">
       {%- if section.settings.headline != blank -%}
         <div class="comparison-table__headline fs-body-50">{{ section.settings.headline }}</div>
       {%- endif -%}
@@ -680,6 +680,13 @@
       "type": "checkbox",
       "label": "t:shared.settings.section_style.enable_animation.label",
       "info": "t:shared.settings.section_style.enable_animation.info",
+      "default": true
+    },
+    {
+      "id": "enable_content_animation",
+      "type": "checkbox",
+      "label": "Animate table content",
+      "info": "Controls the fade-in animation for the comparison table content.",
       "default": true
     },
     {
