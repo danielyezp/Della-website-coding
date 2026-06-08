@@ -3,7 +3,20 @@
       {%- if has_child_menu and link.links.size == 0 and force_direct_links != true -%}
         {% continue %}
       {%- endif -%}
-      <li class="{% if link.links.size > 0 %} has-children{% endif %}" depth="0"{% if nav_card_triggers %} data-nav-card-trigger="{{ link.handle }}"{% endif %}>
+      {%- liquid
+        assign render_nav_card_trigger = false
+        if nav_card_triggers
+          if nav_card_handles != blank
+            assign nav_card_handle_token = '|' | append: link.handle | append: '|'
+            if nav_card_handles contains nav_card_handle_token
+              assign render_nav_card_trigger = true
+            endif
+          else
+            assign render_nav_card_trigger = true
+          endif
+        endif
+      -%}
+      <li class="{% if link.links.size > 0 %} has-children{% endif %}" depth="0"{% if render_nav_card_trigger %} data-nav-card-trigger="{{ link.handle }}"{% endif %}>
         <h3{% if link.links.size > 0 %} class="meganav__heading"{% endif %}>
           <a href="{{ link.url }}" class="{% if link.links.size > 0 %}ff-subheading fs-body-300{% else %}ff-body fs-body-75{% endif %}">{{ link.title }}</a>
         </h3>
@@ -11,7 +24,20 @@
           {%- assign parent_handle = link.handle -%}
           <ul depth="1">
             {% for link in link.links %}
-              <li{% if nav_card_triggers %} data-nav-card-trigger="{{ link.handle }}"{% endif %}>
+              {%- liquid
+                assign render_child_nav_card_trigger = false
+                if nav_card_triggers
+                  if nav_card_handles != blank
+                    assign child_nav_card_handle_token = '|' | append: link.handle | append: '|'
+                    if nav_card_handles contains child_nav_card_handle_token
+                      assign render_child_nav_card_trigger = true
+                    endif
+                  else
+                    assign render_child_nav_card_trigger = true
+                  endif
+                endif
+              -%}
+              <li{% if render_child_nav_card_trigger %} data-nav-card-trigger="{{ link.handle }}"{% endif %}>
                 <a href="{{ link.url }}" class="ff-body fs-body-75">{{ link.title }}</a>
               </li>
             {% endfor %}

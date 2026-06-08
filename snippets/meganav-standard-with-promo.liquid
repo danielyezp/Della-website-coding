@@ -18,10 +18,16 @@
       break
     endif
   endfor
+  assign render_direct_links_in_columns = false
+  if meganav_settings.dropdown_parent_link == 'Shop' and show_collection_cards == false
+    assign render_direct_links_in_columns = true
+  endif
+  assign manual_card_trigger_handles = ''
+  assign rendered_manual_cards = 0
 -%}
 
 {%- capture card_list -%}
-  {% for i in (1..4) %}
+  {% for i in (1..8) %}
     {%- assign card_image_key = 'card_' | append: i | append: '_image' -%}
     {%- assign card_title_key = 'card_' | append: i | append: '_title' -%}
     {%- assign card_subtitle_key = 'card_' | append: i | append: '_subtitle' -%}
@@ -35,7 +41,36 @@
     {%- if card_image == blank -%}
       {%- continue -%}
     {%- endif -%}
-    {%- if card_link != blank -%}<a href="{{- card_link -}}" class="meganav__card">{%- else -%}<div class="meganav__card">{%- endif -%}
+    {%- liquid
+      assign card_trigger_handle = blank
+      assign card_trigger_link = blank
+      if render_direct_links_in_columns
+        for nav_link in link.links
+          if forloop.index == i
+            assign card_trigger_handle = nav_link.handle
+            assign card_trigger_link = nav_link.url
+            break
+          endif
+        endfor
+        if card_trigger_handle == blank
+          continue
+        endif
+        assign manual_card_trigger_handles = manual_card_trigger_handles | append: '|' | append: card_trigger_handle | append: '|'
+      endif
+      assign rendered_manual_cards = rendered_manual_cards | plus: 1
+      assign card_class = 'meganav__card'
+      if render_direct_links_in_columns
+        assign card_class = 'meganav__collection-card'
+        if rendered_manual_cards == 1
+          assign card_class = card_class | append: ' is-active'
+        endif
+      endif
+      assign card_href = card_link
+      if card_href == blank and render_direct_links_in_columns
+        assign card_href = card_trigger_link
+      endif
+    -%}
+    {%- if card_href != blank -%}<a href="{{- card_href -}}" class="{{ card_class }}"{% if render_direct_links_in_columns %} data-nav-card="{{ card_trigger_handle }}"{% endif %}>{%- else -%}<div class="{{ card_class }}"{% if render_direct_links_in_columns %} data-nav-card="{{ card_trigger_handle }}"{% endif %}>{%- endif -%}
       <div class="meganav__card-image">
         {%- assign card_image_alt = card_image.alt | strip | default: card_title | strip -%}
         {{ card_image | image_url: width: 500 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', alt: card_image_alt, width: card_image.width, height: card_image.height, widths: '250, 350, 500', sizes: '(min-width: 960px) 260px, 45vw' }}
@@ -55,7 +90,7 @@
         -%}
       {% endif %}
 
-    {%- if card_link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+    {%- if card_href != blank -%}</a>{%- else -%}</div>{%- endif -%}
   {% endfor %}
 {%- endcapture -%}
 
@@ -115,9 +150,13 @@
   if card_list == blank and collection_card_list != blank
     assign show_collection_card_hover = true
   endif
-  assign render_direct_links_in_columns = false
-  if meganav_settings.dropdown_parent_link == 'Shop' and show_collection_cards == false
-    assign render_direct_links_in_columns = true
+  assign show_manual_card_hover = false
+  if render_direct_links_in_columns and card_list != blank
+    assign show_manual_card_hover = true
+  endif
+  assign show_nav_card_hover = false
+  if show_collection_card_hover or show_manual_card_hover
+    assign show_nav_card_hover = true
   endif
 -%}
 
@@ -163,7 +202,7 @@
       {%- endif -%}
     </div>
     {% capture meganav_nav_wrapper %}
-    {% render 'meganav-nav', meganav_settings: meganav_settings, link: link, has_child_menu: has_nested_menu, nav_card_triggers: show_collection_card_hover, force_direct_links: render_direct_links_in_columns %}
+    {% render 'meganav-nav', meganav_settings: meganav_settings, link: link, has_child_menu: has_nested_menu, nav_card_triggers: show_nav_card_hover, nav_card_handles: manual_card_trigger_handles, force_direct_links: render_direct_links_in_columns %}
     {% endcapture %}
     {% if meganav_nav_wrapper != blank %}
       <div class="meganav__nav-wrapper">
@@ -171,7 +210,7 @@
       </div>
     {% endif %}
     {%- if card_list != blank -%}
-      <div class="meganav__card-list">
+      <div class="{% if show_manual_card_hover %}meganav__collection-cards meganav__collection-cards--manual{% else %}meganav__card-list{% endif %}"{% if show_manual_card_hover %} data-nav-cards-container{% endif %}>
         {{ card_list }}
       </div>
     {%- elsif collection_card_list != blank -%}
