@@ -5,6 +5,10 @@
   assign vertical_position = text_position | last
   assign shop_all_link = meganav_settings.shop_all_link | default: link.url
   assign shop_all_text = meganav_settings.shop_all_text
+  assign show_collection_cards = true
+  if meganav_settings.show_collection_cards == false
+    assign show_collection_cards = false
+  endif
   assign has_child_menu = false
   for _link in link.links
     if _link.links.size > 0
@@ -58,48 +62,50 @@
 {%- endif -%}
 
 {%- capture collection_card_list -%}
-  {%- assign rendered_cards = 0 -%}
-  {%- for _link in link.links -%}
-    {%- assign coll = collections[_link.object.handle] -%}
-    {%- assign ccard_img = coll.metafields.custom.barrel_card_image | default: coll.featured_image -%}
-    {%- if ccard_img != blank -%}
-      {%- assign ccard_title = coll.metafields.custom.barrel_card_heading | default: coll.title | default: _link.title -%}
-      {%- assign ccard_subtitle = coll.metafields.custom.barrel_card_subtitle_badge -%}
-      <a href="{{ _link.url }}" class="meganav__collection-card{% if rendered_cards == 0 %} is-active{% endif %}" data-nav-card="{{ _link.handle }}">
-        <div class="meganav__card-image">
-          {%- assign ccard_alt = ccard_img.alt | strip | default: ccard_title -%}
-          {{- ccard_img | image_url: width: 400 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', alt: ccard_alt, widths: '200, 300, 400', sizes: '(min-width: 960px) 220px, 45vw' -}}
-        </div>
-        {%- if ccard_title != blank -%}
-          <h3 class="meganav__card-title fs-body-300">{{- ccard_title -}}</h3>
-        {%- endif -%}
-        {%- if ccard_subtitle != blank -%}
-          <span class="meganav__card-subtitle ff-body fs-body-50">{{- ccard_subtitle -}}</span>
-        {%- endif -%}
-      </a>
-      {%- assign rendered_cards = rendered_cards | plus: 1 -%}
-    {%- endif -%}
-    {%- for _child_link in _link.links -%}
-      {%- assign child_coll = collections[_child_link.object.handle] -%}
-      {%- assign child_ccard_img = child_coll.metafields.custom.barrel_card_image | default: child_coll.featured_image -%}
-      {%- if child_ccard_img == blank -%}{%- continue -%}{%- endif -%}
-      {%- assign child_ccard_title = child_coll.metafields.custom.barrel_card_heading | default: child_coll.title | default: _child_link.title -%}
-      {%- assign child_ccard_subtitle = child_coll.metafields.custom.barrel_card_subtitle_badge -%}
-      <a href="{{ _child_link.url }}" class="meganav__collection-card{% if rendered_cards == 0 %} is-active{% endif %}" data-nav-card="{{ _child_link.handle }}">
-        <div class="meganav__card-image">
-          {%- assign child_ccard_alt = child_ccard_img.alt | strip | default: child_ccard_title -%}
-          {{- child_ccard_img | image_url: width: 400 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', alt: child_ccard_alt, widths: '200, 300, 400', sizes: '(min-width: 960px) 220px, 45vw' -}}
-        </div>
-        {%- if child_ccard_title != blank -%}
-          <h3 class="meganav__card-title fs-body-300">{{- child_ccard_title -}}</h3>
-        {%- endif -%}
-        {%- if child_ccard_subtitle != blank -%}
-          <span class="meganav__card-subtitle ff-body fs-body-50">{{- child_ccard_subtitle -}}</span>
-        {%- endif -%}
-      </a>
-      {%- assign rendered_cards = rendered_cards | plus: 1 -%}
+  {%- if show_collection_cards -%}
+    {%- assign rendered_cards = 0 -%}
+    {%- for _link in link.links -%}
+      {%- assign coll = collections[_link.object.handle] -%}
+      {%- assign ccard_img = coll.metafields.custom.barrel_card_image | default: coll.featured_image -%}
+      {%- if ccard_img != blank -%}
+        {%- assign ccard_title = coll.metafields.custom.barrel_card_heading | default: coll.title | default: _link.title -%}
+        {%- assign ccard_subtitle = coll.metafields.custom.barrel_card_subtitle_badge -%}
+        <a href="{{ _link.url }}" class="meganav__collection-card{% if rendered_cards == 0 %} is-active{% endif %}" data-nav-card="{{ _link.handle }}">
+          <div class="meganav__card-image">
+            {%- assign ccard_alt = ccard_img.alt | strip | default: ccard_title -%}
+            {{- ccard_img | image_url: width: 400 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', alt: ccard_alt, widths: '200, 300, 400', sizes: '(min-width: 960px) 220px, 45vw' -}}
+          </div>
+          {%- if ccard_title != blank -%}
+            <h3 class="meganav__card-title fs-body-300">{{- ccard_title -}}</h3>
+          {%- endif -%}
+          {%- if ccard_subtitle != blank -%}
+            <span class="meganav__card-subtitle ff-body fs-body-50">{{- ccard_subtitle -}}</span>
+          {%- endif -%}
+        </a>
+        {%- assign rendered_cards = rendered_cards | plus: 1 -%}
+      {%- endif -%}
+      {%- for _child_link in _link.links -%}
+        {%- assign child_coll = collections[_child_link.object.handle] -%}
+        {%- assign child_ccard_img = child_coll.metafields.custom.barrel_card_image | default: child_coll.featured_image -%}
+        {%- if child_ccard_img == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign child_ccard_title = child_coll.metafields.custom.barrel_card_heading | default: child_coll.title | default: _child_link.title -%}
+        {%- assign child_ccard_subtitle = child_coll.metafields.custom.barrel_card_subtitle_badge -%}
+        <a href="{{ _child_link.url }}" class="meganav__collection-card{% if rendered_cards == 0 %} is-active{% endif %}" data-nav-card="{{ _child_link.handle }}">
+          <div class="meganav__card-image">
+            {%- assign child_ccard_alt = child_ccard_img.alt | strip | default: child_ccard_title -%}
+            {{- child_ccard_img | image_url: width: 400 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', alt: child_ccard_alt, widths: '200, 300, 400', sizes: '(min-width: 960px) 220px, 45vw' -}}
+          </div>
+          {%- if child_ccard_title != blank -%}
+            <h3 class="meganav__card-title fs-body-300">{{- child_ccard_title -}}</h3>
+          {%- endif -%}
+          {%- if child_ccard_subtitle != blank -%}
+            <span class="meganav__card-subtitle ff-body fs-body-50">{{- child_ccard_subtitle -}}</span>
+          {%- endif -%}
+        </a>
+        {%- assign rendered_cards = rendered_cards | plus: 1 -%}
+      {%- endfor -%}
     {%- endfor -%}
-  {%- endfor -%}
+  {%- endif -%}
 {%- endcapture -%}
 
 {%- liquid

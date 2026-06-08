@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-06-08
+
+- Added a full-width mega menu setting to hide automatic collection image cards.
+- Disabled automatic collection cards for the Mini Split mega menu so the Best Sellers card module is removed.
+- Kept Shopify live untouched; this change is for GitHub/local sync only.
+
 ## 2026-05-30
 
 - Hid single-value collection filter groups while preserving price filters and active selections.
