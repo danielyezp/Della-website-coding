@@ -5,6 +5,7 @@
 - Prototyped the Shop mega menu locally with the requested quiz CTA, column dividers, disabled automatic collection cards, and a right-side custom image slot.
 - Added a Shop-only mega menu layout path that moves direct Shop links into the three-column navigation area while using "Shop all" as the left heading.
 - Enabled Shop mega menu hover image swapping from theme-editor Custom card images, with support for up to eight configured cards.
+- Added a theme setting to hide custom mega menu cards on mobile drawers and disabled those mobile cards for the Shop menu.
 - Kept Shopify live untouched; this change is for GitHub/local sync only.
 - Restored the Mini Split mega menu navigation to four columns after removing the automatic collection card.
 - Added a full-width mega menu setting to hide automatic collection image cards.

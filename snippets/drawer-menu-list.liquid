@@ -225,49 +225,55 @@
           {%- endcapture -%}
 
         {%- capture drawer_card_list -%}
-          {% for i in (1..4) %}
-            {%- assign card_image_key = 'card_' | append: i | append: '_image' -%}
-            {%- assign card_title_key = 'card_' | append: i | append: '_title' -%}
-            {%- assign card_subtitle_key = 'card_' | append: i | append: '_subtitle' -%}
-            {%- assign card_link_text_key = 'card_' | append: i | append: '_link_text' -%}
-            {%- assign card_link_key = 'card_' | append: i | append: '_link' -%}
-            {%- assign card_image = meganav_settings[card_image_key] -%}
-            {%- assign card_title = meganav_settings[card_title_key] -%}
-            {%- assign card_subtitle = meganav_settings[card_subtitle_key] -%}
-            {%- assign card_link_text = meganav_settings[card_link_text_key] -%}
-            {%- assign card_link = meganav_settings[card_link_key] -%}
-            {%- if card_image == blank -%}
-              {%- continue -%}
-            {%- endif -%}
+          {%- assign show_drawer_cards = true -%}
+          {%- if meganav_settings.show_drawer_cards == false -%}
+            {%- assign show_drawer_cards = false -%}
+          {%- endif -%}
+          {%- if show_drawer_cards -%}
+            {% for i in (1..4) %}
+              {%- assign card_image_key = 'card_' | append: i | append: '_image' -%}
+              {%- assign card_title_key = 'card_' | append: i | append: '_title' -%}
+              {%- assign card_subtitle_key = 'card_' | append: i | append: '_subtitle' -%}
+              {%- assign card_link_text_key = 'card_' | append: i | append: '_link_text' -%}
+              {%- assign card_link_key = 'card_' | append: i | append: '_link' -%}
+              {%- assign card_image = meganav_settings[card_image_key] -%}
+              {%- assign card_title = meganav_settings[card_title_key] -%}
+              {%- assign card_subtitle = meganav_settings[card_subtitle_key] -%}
+              {%- assign card_link_text = meganav_settings[card_link_text_key] -%}
+              {%- assign card_link = meganav_settings[card_link_key] -%}
+              {%- if card_image == blank -%}
+                {%- continue -%}
+              {%- endif -%}
 
-            {%- if card_link != blank -%}
-              <a href="{{ card_link }}" class="meganav__card w-full">
-            {%- else -%}
-              <div class="meganav__card w-full">
-            {%- endif -%}
-              <div class="meganav__card-image">
-                {%- assign card_image_alt = card_image.alt | strip | default: card_title | strip -%}
-                {{ card_image | image_url: width: 500 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', alt: card_image_alt, width: card_image.width, height: card_image.height, widths: '250, 350, 500', sizes: '45vw' }}
-              </div>
-              {%- if card_title != blank -%}
-                <h4 class="meganav__card-title ff-subheading fs-body-250">{{ card_title }}</h4>
+              {%- if card_link != blank -%}
+                <a href="{{ card_link }}" class="meganav__card w-full">
+              {%- else -%}
+                <div class="meganav__card w-full">
               {%- endif -%}
-              {%- if card_subtitle != blank -%}
-                <span class="meganav__card-subtitle ff-body fs-body-50">{{ card_subtitle }}</span>
+                <div class="meganav__card-image">
+                  {%- assign card_image_alt = card_image.alt | strip | default: card_title | strip -%}
+                  {{ card_image | image_url: width: 500 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', alt: card_image_alt, width: card_image.width, height: card_image.height, widths: '250, 350, 500', sizes: '45vw' }}
+                </div>
+                {%- if card_title != blank -%}
+                  <h4 class="meganav__card-title ff-subheading fs-body-250">{{ card_title }}</h4>
+                {%- endif -%}
+                {%- if card_subtitle != blank -%}
+                  <span class="meganav__card-subtitle ff-body fs-body-50">{{ card_subtitle }}</span>
+                {%- endif -%}
+                {% if card_link_text != blank %}
+                  {%- render 'button-block' with
+                    wrapper_class: "mt-2",
+                    label: card_link_text,
+                    button_style: 'btn--callout'
+                  -%}
+                {% endif %}
+              {%- if card_link != blank -%}
+                </a>
+              {%- else -%}
+                </div>
               {%- endif -%}
-              {% if card_link_text != blank %}
-                {%- render 'button-block' with
-                  wrapper_class: "mt-2",
-                  label: card_link_text,
-                  button_style: 'btn--callout'
-                -%}
-              {% endif %}
-            {%- if card_link != blank -%}
-              </a>
-            {%- else -%}
-              </div>
-            {%- endif -%}
-          {% endfor %}
+            {% endfor %}
+          {%- endif -%}
         {%- endcapture -%}
 
         {% unless use_accordion %}
