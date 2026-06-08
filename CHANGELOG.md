@@ -2,6 +2,7 @@
 
 ## 2026-06-08
 
+- Added an optional mobile grid layout for featured collection grid sections and enabled it on the Mini Split AC page product listing.
 - Prototyped the Shop mega menu locally with the requested quiz CTA, column dividers, disabled automatic collection cards, and a right-side custom image slot.
 - Added a Shop-only mega menu layout path that moves direct Shop links into the three-column navigation area while using "Shop all" as the left heading.
 - Enabled Shop mega menu hover image swapping from theme-editor Custom card images, with support for up to eight configured cards.

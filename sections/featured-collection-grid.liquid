@@ -1,5 +1,6 @@
 {%- liquid
   assign max_collections = section.settings.maximum_collections
+  assign mobile_layout = section.settings.mobile_layout | default: 'slider'
 -%}
 
 <div
@@ -7,6 +8,8 @@
     featured-collection-grid
     featured-collection-grid--rows-{{ section.settings.rows }}
     featured-collection-grid--per-view-{{ section.settings.columns }}
+    featured-collection-grid--mobile-layout-{{ mobile_layout }}
+    featured-collection-grid--mobile-columns-{{ section.settings.mobile_columns }}
     section
     section--includes-product-items
     section--divider-{{ section.settings.divider_style }}
@@ -22,6 +25,7 @@
   data-layout-type="grid"
   data-products-per-view="{{ section.settings.columns }}"
   data-mobile-products-per-view="{{ section.settings.mobile_columns }}"
+  data-mobile-layout="{{ mobile_layout }}"
 >
   <div class="featured-collection-grid__inner">
     <div class="section-introduction animation--section-introduction">
@@ -96,6 +100,34 @@
     </div>
   </div>
 </div>
+
+{% stylesheet %}
+  @media (max-width: 959px) {
+    .featured-collection-grid--mobile-layout-grid .featured-collection-grid__content.swiper {
+      overflow: visible;
+    }
+
+    .featured-collection-grid--mobile-layout-grid .featured-collection-grid__products.swiper-wrapper {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--spacing-6) var(--spacing-3);
+      overflow: visible !important;
+      transform: none !important;
+      width: 100% !important;
+      box-sizing: border-box;
+    }
+
+    .featured-collection-grid--mobile-layout-grid.featured-collection-grid--mobile-columns-1 .featured-collection-grid__products.swiper-wrapper {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .featured-collection-grid--mobile-layout-grid .featured-collection-grid__product.swiper-slide {
+      width: auto !important;
+      margin-right: 0 !important;
+      flex-shrink: 1;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -205,6 +237,22 @@
         {
           "value": "2",
           "label": "t:shared.settings.column_count.columns.option_2"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile product layout",
+      "default": "slider",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Horizontal scroll"
+        },
+        {
+          "value": "grid",
+          "label": "Grid"
         }
       ]
     },
