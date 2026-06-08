@@ -31,6 +31,7 @@
   endif
 
   assign placeholder_aspect_ratio = 'no-ratio'
+  assign mobile_image_breakpoint = section.settings.mobile_image_breakpoint | default: '719px'
 
   if section.settings.image_aspect == 'original'
     assign placeholder_aspect_ratio = 'square'
@@ -180,7 +181,8 @@
           animate: true,
           object_fit: image_object_fit,
           src_set_type: "full-width",
-          prioritize_loading: prioritize_loading
+          prioritize_loading: prioritize_loading,
+          breakpoint_mobile: mobile_image_breakpoint
         -%}
       </div>
     {% endif %}
@@ -436,6 +438,22 @@
       "type": "image_picker",
       "id": "image_mobile",
       "label": "t:sections.image_hero.settings.image_mobile.label"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_breakpoint",
+      "label": "Mobile image breakpoint",
+      "default": "719px",
+      "options": [
+        {
+          "value": "719px",
+          "label": "Small mobile"
+        },
+        {
+          "value": "959px",
+          "label": "Mobile and tablet"
+        }
+      ]
     },
     {
       "id": "focal_point",
