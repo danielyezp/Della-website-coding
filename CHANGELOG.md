@@ -2,6 +2,7 @@
 
 ## 2026-06-08
 
+- Restored the Mini Split mega menu navigation to four columns after removing the automatic collection card.
 - Added a full-width mega menu setting to hide automatic collection image cards.
 - Disabled automatic collection cards for the Mini Split mega menu so the Best Sellers card module is removed.
 - Kept Shopify live untouched; this change is for GitHub/local sync only.
