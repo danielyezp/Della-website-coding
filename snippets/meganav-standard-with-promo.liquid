@@ -10,11 +10,9 @@
     assign show_collection_cards = false
   endif
   assign has_child_menu = false
-  assign has_nested_menu = false
   for _link in link.links
     if _link.links.size > 0
       assign has_child_menu = true
-      assign has_nested_menu = true
       break
     endif
   endfor
@@ -202,7 +200,7 @@
       {%- endif -%}
     </div>
     {% capture meganav_nav_wrapper %}
-    {% render 'meganav-nav', meganav_settings: meganav_settings, link: link, has_child_menu: has_nested_menu, nav_card_triggers: show_nav_card_hover, nav_card_handles: manual_card_trigger_handles, force_direct_links: render_direct_links_in_columns %}
+    {% render 'meganav-nav', meganav_settings: meganav_settings, link: link, has_child_menu: has_child_menu, nav_card_triggers: show_nav_card_hover, nav_card_handles: manual_card_trigger_handles, force_direct_links: render_direct_links_in_columns %}
     {% endcapture %}
     {% if meganav_nav_wrapper != blank %}
       <div class="meganav__nav-wrapper">
