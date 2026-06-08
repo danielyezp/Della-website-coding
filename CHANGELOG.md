@@ -2,6 +2,7 @@
 
 ## 2026-06-08
 
+- Restored the Mini Split AC page hero banner to the dark close-up image and matching light text color from the release backup.
 - Added a configurable mobile image breakpoint for image hero sections and tuned the Mini Split AC page banner for collection-style mobile rendering.
 - Added an optional mobile grid layout for featured collection grid sections and enabled it on the Mini Split AC page product listing.
 - Prototyped the Shop mega menu locally with the requested quiz CTA, column dividers, disabled automatic collection cards, and a right-side custom image slot.
