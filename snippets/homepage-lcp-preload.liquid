@@ -8,11 +8,6 @@
 {%- liquid
   assign homepage_lcp_image_desktop = images['D_2160x1050px_701967f6-c3a4-4a89-89ba-4d00f8e40748.jpg']
   assign homepage_lcp_image_mobile = images['D_786x1400px.jpg']
-  assign comparison_icon_mini_split = images['150x90px_Mini_Split.png']
-  assign comparison_icon_central_ac = images['150x90px_Central_AC.png']
-  assign comparison_icon_ducted = images['150x90px_Ducted_Mini_Split_AC.png']
-  assign comparison_icon_floor_ceiling = images['150x90px_Floor_Ceiling_Mini_Split_AC.png']
-  assign comparison_icon_cassette = images['150x90px_Cassette_AC.png']
 -%}
 
 {%- if request.page_type == 'index' -%}
@@ -58,21 +53,5 @@
       media="(min-width: 720px)"
       fetchpriority="high"
     >
-  {%- endif -%}
-
-  {%- if comparison_icon_mini_split != blank -%}
-    <link rel="preload" as="image" href="{{ comparison_icon_mini_split | image_url: width: 150 }}" fetchpriority="high">
-  {%- endif -%}
-  {%- if comparison_icon_central_ac != blank -%}
-    <link rel="preload" as="image" href="{{ comparison_icon_central_ac | image_url: width: 150 }}" fetchpriority="high">
-  {%- endif -%}
-  {%- if comparison_icon_ducted != blank -%}
-    <link rel="preload" as="image" href="{{ comparison_icon_ducted | image_url: width: 150 }}" fetchpriority="high">
-  {%- endif -%}
-  {%- if comparison_icon_floor_ceiling != blank -%}
-    <link rel="preload" as="image" href="{{ comparison_icon_floor_ceiling | image_url: width: 150 }}" fetchpriority="high">
-  {%- endif -%}
-  {%- if comparison_icon_cassette != blank -%}
-    <link rel="preload" as="image" href="{{ comparison_icon_cassette | image_url: width: 150 }}" fetchpriority="high">
   {%- endif -%}
 {%- endif -%}
