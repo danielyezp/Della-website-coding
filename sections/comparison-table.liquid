@@ -32,9 +32,34 @@
   if settings.enable_section_animations and section.settings.enable_animation
     assign show_animations = true
   endif
+
+  assign column_image_fetch_priority = 'auto'
+  if section.settings.preload_column_images
+    assign column_image_fetch_priority = 'high'
+  endif
 -%}
 
 {%- if products and rows -%}
+  {%- if request.page_type != 'index' and default_layout and section.settings.preload_column_images -%}
+    {%- if section.settings.featured_column_image != blank -%}
+      <link rel="preload" as="image" href="{{ section.settings.featured_column_image | image_url: width: 150 }}" fetchpriority="high">
+    {%- endif -%}
+    {%- if section.settings.column_1_image != blank -%}
+      <link rel="preload" as="image" href="{{ section.settings.column_1_image | image_url: width: 150 }}" fetchpriority="high">
+    {%- endif -%}
+    {%- if section.settings.column_2_image != blank -%}
+      <link rel="preload" as="image" href="{{ section.settings.column_2_image | image_url: width: 150 }}" fetchpriority="high">
+    {%- endif -%}
+    {%- if section.settings.column_3_image != blank -%}
+      <link rel="preload" as="image" href="{{ section.settings.column_3_image | image_url: width: 150 }}" fetchpriority="high">
+    {%- endif -%}
+    {%- if section.settings.column_4_image != blank -%}
+      <link rel="preload" as="image" href="{{ section.settings.column_4_image | image_url: width: 150 }}" fetchpriority="high">
+    {%- endif -%}
+    {%- if section.settings.column_5_image != blank -%}
+      <link rel="preload" as="image" href="{{ section.settings.column_5_image | image_url: width: 150 }}" fetchpriority="high">
+    {%- endif -%}
+  {%- endif -%}
   <div
     {% if section.settings.anchor_id != blank %}id="{{ section.settings.anchor_id | strip | handleize }}"{% endif %}
     class="
@@ -115,11 +140,12 @@
                         image: product_image,
                         include_placeholder: true,
                         src_set_type: "grid",
+                        sizes_px: 153,
                         object_fit: 'contain',
                         class_name: 'object-contain',
                         no_lazy_load: true,
                         prioritize_loading: true,
-                        fetch_priority: 'auto'
+                        fetch_priority: column_image_fetch_priority
                       -%}
                     </div>
                   {% endif %}
@@ -260,11 +286,12 @@
                           image: product_image,
                           include_placeholder: true,
                           src_set_type: "grid",
+                          sizes_px: 153,
                           object_fit: 'contain',
                           class_name: 'object-contain',
                           no_lazy_load: true,
                           prioritize_loading: true,
-                          fetch_priority: 'auto'
+                          fetch_priority: column_image_fetch_priority
                         -%}
                       </div>
                     {% endif %}
@@ -688,6 +715,13 @@
       "label": "Animate table content",
       "info": "Controls the fade-in animation for the comparison table content.",
       "default": true
+    },
+    {
+      "id": "preload_column_images",
+      "type": "checkbox",
+      "label": "Preload column images",
+      "info": "Preloads default-layout column images so small comparison icons appear immediately.",
+      "default": false
     },
     {
       "type": "select",

@@ -2,6 +2,8 @@
 
 ## 2026-06-08
 
+- Rendered the homepage preload snippet in the document head and added the homepage comparison icon images to that early preload list.
+- Added optional preloading for comparison table default column images and enabled it on the homepage system comparison to prevent CDN icon wait time.
 - Added a comparison table content animation toggle and disabled it on the homepage system comparison so its icons appear without the section fade-in delay.
 - Disabled lazy loading and lazy-load animation for comparison table header icons so homepage system icons render immediately.
 - Restored the Mini Split AC page hero banner to the dark close-up image and matching light text color from the release backup.

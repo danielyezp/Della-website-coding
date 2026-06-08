@@ -9,6 +9,7 @@
 
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    {%- render 'homepage-lcp-preload' -%}
     {%- if request.page_type == 'product' -%}
       {%- assign product_external_video = product.media | where: 'media_type', 'external_video' | first -%}
       {%- if product_external_video != blank -%}
