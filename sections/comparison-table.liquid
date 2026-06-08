@@ -116,7 +116,10 @@
                         include_placeholder: true,
                         src_set_type: "grid",
                         object_fit: 'contain',
-                        class_name: 'object-contain'
+                        class_name: 'object-contain',
+                        no_lazy_load: true,
+                        prioritize_loading: true,
+                        fetch_priority: 'auto'
                       -%}
                     </div>
                   {% endif %}
@@ -258,7 +261,10 @@
                           include_placeholder: true,
                           src_set_type: "grid",
                           object_fit: 'contain',
-                          class_name: 'object-contain'
+                          class_name: 'object-contain',
+                          no_lazy_load: true,
+                          prioritize_loading: true,
+                          fetch_priority: 'auto'
                         -%}
                       </div>
                     {% endif %}
