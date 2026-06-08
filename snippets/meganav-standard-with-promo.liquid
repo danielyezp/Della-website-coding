@@ -10,9 +10,11 @@
     assign show_collection_cards = false
   endif
   assign has_child_menu = false
+  assign has_nested_menu = false
   for _link in link.links
     if _link.links.size > 0
       assign has_child_menu = true
+      assign has_nested_menu = true
       break
     endif
   endfor
@@ -113,15 +115,36 @@
   if card_list == blank and collection_card_list != blank
     assign show_collection_card_hover = true
   endif
+  assign render_direct_links_in_columns = false
+  if meganav_settings.dropdown_parent_link == 'Shop' and show_collection_cards == false
+    assign render_direct_links_in_columns = true
+  endif
 -%}
 
 {%- capture meganav_primary -%}
   <div class="meganav__primary" style="--column-divider-color: {{ meganav_settings.column_divider_color }};">
     <div class="meganav__info">
-      <h2 class="meganav__heading ff-heading fs-heading-4-base">{{ link.title }}</h2>
+      {%- liquid
+        assign info_heading = link.title
+        assign render_shop_all_link = true
+        if render_direct_links_in_columns and shop_all_text != blank
+          assign info_heading = shop_all_text
+          assign render_shop_all_link = false
+        endif
+      -%}
+      <h2 class="meganav__heading ff-heading fs-heading-4-base">
+        {%- if render_direct_links_in_columns and shop_all_link != blank -%}
+          <a href="{{ shop_all_link }}" class="hover:underline">{{ info_heading }}</a>
+        {%- else -%}
+          {{ info_heading }}
+        {%- endif -%}
+      </h2>
       {%- if has_child_menu or card_list != blank or collection_card_list != blank -%}
         <ul class="meganav__list-parent ff-body fs-body-75 {% if shop_all_text != blank %}has-shop-all{% endif %}" depth="0">
           {% for _link in link.links %}
+            {%- if render_direct_links_in_columns -%}
+              {% continue %}
+            {%- endif -%}
             {%- if _link.links.size > 0 -%}
               {% continue %}
             {%- endif -%}
@@ -133,14 +156,14 @@
           {% endfor %}
         </ul>
       {%- endif -%}
-      {%- if shop_all_text != blank -%}
+      {%- if render_shop_all_link and shop_all_text != blank -%}
         <h3>
           <a href="{{ shop_all_link }}" class="ff-body fs-body-75 hover:underline">{{ shop_all_text }}</a>
         </h3>
       {%- endif -%}
     </div>
     {% capture meganav_nav_wrapper %}
-    {% render 'meganav-nav', meganav_settings: meganav_settings, link: link, has_child_menu: has_child_menu, nav_card_triggers: show_collection_card_hover %}
+    {% render 'meganav-nav', meganav_settings: meganav_settings, link: link, has_child_menu: has_nested_menu, nav_card_triggers: show_collection_card_hover, force_direct_links: render_direct_links_in_columns %}
     {% endcapture %}
     {% if meganav_nav_wrapper != blank %}
       <div class="meganav__nav-wrapper">

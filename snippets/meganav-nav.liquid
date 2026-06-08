@@ -1,6 +1,6 @@
 {% capture link_data %}
 {% for link in link.links %}
-      {%- if has_child_menu and link.links.size == 0 -%}
+      {%- if has_child_menu and link.links.size == 0 and force_direct_links != true -%}
         {% continue %}
       {%- endif -%}
       <li class="{% if link.links.size > 0 %} has-children{% endif %}" depth="0"{% if nav_card_triggers %} data-nav-card-trigger="{{ link.handle }}"{% endif %}>
